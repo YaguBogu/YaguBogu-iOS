@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9421256E2ECC5DF400FE7314 /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9421256D2ECC5DF400FE7314 /* ConfidentialKit */; };
 		FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C219F2ECC1BD600B78A0E /* SnapKit */; };
 		FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A22ECC1C1600B78A0E /* RxCocoa */; };
 		FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A42ECC1C1600B78A0E /* RxRelay */; };
@@ -43,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9421256E2ECC5DF400FE7314 /* ConfidentialKit in Frameworks */,
 				FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */,
 				FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */,
 				FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */,
@@ -83,6 +85,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				942125702ECC5DFC00FE7314 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				FB6AFDB52ECC187C001FEB2E /* YaguBogu */,
@@ -93,6 +96,7 @@
 				FB3C21A22ECC1C1600B78A0E /* RxCocoa */,
 				FB3C21A42ECC1C1600B78A0E /* RxRelay */,
 				FB3C21A62ECC1C1600B78A0E /* RxSwift */,
+				9421256D2ECC5DF400FE7314 /* ConfidentialKit */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -125,6 +129,8 @@
 			packageReferences = (
 				FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */,
 				FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
+				9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -156,6 +162,13 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		942125702ECC5DFC00FE7314 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 9421256F2ECC5DFC00FE7314 /* Confidential */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		FB6AFDC72ECC187D001FEB2E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -164,6 +177,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YaguBogu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -171,7 +185,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -196,6 +210,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YaguBogu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -203,7 +218,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -364,6 +379,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential-plugin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -383,6 +414,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9421256D2ECC5DF400FE7314 /* ConfidentialKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */;
+			productName = ConfidentialKit;
+		};
+		9421256F2ECC5DFC00FE7314 /* Confidential */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */;
+			productName = "plugin:Confidential";
+		};
 		FB3C219F2ECC1BD600B78A0E /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */;
