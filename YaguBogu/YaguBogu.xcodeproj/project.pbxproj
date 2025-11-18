@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C219F2ECC1BD600B78A0E /* SnapKit */; };
+		FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A22ECC1C1600B78A0E /* RxCocoa */; };
+		FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A42ECC1C1600B78A0E /* RxRelay */; };
+		FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A62ECC1C1600B78A0E /* RxSwift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaguBogu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */,
+				FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */,
+				FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */,
+				FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +89,10 @@
 			);
 			name = YaguBogu;
 			packageProductDependencies = (
+				FB3C219F2ECC1BD600B78A0E /* SnapKit */,
+				FB3C21A22ECC1C1600B78A0E /* RxCocoa */,
+				FB3C21A42ECC1C1600B78A0E /* RxRelay */,
+				FB3C21A62ECC1C1600B78A0E /* RxSwift */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -107,6 +122,10 @@
 			);
 			mainGroup = FB6AFDAA2ECC187C001FEB2E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
 			projectDirPath = "";
@@ -343,6 +362,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.9.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FB3C219F2ECC1BD600B78A0E /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		FB3C21A22ECC1C1600B78A0E /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		FB3C21A42ECC1C1600B78A0E /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		FB3C21A62ECC1C1600B78A0E /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB6AFDAB2ECC187C001FEB2E /* Project object */;
 }
