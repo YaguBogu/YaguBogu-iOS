@@ -1,0 +1,94 @@
+{
+    "ExtraTeamModel": [
+        {
+            "teamId": "Doosan Bears",
+            "stadium": "잠실야구장",
+            "city" : "서울",
+            "latitude" : "37.51201894088975",
+            "longtitude" : "127.0718969383121",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "Hanwha Eagles",
+            "stadium": "대전한화생명볼파크",
+            "city" : "대전",
+            "latitude" : "36.316066596569165",
+            "longtitude" : "127.43167645403133",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "KIA Tigers",
+            "stadium": "기아챔피언스필드",
+            "city" : "광주",
+            "latitude" : "35.168143901359784",
+            "longtitude" : "126.8891423364501",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "Kiwoom Heroes",
+            "stadium": "고척스카이돔",
+            "city" : "서울",
+            "latitude" : "37.49848034218344",
+            "longtitude" : "126.86716482656504",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "KT Wiz Suwon",
+            "stadium": "수원케이티위즈파크",
+            "city" : "수원",
+            "latitude" : "37.29966537879378",
+            "longtitude" : "127.00977034570677",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "LG Twins",
+            "stadium": "잠실야구장",
+            "city" : "서울",
+            "latitude" : "37.51201894088975",
+            "longtitude" : "127.0718969383121",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "Lotte Giants",
+            "stadium": "사직야구장",
+            "city" : "부산",
+            "latitude" : "35.1940238473883",
+            "longtitude" : "129.06143988969237",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "NC Dinos",
+            "stadium": "창원NC파크",
+            "city" : "창원",
+            "latitude" : "35.22263093553172",
+            "longtitude" : "128.58223816267258",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "Samsung Lions",
+            "stadium": "대구삼성라이온즈파크",
+            "city" : "대구",
+            "latitude" : "35.8410120804932",
+            "longtitude" : "128.68163963151713",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        },
+        {
+            "teamId": "SSG Landers",
+            "stadium": "인천SSG랜더스필드",
+            "city" : "인천",
+            "latitude" : "37.43695806700958",
+            "longtitude" : "126.69324804173549",
+            "defalutCharacter": "Character/Default",
+            "teamLogo" : "TeamLogo/Doosan"
+        }
+    ]
+}
