@@ -6,21 +6,6 @@ final class SplashViewController: BaseViewController {
     // 뷰모델
     private let viewModel: SplashViewModel
 
-    // 컬러
-    private let backgroundColor = UIColor(
-        red: 248/255.0,
-        green: 248/255.0,
-        blue: 250/255.0,
-        alpha: 1.0
-    )
-
-    private let primaryPink = UIColor(
-        red: 244/255.0,
-        green: 144/255.0,
-        blue: 146/255.0,
-        alpha: 1.0
-    )
-
     // UI
 
     private let logoImageView: UIImageView = {
@@ -40,8 +25,9 @@ final class SplashViewController: BaseViewController {
         let attributed = NSAttributedString(
             string: "즐거운 야구 생활, 야구보구",
             attributes: [
-                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 20)!,
-                .foregroundColor: primaryPink,
+                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 20) ??
+                       .systemFont(ofSize: 20, weight: .medium),
+                .foregroundColor: UIColor.primary,
                 .paragraphStyle: paragraph
             ]
         )
@@ -75,7 +61,7 @@ final class SplashViewController: BaseViewController {
     // BaseViewController 오버라이드
 
     override func configureUI() {
-        view.backgroundColor = backgroundColor
+        view.backgroundColor = .bg
 
         view.addSubview(logoImageView)
         view.addSubview(titleLabel)
