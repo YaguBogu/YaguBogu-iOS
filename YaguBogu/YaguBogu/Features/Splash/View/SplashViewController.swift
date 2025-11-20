@@ -1,30 +1,86 @@
 import UIKit
-import RxSwift
-import RxCocoa
+import SnapKit
 
-final class SplashViewController: UIViewController {
+final class SplashViewController: BaseViewController {
 
-    private let disposeBag = DisposeBag()
-    
-    let viewModel: SplashViewModel
+    // 뷰모델
+    private let viewModel: SplashViewModel
+
+    // UI
+
+    private let logoImageView: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "splashLogo"))
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.minimumLineHeight = 25
+        paragraph.maximumLineHeight = 25
+        paragraph.alignment = .center
+
+        let attributed = NSAttributedString(
+            string: "즐거운 야구 생활, 야구보구",
+            attributes: [
+                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 20) ??
+                       .systemFont(ofSize: 20, weight: .medium),
+                .foregroundColor: UIColor.primary,
+                .paragraphStyle: paragraph
+            ]
+        )
+
+        label.attributedText = attributed
+        label.textAlignment = .center
+        return label
+    }()
+
+    // Init
 
     init(viewModel: SplashViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) { fatalError() }
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    // Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+            self.viewModel.splashDidFinish()
+        }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    // BaseViewController 오버라이드
 
-        // 애니메이션이 끝나면
-        viewModel.splashDidFinish()
+    override func configureUI() {
+        view.backgroundColor = .bg
+
+        view.addSubview(logoImageView)
+        view.addSubview(titleLabel)
+    }
+
+    override func setupConstraints() {
+
+        logoImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-40)
+            $0.width.height.equalTo(100)
+        }
+
+        titleLabel.snp.makeConstraints {
+            $0.top.equalTo(logoImageView.snp.bottom).offset(24)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(211)
+            $0.height.equalTo(25)
+        }
     }
 }
 
