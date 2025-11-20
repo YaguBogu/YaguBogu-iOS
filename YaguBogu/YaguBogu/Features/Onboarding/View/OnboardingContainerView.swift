@@ -1,0 +1,47 @@
+import SwiftUI
+
+struct OnboardingContainerView: View {
+    @StateObject var viewModel = OnboardingViewModel()
+    
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            // 배경
+            Color(red: 248/255, green: 248/255, blue: 250/255)
+                .ignoresSafeArea()
+            
+            // 페이지 콘텐츠
+            ScrollView {
+                VStack {
+                    switch viewModel.currentPage {
+                    case 0: OnboardingView1()
+                    case 1: OnboardingView2()
+                    case 2: OnboardingView3()
+                    // 홈 뷰 추가
+//                    case 3:
+                    default: EmptyView()
+                    }
+                    Spacer()
+                        .frame(height: 119)
+                }
+                .padding(.top, 165)
+            }
+            .ignoresSafeArea(.container, edges: .bottom)
+            
+            // 하단 버튼
+            if viewModel.currentPage < viewModel.totalPages {
+                OnboardingBottomView(
+                    currentPage: viewModel.currentPage,
+                    totalPages: viewModel.totalPages,
+                    nextAction: {
+                        viewModel.nextButtonTapped()
+                    }
+                )
+                .padding(.bottom, 16)
+            }
+        }
+    }
+}
+
+#Preview {
+    OnboardingContainerView()
+}
