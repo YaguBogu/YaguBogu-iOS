@@ -13,7 +13,7 @@ struct OnboardingView1: View {
             
             Text("야구장 날씨가 궁금하시죠?")
                 .font(.system(size: 28, weight: .semibold))
-                                .padding(10)
+                .padding(10)
             
             Text("좋아하는 구단을 선택하고,")
                 .font(.system(size: 16, weight: .medium))
@@ -23,5 +23,6 @@ struct OnboardingView1: View {
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(Color(red: 143/255, green: 143/255, blue: 143/255))
         }
+        .padding(.top, 165)
     }
 }

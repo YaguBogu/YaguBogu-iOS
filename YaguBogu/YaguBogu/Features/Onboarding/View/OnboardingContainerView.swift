@@ -1,7 +1,11 @@
 import SwiftUI
 
 struct OnboardingContainerView: View {
-    @StateObject var viewModel = OnboardingViewModel()
+    @StateObject var viewModel: OnboardingViewModel
+    
+    init(viewModel: OnboardingViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -16,14 +20,11 @@ struct OnboardingContainerView: View {
                     case 0: OnboardingView1()
                     case 1: OnboardingView2()
                     case 2: OnboardingView3()
-                    // 홈 뷰 추가
-//                    case 3:
                     default: EmptyView()
                     }
                     Spacer()
                         .frame(height: 119)
                 }
-                .padding(.top, 165)
             }
             .ignoresSafeArea(.container, edges: .bottom)
             
@@ -40,8 +41,4 @@ struct OnboardingContainerView: View {
             }
         }
     }
-}
-
-#Preview {
-    OnboardingContainerView()
 }

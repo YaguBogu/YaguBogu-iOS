@@ -5,8 +5,8 @@ struct OnboardingView3: View {
     var body: some View {
         VStack {
             HStack {
-                    Text("경기일정\n한눈에 모아봤어요.")
-                        .font(.system(size: 28, weight: .semibold))
+                Text("경기일정\n한눈에 모아봤어요.")
+                    .font(.system(size: 28, weight: .semibold))
                 
                 Image("Onboarding3")
                     .resizable()
@@ -20,5 +20,6 @@ struct OnboardingView3: View {
                 .frame(width: 295, height: 304)
                 .cornerRadius(12)
         }
+        .padding(.top, 80)
     }
 }
