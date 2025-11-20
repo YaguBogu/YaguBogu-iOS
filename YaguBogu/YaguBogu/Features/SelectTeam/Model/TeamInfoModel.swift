@@ -19,13 +19,11 @@ struct TeamInfo: Identifiable, Codable{
     //API
     let id: Int
     let name: String
-    let logoURL: URL?
     //JSON
     let stadium: String
     let city: String
     let location: CodableCoordinate
     let defalutCharacter: String
-    let teamLogo: String
 }
 
 
@@ -50,5 +48,4 @@ struct TeamExtra: Codable {
     let latitude: String
     let longtitude: String
     let defalutCharacter: String
-    let teamLogo: String
 }
