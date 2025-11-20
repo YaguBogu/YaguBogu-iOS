@@ -74,7 +74,7 @@ class SelectTeamCell: UICollectionViewCell{
     func configure(with team: TeamInfo){
         let transTeamLabel = team.name
         let koreanTeamLabel = BaseBallNameTranslator.getKoreanName(for: transTeamLabel)
-        logoImage.image = UIImage(named: team.teamLogo)
+        //logoImage.image = UIImage(named: team.teamLogo)
         teamNameLabel.text = koreanTeamLabel
         cityLabel.text = team.city
     }

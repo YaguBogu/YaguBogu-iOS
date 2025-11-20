@@ -85,12 +85,10 @@ class TeamViewModel {
                     let newTeam = TeamInfo(
                         id: apiTeam.id,
                         name: apiTeam.name,
-                        logoURL: URL(string: apiTeam.logo),
                         stadium: extraInfo.stadium,
                         city: extraInfo.city,
                         location: codableLocation,
-                        defalutCharacter: extraInfo.defalutCharacter,
-                        teamLogo: extraInfo.teamLogo
+                        defalutCharacter: extraInfo.defalutCharacter
                     )
                     mergeList.append(newTeam)
                 }
