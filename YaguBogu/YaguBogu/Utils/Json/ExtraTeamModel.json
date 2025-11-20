@@ -7,7 +7,7 @@
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "Hanwha Eagles",
@@ -16,7 +16,7 @@
             "latitude" : "36.316066596569165",
             "longtitude" : "127.43167645403133",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "KIA Tigers",
@@ -25,7 +25,7 @@
             "latitude" : "35.168143901359784",
             "longtitude" : "126.8891423364501",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "Kiwoom Heroes",
@@ -34,7 +34,7 @@
             "latitude" : "37.49848034218344",
             "longtitude" : "126.86716482656504",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "KT Wiz Suwon",
@@ -43,7 +43,7 @@
             "latitude" : "37.29966537879378",
             "longtitude" : "127.00977034570677",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "LG Twins",
@@ -52,7 +52,7 @@
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "Lotte Giants",
@@ -61,7 +61,7 @@
             "latitude" : "35.1940238473883",
             "longtitude" : "129.06143988969237",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "NC Dinos",
@@ -70,7 +70,7 @@
             "latitude" : "35.22263093553172",
             "longtitude" : "128.58223816267258",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "Samsung Lions",
@@ -79,7 +79,7 @@
             "latitude" : "35.8410120804932",
             "longtitude" : "128.68163963151713",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         },
         {
             "teamId": "SSG Landers",
@@ -88,7 +88,7 @@
             "latitude" : "37.43695806700958",
             "longtitude" : "126.69324804173549",
             "defalutCharacter": "Character/Default",
-            "teamLogo" : "TeamLogo/Doosan"
+            "teamLogo" : "Doosan"
         }
     ]
 }
