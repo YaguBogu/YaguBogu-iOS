@@ -18,10 +18,9 @@ final class AppCoordinator: BaseCoordinator {
         vm.finishTrigger
             .subscribe(onNext: { [weak self] in
                 print("스플래시가 끝남")
-                // 다음 동작은 이후 브랜치에서 추가
                 
                 if let savedTeam = TeamDataUserDefaults.shared.getSelectedTeam(){
-                    self?.showHome(with: savedTeam)
+                    self?.showTabBar(with: savedTeam)
                 } else {
                     self?.showSelectTeam()
                 }
@@ -41,7 +40,7 @@ final class AppCoordinator: BaseCoordinator {
                 TeamDataUserDefaults.shared.saveSelectedTeam(selectTeam)
                 
                 self?.removeChild(teamCoordinator)
-                self?.showHome(with: selectTeam)
+                self?.showTabBar(with: selectTeam)
             })
             .disposed(by: disposeBag)
         
@@ -50,12 +49,14 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     
-    private func showHome(with team: TeamInfo){
-        let homeVM = HomeViewModel(team: team)
-        let homeVC = HomeViewController(viewModel: homeVM)
-        
-        
-        navigationController.setViewControllers([homeVC], animated: true)
+    private func showTabBar(with team: TeamInfo) {
+        let tabBarCoordinator = TabBarCoordinator(
+            navigationController: navigationController,
+            team: team
+        )
+
+        addChild(tabBarCoordinator)
+        tabBarCoordinator.start()
     }
 }
 
