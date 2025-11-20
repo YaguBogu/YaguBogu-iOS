@@ -5,7 +5,17 @@ import RxRelay
 import SnapKit
 
 class TeamViewController: BaseViewController {
-    private let viewModel = TeamViewModel()
+    private var viewModel: TeamViewModel!
+    
+    init(viewModel: TeamViewModel!) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     private let headerView: UIView = {
         let view = UIView()
@@ -46,7 +56,6 @@ class TeamViewController: BaseViewController {
         setupCollectionView()
         bind()
         viewModel.loadMergeData()
-        
     }
     
     override func configureUI(){
@@ -103,7 +112,32 @@ class TeamViewController: BaseViewController {
             .subscribe(onNext: { [weak self] _ in
                 self?.collectionView.reloadData()
             }).disposed(by: disposeBag)
+        
+        viewModel.selectedIndexPath
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.collectionView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isConfirmButtonState
+            .asDriver()
+            .drive(onNext: { [weak self] isEnabled in
+                self?.selectButton.isEnabled = isEnabled
+                self?.selectButton.backgroundColor = isEnabled
+                ? UIColor(red: 255/255, green: 114/255, blue: 116/255, alpha: 1.0)
+                : UIColor(red: 219/255, green: 219/255, blue: 219/255, alpha: 1.0)
+            }).disposed(by: disposeBag)
+        
+        collectionView.rx.itemSelected
+            .bind(to: viewModel.itemSelected)
+            .disposed(by: disposeBag)
+        
+        selectButton.rx.tap
+            .bind(to: viewModel.confirmButtonTapped)
+            .disposed(by: disposeBag)
     }
+    
     
     private func setupCollectionView(){
         collectionView.dataSource = self
@@ -119,7 +153,7 @@ class TeamViewController: BaseViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalWidth(1.0/2.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
-        group.interItemSpacing = .fixed(15)
+        group.interItemSpacing = .fixed(16)
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12
@@ -150,6 +184,10 @@ extension TeamViewController: UICollectionViewDataSource {
         }
         let teamInfo = viewModel.teams.value[indexPath.item]
         cell.configure(with: teamInfo)
+        
+        let isSelected = viewModel.selectedIndexPath.value == indexPath
+        cell.selectedCell(isSelected)
+        
         return cell
     }
     
@@ -166,7 +204,3 @@ extension TeamViewController: UICollectionViewDataSource {
     }
 }
 
-
-#Preview{
-    TeamViewController()
-}

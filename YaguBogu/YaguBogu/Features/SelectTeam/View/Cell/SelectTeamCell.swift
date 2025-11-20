@@ -45,7 +45,7 @@ class SelectTeamCell: UICollectionViewCell{
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        configuerView()
+        configureLayout()
         
     }
     
@@ -56,10 +56,11 @@ class SelectTeamCell: UICollectionViewCell{
     private func setupUI(){
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
         contentView.addSubview(mainStackView)
     }
     
-    private func configuerView(){
+    private func configureLayout(){
         logoImage.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.width).multipliedBy(0.4)
         }
@@ -76,5 +77,18 @@ class SelectTeamCell: UICollectionViewCell{
         logoImage.image = UIImage(named: team.teamLogo)
         teamNameLabel.text = koreanTeamLabel
         cityLabel.text = team.city
+    }
+    
+    func selectedCell(_ selected: Bool){
+        if selected{
+            contentView.layer.borderWidth = 1.0
+            contentView.layer.borderColor = UIColor(red: 255/255,green: 114/255, blue: 116/255, alpha: 1.0).cgColor
+            contentView.backgroundColor = UIColor(red: 255/255, green: 114/255, blue: 116/255, alpha: 0.1)
+            
+        } else{
+            contentView.layer.borderWidth = 0.0
+            contentView.layer.borderColor = UIColor.clear.cgColor
+            contentView.backgroundColor = .white
+        }
     }
 }
