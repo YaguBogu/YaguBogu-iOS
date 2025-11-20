@@ -2,10 +2,47 @@ import UIKit
 import CoreLocation
 import RxSwift
 import RxRelay
+import RxCocoa
 
 class TeamViewModel {
+    
+    let itemSelected = PublishRelay<IndexPath>()
+    let confirmButtonTapped = PublishRelay<Void>()
+    
     let teams = BehaviorRelay<[TeamInfo]>(value: [])
+    let navigateToDetail = PublishSubject<TeamInfo>()
+    let isConfirmButtonState = BehaviorRelay<Bool>(value: false)
+    
+    let selectedIndexPath = BehaviorRelay<IndexPath?>(value: nil)
+
     private let jsonLoader = JsonLoader()
+    private var disposeBag = DisposeBag()
+    private let selectedTeamInfo = BehaviorRelay<TeamInfo?>(value: nil)
+    
+    init() {
+        bind()
+    }
+    
+    private func bind() {
+        itemSelected
+            .bind(to: selectedIndexPath)
+            .disposed(by: disposeBag)
+            
+        selectedIndexPath
+            .map { $0 != nil }
+            .bind(to: isConfirmButtonState)
+            .disposed(by: disposeBag)
+
+        confirmButtonTapped
+            .withLatestFrom(selectedIndexPath)
+            .compactMap { $0 }
+            .map { [weak self] indexPath in
+                self?.teams.value[indexPath.item]
+            }
+            .compactMap { $0 }
+            .bind(to: navigateToDetail)
+            .disposed(by: disposeBag)
+        }
     
     func loadMergeData(){
         
@@ -41,7 +78,9 @@ class TeamViewModel {
                 if let extraInfo = localTeams.first(where: {$0.teamId == apiTeam.name}) {
                     let latitude = Double(extraInfo.latitude) ?? 0.0
                     let longitude = Double(extraInfo.longtitude) ?? 0.0
-                    let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    
+                    let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    let codableLocation = CodableCoordinate(coordinate: coordinate)
                     
                     let newTeam = TeamInfo(
                         id: apiTeam.id,
@@ -49,14 +88,16 @@ class TeamViewModel {
                         logoURL: URL(string: apiTeam.logo),
                         stadium: extraInfo.stadium,
                         city: extraInfo.city,
-                        location: location,
+                        location: codableLocation,
                         defalutCharacter: extraInfo.defalutCharacter,
                         teamLogo: extraInfo.teamLogo
                     )
                     mergeList.append(newTeam)
                 }
             }
-            self.teams.accept(mergeList)
+            DispatchQueue.main.async{
+                self.teams.accept(mergeList)
+            }
         }
         
         task.resume()

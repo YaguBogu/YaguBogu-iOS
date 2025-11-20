@@ -1,7 +1,21 @@
 import Foundation
 import CoreLocation
 
-struct TeamInfo: Identifiable{
+struct CodableCoordinate: Codable {
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
+
+    var coordinate: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    }
+
+    init(coordinate: CLLocationCoordinate2D) {
+        self.latitude = coordinate.latitude
+        self.longitude = coordinate.longitude
+    }
+}
+
+struct TeamInfo: Identifiable, Codable{
     //API
     let id: Int
     let name: String
@@ -9,7 +23,7 @@ struct TeamInfo: Identifiable{
     //JSON
     let stadium: String
     let city: String
-    let location: CLLocationCoordinate2D
+    let location: CodableCoordinate
     let defalutCharacter: String
     let teamLogo: String
 }
