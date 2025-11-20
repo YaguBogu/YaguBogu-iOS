@@ -23,12 +23,28 @@ final class AppCoordinator: BaseCoordinator {
                 if let savedTeam = TeamDataUserDefaults.shared.getSelectedTeam(){
                     self?.showHome(with: savedTeam)
                 } else {
-                    self?.showSelectTeam()
+                    self?.showOnboarding { [weak self] in
+                        self?.showSelectTeam()
+                    }
                 }
             })
             .disposed(by: disposeBag)
 
         navigationController.setViewControllers([vc], animated: false)
+    }
+    
+    private func showOnboarding(completion: @escaping () -> Void) {
+        let onboardingCoordinator = OnboardingCoordinator(navigationController: navigationController)
+        
+        onboardingCoordinator.didFinish = { [ weak self, weak onboardingCoordinator] in
+            guard let self = self, let onboardingCoordinator = onboardingCoordinator else { return }
+            
+            self.removeChild(onboardingCoordinator)
+            
+            completion()
+        }
+        addChild(onboardingCoordinator)
+        onboardingCoordinator.start()
     }
     
     private func showSelectTeam() {

@@ -20,5 +20,6 @@ struct OnboardingView2: View {
                 .resizable()
                 .frame(width: 200, height: 200)
         }
+        .padding(.top, 165)
     }
 }
