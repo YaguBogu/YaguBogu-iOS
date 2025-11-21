@@ -51,7 +51,7 @@ class CustomAlertView:BaseViewController{
     
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.setTitle("취소", for: .normal)
+        button.setTitle("커스텀 버튼", for: .normal)
         button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
         button.setTitleColor(.primary, for: .normal)
         button.layer.borderWidth = 1.0
@@ -63,7 +63,7 @@ class CustomAlertView:BaseViewController{
     
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
-        button.setTitle("시작", for: .normal)
+        button.setTitle("커스텀 버튼", for: .normal)
         button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
         button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor.primary.cgColor
@@ -171,12 +171,12 @@ class CustomAlertView:BaseViewController{
         self.messageLabel.text = message
     }
     
-    func setCancelButtonText(_ title: String) {
-        self.cancelButton.setTitle(title, for: .normal)
+    func setCancelButtonText(_ cancelTitle: String) {
+        self.cancelButton.setTitle(cancelTitle, for: .normal)
     }
     
-    func confirmButtonText(_ message: String) {
-        self.confirmButton.setTitle(title, for: .normal)
+    func setConfirmButtonText(_ confirmTitle: String) {
+        self.confirmButton.setTitle(confirmTitle, for: .normal)
     }
 }
 

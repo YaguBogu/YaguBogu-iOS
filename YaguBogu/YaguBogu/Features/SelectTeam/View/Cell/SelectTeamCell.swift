@@ -88,8 +88,8 @@ class SelectTeamCell: UICollectionViewCell{
             contentView.backgroundColor = .primary.withAlphaComponent(0.1)
             
         } else{
-            contentView.layer.borderWidth = 0.0
-            contentView.layer.borderColor = UIColor.clear.cgColor
+            contentView.layer.borderWidth = 1.0
+            contentView.layer.borderColor = UIColor.gray01.cgColor
             contentView.backgroundColor = .appWhite
         }
     }

@@ -29,7 +29,9 @@ final class SelectTeamCoordinator: BaseCoordinator {
         let alertCoordinator = CustomAlertCoordinator(
             navigationController: self.navigationController,
             title: "선택한 구단으로 시작할까요?",
-            message: "선택 이후에는 변경할 수 없어요!"
+            message: "선택 이후에는 변경할 수 없어요!",
+            cancelTitle: "취소",
+            confirmTitle: "시작"
         )
         
         self.addChild(alertCoordinator)
