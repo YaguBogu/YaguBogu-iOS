@@ -6,10 +6,17 @@ class TeamHeaderView: UICollectionReusableView {
     
     let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
-        label.text = "응원하는 구단팀을 선택하고, 구장 날씨를 확인하세요\n한번 선택하신 구장은 변경하실 수 없습니다"
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .systemGray
+        label.font = UIFont(name: "AppleSDGothicNeo", size: 14)
+        
+        label.numberOfLines = 2
+        
+        let labelText = "응원하는 구단팀을 선택하고, 구장 날씨를 확인하세요\n한번 선택하신 구장은 변경하실 수 없습니다"
+        label.text = labelText
+        
+        label.setSpacingInPixels(text: labelText, spacingInPx: 18)
+        
+        label.textColor = .gray04
+        
         return label
     }()
     

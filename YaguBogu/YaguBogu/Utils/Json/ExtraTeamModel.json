@@ -6,6 +6,7 @@
             "city" : "서울",
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
+            "selectTeamLogo" : "SelectDOOSAN",
             "defalutCharacter": "DOOSANDefault"
         },
         {
@@ -14,6 +15,7 @@
             "city" : "대전",
             "latitude" : "36.316066596569165",
             "longtitude" : "127.43167645403133",
+            "selectTeamLogo" : "SelectHANWHA",
             "defalutCharacter": "HANHWADefault"
         },
         {
@@ -22,6 +24,7 @@
             "city" : "광주",
             "latitude" : "35.168143901359784",
             "longtitude" : "126.8891423364501",
+            "selectTeamLogo" : "SelectKIA",
             "defalutCharacter": "KIADefault"
         },
         {
@@ -30,6 +33,7 @@
             "city" : "서울",
             "latitude" : "37.49848034218344",
             "longtitude" : "126.86716482656504",
+            "selectTeamLogo" : "SelectKIWOON",
             "defalutCharacter": "KIWOOMDefault"
         },
         {
@@ -38,6 +42,7 @@
             "city" : "수원",
             "latitude" : "37.29966537879378",
             "longtitude" : "127.00977034570677",
+            "selectTeamLogo" : "SelectKT",
             "defalutCharacter": "KTDefault"
         },
         {
@@ -46,6 +51,7 @@
             "city" : "서울",
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
+            "selectTeamLogo" : "SelectLG",
             "defalutCharacter": "LGDefault"
         },
         {
@@ -54,6 +60,7 @@
             "city" : "부산",
             "latitude" : "35.1940238473883",
             "longtitude" : "129.06143988969237",
+            "selectTeamLogo" : "SelectLOTTE",
             "defalutCharacter": "LOTTEDefault"
         },
         {
@@ -62,6 +69,7 @@
             "city" : "창원",
             "latitude" : "35.22263093553172",
             "longtitude" : "128.58223816267258",
+            "selectTeamLogo" : "SelectNC",
             "defalutCharacter": "NCDefault"
         },
         {
@@ -70,6 +78,7 @@
             "city" : "대구",
             "latitude" : "35.8410120804932",
             "longtitude" : "128.68163963151713",
+            "selectTeamLogo" : "SelectSAMSUNG",
             "defalutCharacter": "SAMSUNGDefault"
         },
         {
@@ -78,6 +87,7 @@
             "city" : "인천",
             "latitude" : "37.43695806700958",
             "longtitude" : "126.69324804173549",
+            "selectTeamLogo" : "SelectSSG",
             "defalutCharacter": "SSGDefault"
         }
     ]

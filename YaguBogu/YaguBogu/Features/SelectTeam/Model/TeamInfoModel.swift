@@ -23,6 +23,7 @@ struct TeamInfo: Identifiable, Codable{
     let stadium: String
     let city: String
     let location: CodableCoordinate
+    let selectTeamLogo: String
     let defalutCharacter: String
 }
 
@@ -47,5 +48,6 @@ struct TeamExtra: Codable {
     let city: String
     let latitude: String
     let longtitude: String
+    let selectTeamLogo: String
     let defalutCharacter: String
 }
