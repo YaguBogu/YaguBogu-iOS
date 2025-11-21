@@ -19,8 +19,8 @@ final class TabBarCoordinator: BaseCoordinator {
         homeCoordinator.start()
         homeNav.tabBarItem = UITabBarItem(
             title: "홈",
-            image: UIImage(systemName: "house"),
-            tag: 0
+            image: UIImage(named: "tab_home_default"),
+            selectedImage: UIImage(named: "tab_home_selected")
         )
 
         // 경기일정
@@ -30,8 +30,8 @@ final class TabBarCoordinator: BaseCoordinator {
         scheduleCoordinator.start()
         scheduleNav.tabBarItem = UITabBarItem(
             title: "경기 일정",
-            image: UIImage(systemName: "calendar"),
-            tag: 1
+            image: UIImage(named: "tab_schedule_default"),
+            selectedImage: UIImage(named: "tab_schedule_selected")
         )
 
         // 직관기록
@@ -41,8 +41,8 @@ final class TabBarCoordinator: BaseCoordinator {
         recordCoordinator.start()
         recordNav.tabBarItem = UITabBarItem(
             title: "직관 기록",
-            image: UIImage(systemName: "list.bullet.rectangle"),
-            tag: 2
+            image: UIImage(named: "tab_record_default"),
+            selectedImage: UIImage(named: "tab_record_selected")
         )
 
         tabBarController.viewControllers = [homeNav, scheduleNav, recordNav]
