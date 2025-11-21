@@ -5,8 +5,9 @@ struct OnboardingView3: View {
     var body: some View {
         VStack {
             HStack {
-                Text("경기일정\n한눈에 모아봤어요.")
-                    .font(.system(size: 28, weight: .semibold))
+                Text("경기 일정\n한눈에 모아봤어요.")
+                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
+                    .frame(width: 209)
                 
                 Image("Onboarding3")
                     .resizable()
