@@ -19,25 +19,28 @@ class TeamViewController: BaseViewController {
     
     private let headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(cgColor: CGColor(red: 248/255, green: 248/255, blue: 250/255, alpha: 1.0))
+        view.backgroundColor = UIColor.bg
         return view
     }()
     private let bottomView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .appWhite
         view.layer.cornerRadius = 16
         return view
     }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.backgroundColor = UIColor(cgColor: CGColor(red: 248/255, green: 248/255, blue: 250/255, alpha: 1.0))
+        collectionView.backgroundColor = UIColor.bg
         return collectionView
     }()
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "관심 야구 팀 선택"
+        let labelText = "관심 야구 팀 선택"
+        label.text = labelText
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.textColor = UIColor.appBlack
         label.textAlignment = .center
         return label
     }()
@@ -45,8 +48,9 @@ class TeamViewController: BaseViewController {
     
     let selectButton: UIButton = {
         let button = UIButton()
+        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
         button.setTitle("선택완료", for: .normal)
-        button.backgroundColor = UIColor(cgColor: CGColor(red: 219/255, green: 219/255, blue: 219/255, alpha: 1.0))
+        button.titleLabel?.textColor = .appWhite
         button.layer.cornerRadius = 12
         return button
     }()
@@ -76,25 +80,27 @@ class TeamViewController: BaseViewController {
     override func setupConstraints(){
         super.setupConstraints()
         headerView.snp.makeConstraints { make in
+            // 나중에 디자이너와 함께 위치 맞추기
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
+            
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().offset(-16)
         }
         
         bottomView.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview()
         }
         
         selectButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalTo(bottomView.safeAreaLayoutGuide).offset(-30)
             make.height.equalTo(57)
         }
         
@@ -125,8 +131,8 @@ class TeamViewController: BaseViewController {
             .drive(onNext: { [weak self] isEnabled in
                 self?.selectButton.isEnabled = isEnabled
                 self?.selectButton.backgroundColor = isEnabled
-                ? UIColor(red: 255/255, green: 114/255, blue: 116/255, alpha: 1.0)
-                : UIColor(red: 219/255, green: 219/255, blue: 219/255, alpha: 1.0)
+                ? UIColor.primary
+                : UIColor.gray02
             }).disposed(by: disposeBag)
         
         collectionView.rx.itemSelected

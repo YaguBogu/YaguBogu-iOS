@@ -15,14 +15,16 @@ class SelectTeamCell: UICollectionViewCell{
     private var teamNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 12, weight: .semibold)
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
+        label.textColor = .appBlack
         return label
     }()
     
     private var cityLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 10, weight: .semibold)
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 10)
+        label.textColor = .gray06
         return label
     }()
     
@@ -74,7 +76,7 @@ class SelectTeamCell: UICollectionViewCell{
     func configure(with team: TeamInfo){
         let transTeamLabel = team.name
         let koreanTeamLabel = BaseBallNameTranslator.getKoreanName(for: transTeamLabel)
-        //logoImage.image = UIImage(named: team.teamLogo)
+        logoImage.image = UIImage(named: team.selectTeamLogo)
         teamNameLabel.text = koreanTeamLabel
         cityLabel.text = team.city
     }
@@ -82,13 +84,13 @@ class SelectTeamCell: UICollectionViewCell{
     func selectedCell(_ selected: Bool){
         if selected{
             contentView.layer.borderWidth = 1.0
-            contentView.layer.borderColor = UIColor(red: 255/255,green: 114/255, blue: 116/255, alpha: 1.0).cgColor
-            contentView.backgroundColor = UIColor(red: 255/255, green: 114/255, blue: 116/255, alpha: 0.1)
+            contentView.layer.borderColor = UIColor.primary.cgColor
+            contentView.backgroundColor = .primary.withAlphaComponent(0.1)
             
         } else{
             contentView.layer.borderWidth = 0.0
             contentView.layer.borderColor = UIColor.clear.cgColor
-            contentView.backgroundColor = .white
+            contentView.backgroundColor = .appWhite
         }
     }
 }

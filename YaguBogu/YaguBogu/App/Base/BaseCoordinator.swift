@@ -2,8 +2,8 @@ import UIKit
 
 class BaseCoordinator {
     var navigationController: UINavigationController
-    
     var childCoordinators: [BaseCoordinator] = []
+    
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

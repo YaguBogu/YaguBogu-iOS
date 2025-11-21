@@ -10,8 +10,9 @@ class TeamViewModel {
     let confirmButtonTapped = PublishRelay<Void>()
     
     let teams = BehaviorRelay<[TeamInfo]>(value: [])
-    let navigateToDetail = PublishSubject<TeamInfo>()
     let isConfirmButtonState = BehaviorRelay<Bool>(value: false)
+    
+    let showAlert = PublishSubject<TeamInfo>()
     
     let selectedIndexPath = BehaviorRelay<IndexPath?>(value: nil)
 
@@ -32,16 +33,17 @@ class TeamViewModel {
             .map { $0 != nil }
             .bind(to: isConfirmButtonState)
             .disposed(by: disposeBag)
-
+        
         confirmButtonTapped
             .withLatestFrom(selectedIndexPath)
             .compactMap { $0 }
-            .map { [weak self] indexPath in
-                self?.teams.value[indexPath.item]
+            .map { [weak self] indexPath -> TeamInfo? in
+                return self?.teams.value[indexPath.item]
             }
             .compactMap { $0 }
-            .bind(to: navigateToDetail)
+            .bind(to: showAlert)
             .disposed(by: disposeBag)
+        
         }
     
     func loadMergeData(){
@@ -88,6 +90,7 @@ class TeamViewModel {
                         stadium: extraInfo.stadium,
                         city: extraInfo.city,
                         location: codableLocation,
+                        selectTeamLogo: extraInfo.selectTeamLogo,
                         defalutCharacter: extraInfo.defalutCharacter
                     )
                     mergeList.append(newTeam)
