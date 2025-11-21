@@ -12,15 +12,15 @@ struct OnboardingView1: View {
                 .padding(.bottom, 32)
             
             Text("야구장 날씨가 궁금하시죠?")
-                .font(.system(size: 28, weight: .semibold))
+                .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
                 .padding(10)
             
             Text("좋아하는 구단을 선택하고,")
-                .font(.system(size: 16, weight: .medium))
+                .font(.custom("AppleSDGothicNeo-Medium", size: 16))
                 .foregroundColor(Color(red: 143/255, green: 143/255, blue: 143/255))
             
             Text("구장별 날씨를 한눈에 확인하세요.")
-                .font(.system(size: 16, weight: .medium))
+                .font(.custom("AppleSDGothicNeo-Medium", size: 16))
                 .foregroundColor(Color(red: 143/255, green: 143/255, blue: 143/255))
         }
         .padding(.top, 165)

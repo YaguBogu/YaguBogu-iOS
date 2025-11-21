@@ -11,7 +11,7 @@ struct NextButtonView: View {
                 print("버튼이 눌림")
             }) {
                 Text("다음")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 16))
                     .foregroundColor(.white)
                     .frame(width: 343, height: 57)
             }
