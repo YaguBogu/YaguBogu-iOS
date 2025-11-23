@@ -159,12 +159,12 @@ class TeamViewController: BaseViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalWidth(1.0/2.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
-        group.interItemSpacing = .fixed(16)
+        group.interItemSpacing = .fixed(12)
         
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 12
         
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0 , leading: 12, bottom: 0, trailing: 12)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0 , leading: 16, bottom: 0, trailing: 16)
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                 heightDimension: .estimated(60))
