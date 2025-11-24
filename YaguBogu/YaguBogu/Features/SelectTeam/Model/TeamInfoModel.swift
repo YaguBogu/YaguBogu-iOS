@@ -28,7 +28,7 @@ struct TeamInfo: Identifiable, Codable{
 }
 
 
-// MARK: - Response
+// Response
 struct Response: Codable {
     let id: Int
     let name: String
