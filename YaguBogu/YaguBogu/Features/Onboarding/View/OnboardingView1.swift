@@ -2,27 +2,34 @@ import SwiftUI
 
 struct OnboardingView1: View {
     
+    let baseWidth: CGFloat = 402
+    
     var body: some View {
-        VStack{
-            Spacer()
+        GeometryReader { geo in
+            let w = geo.size.width
             
-            Image("Onboarding1")
-                .resizable()
-                .frame(width: 200, height: 200)
-                .padding(.bottom, 32)
-            
-            Text("야구장 날씨가 궁금하시죠?")
-                .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
-                .padding(10)
-            
-            Text("좋아하는 구단을 선택하고,")
-                .font(.custom("AppleSDGothicNeo-Medium", size: 16))
-                .foregroundColor(Color(red: 143/255, green: 143/255, blue: 143/255))
-            
-            Text("구장별 날씨를 한눈에 확인하세요.")
-                .font(.custom("AppleSDGothicNeo-Medium", size: 16))
-                .foregroundColor(Color(red: 143/255, green: 143/255, blue: 143/255))
+            VStack {
+                Image("Onboarding1")
+                    .resizable()
+                    .frame(width: (200 / baseWidth) * w)
+                    .frame(height: (200 / baseWidth) * w)
+                    .padding(.bottom, (32 / baseWidth) * w)
+                
+                Text("야구장 날씨가 궁금하시죠?")
+                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
+                    .foregroundColor(Color(UIColor.appBlack))
+                    .padding((10 / baseWidth) * w)
+                
+                Text("좋아하는 구단을 선택하고,")
+                    .font(.custom("AppleSDGothicNeo-Medium", size: 16))
+                    .foregroundColor(Color(UIColor.gray05))
+                
+                Text("구장별 날씨를 한눈에 확인하세요.")
+                    .font(.custom("AppleSDGothicNeo-Medium", size: 16))
+                    .foregroundColor(Color(UIColor.gray05))
+            }
+            .frame(width: w)
+            .padding(.top, (165 / baseWidth) * w)
         }
-        .padding(.top, 165)
     }
 }

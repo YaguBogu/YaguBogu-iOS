@@ -2,25 +2,38 @@ import SwiftUI
 
 struct OnboardingView3: View {
     
+    let baseWidth: CGFloat = 402
+    
     var body: some View {
-        VStack {
-            HStack {
-                Text("경기 일정\n한눈에 모아봤어요.")
-                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
-                    .frame(width: 209)
-                
-                Image("Onboarding3")
-                    .resizable()
-                    .frame(width: 117, height: 115)
-            }
-            .frame(width: 332)
-            .padding(.bottom, 24)
+        GeometryReader { geo in
+            let w = geo.size.width
             
-            Image("Onboarding3_1")
-                .resizable()
-                .frame(width: 295, height: 304)
-                .cornerRadius(12)
+            VStack {
+                HStack {
+                    Text("경기 일정\n한눈에 모아봤어요.")
+                        .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
+                        .foregroundColor(Color(UIColor.appBlack))
+                        .fixedSize(horizontal: false, vertical: true)
+                        .frame(
+                            width: max((209 / baseWidth) * w, 230)
+                        )
+                    
+                    Image("Onboarding3")
+                        .resizable()
+                        .frame(width: (117 / baseWidth) * w)
+                        .frame(height: (115 / baseWidth) * w)
+                }
+                .frame(width: (332 / baseWidth) * w)
+                .padding(.bottom, (24 / baseWidth) * w)
+                
+                Image("Onboarding3_1")
+                    .resizable()
+                    .frame(width: (295 / baseWidth) * w)
+                    .frame(height: (302 / baseWidth) * w)
+                    .cornerRadius(12)
+            }
+            .frame(width: w)
+            .padding(.top, (80 / baseWidth) * w)
         }
-        .padding(.top, 80)
     }
 }
