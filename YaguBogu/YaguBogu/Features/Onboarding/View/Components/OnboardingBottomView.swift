@@ -1,17 +1,21 @@
 import SwiftUI
 
 struct OnboardingBottomView: View {
+    let w: CGFloat
     let currentPage: Int
     let totalPages: Int
-    
     var nextAction: () -> Void
     
     var body: some View {
         VStack {
-            PageControlsView(currentPage: currentPage, totalPages: totalPages)
+            PageControlsView(
+                w: w,
+                currentPage: currentPage,
+                totalPages: totalPages
+            )
                 .padding(.bottom, 30)
             
-            NextButtonView(action: nextAction)
+            NextButtonView(w: w, action: nextAction)
         }
     }
 }
