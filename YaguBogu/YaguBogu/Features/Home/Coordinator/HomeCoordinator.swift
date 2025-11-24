@@ -16,4 +16,3 @@ final class HomeCoordinator: BaseCoordinator {
         navigationController.setViewControllers([viewController], animated: false)
     }
 }
-
