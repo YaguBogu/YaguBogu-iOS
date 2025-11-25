@@ -17,7 +17,6 @@ final class AppCoordinator: BaseCoordinator {
         // '스플래시 끝남' 이벤트 구독
         vm.finishTrigger
             .subscribe(onNext: { [weak self] in
-                print("스플래시가 끝남")
                 
                 if let savedTeam = TeamDataUserDefaults.shared.getSelectedTeam(){
                     self?.showTabBar(with: savedTeam)
