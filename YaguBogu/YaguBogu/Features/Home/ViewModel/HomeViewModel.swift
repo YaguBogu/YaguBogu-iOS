@@ -5,6 +5,8 @@ import RxRelay
 final class HomeViewModel {
     
     let selectedTeam: BehaviorRelay<TeamInfo>
+    let selectedStadium: BehaviorRelay<StadiumInfo>
+    
     let stadiumWeather = BehaviorRelay<StadiumWeather?>(value: nil)
 
     private let weatherService: WeatherServiceProtocol
@@ -14,7 +16,14 @@ final class HomeViewModel {
         team: TeamInfo,
         weatherService: WeatherServiceProtocol = WeatherService()
     ) {
+        // 관심구단은 그대로 릴레이에 보관해줌
         self.selectedTeam = BehaviorRelay(value: team)
+        
+        // 홈 화면에서 처음에 보여줄 구장은 '관심구단의 기본 홈구장'
+        self.selectedStadium = BehaviorRelay(
+            value: StadiumInfo(name: team.stadium, city: team.city)
+        )
+        
         self.weatherService = weatherService
         
         // 홈 화면 들어오면 자동으로 현재 날씨 받아옴
@@ -37,6 +46,11 @@ final class HomeViewModel {
             })
             .disposed(by: disposeBag)
 
+    }
+    
+    // 홈코디네이터에서 호출되는 함수
+    func updateSelectedStadium(_ info: StadiumInfo) {
+        selectedStadium.accept(info)
     }
 }
 
