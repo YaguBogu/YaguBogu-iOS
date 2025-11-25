@@ -9,6 +9,7 @@ final class EmptyRecordView: UIView {
         return image
     }()
     
+    
     private let emptyTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
@@ -42,6 +43,8 @@ final class EmptyRecordView: UIView {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        
     }
     
     required init?(coder: NSCoder) {

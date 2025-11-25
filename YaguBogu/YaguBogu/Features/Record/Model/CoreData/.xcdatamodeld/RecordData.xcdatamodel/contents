@@ -4,7 +4,7 @@
         <attribute name="awayScore" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="awayTeamLogo" optional="YES" attributeType="String"/>
         <attribute name="contentText" optional="YES" attributeType="String"/>
-        <attribute name="gameDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gameDate" optional="YES" attributeType="String"/>
         <attribute name="gameInfo" optional="YES" attributeType="String"/>
         <attribute name="homeScore" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="homeTeamLogo" optional="YES" attributeType="String"/>
