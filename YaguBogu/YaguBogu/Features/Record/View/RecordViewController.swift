@@ -6,7 +6,7 @@ import RxCocoa
 final class RecordViewController: BaseViewController {
     
     private let viewModel: RecordViewModel
-    private let notingView = NothingRecordView()
+    private let emptyView = EmptyRecordView()
     
     private let floatingButton: UIButton = {
         let button = UIButton()
@@ -35,14 +35,14 @@ final class RecordViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-        [notingView,floatingButton].forEach{
+        [emptyView,floatingButton].forEach{
             view.addSubview($0)
         }
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-        notingView.snp.makeConstraints{ make in
+        emptyView.snp.makeConstraints{ make in
             make.center.equalToSuperview()
         }
         

@@ -1,15 +1,15 @@
 import UIKit
 import SnapKit
 
-final class NothingRecordView: UIView {
+final class EmptyRecordView: UIView {
     
-    let notingImage: UIImageView = {
+    private let emptyImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "nothinglogo")
+        image.image = UIImage(named: "Emptylogo")
         return image
     }()
     
-    let notingTextLabel: UILabel = {
+    private let emptyTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
         label.numberOfLines = 2
@@ -22,7 +22,7 @@ final class NothingRecordView: UIView {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [notingImage, notingTextLabel])
+        let stack = UIStackView(arrangedSubviews: [emptyImage, emptyTextLabel])
         stack.axis = .vertical
         stack.spacing = 20
         stack.alignment = .center
@@ -33,6 +33,11 @@ final class NothingRecordView: UIView {
         super.init(frame: frame)
         
         addSubview(stackView)
+        
+        emptyImage.snp.makeConstraints{ make in
+            make.height.equalTo(64)
+            make.width.equalTo(60)
+        }
         
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
