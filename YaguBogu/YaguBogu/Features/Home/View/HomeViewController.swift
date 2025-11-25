@@ -39,6 +39,7 @@ class HomeViewController: BaseViewController {
             .forEach { view.addSubview($0) }
         
         stadiumLabel.isUserInteractionEnabled = true
+        
     }
 
     
@@ -103,11 +104,11 @@ class HomeViewController: BaseViewController {
         // 선택된 구장 타이틀 바인딩
         viewModel.selectedStadium
             .asDriver()
-            .drive(onNext: { [weak self] stadium in
-                self?.stadiumLabel.text = stadium
+            .drive(onNext: { [weak self] info in
+                self?.stadiumLabel.text = "선택된 구장: \(info.name), \(info.city)"
             })
             .disposed(by: disposeBag)
-
+        
         
         // (관심구단의 홈구장 기준으로)날씨 바인딩
         viewModel.stadiumWeather
@@ -141,6 +142,7 @@ class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
+
 
     
 }

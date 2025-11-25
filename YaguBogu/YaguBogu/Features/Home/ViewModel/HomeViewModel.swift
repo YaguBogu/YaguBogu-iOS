@@ -5,7 +5,7 @@ import RxRelay
 final class HomeViewModel {
     
     let selectedTeam: BehaviorRelay<TeamInfo>
-    let selectedStadium: BehaviorRelay<String>
+    let selectedStadium: BehaviorRelay<StadiumInfo>
     
     let stadiumWeather = BehaviorRelay<StadiumWeather?>(value: nil)
 
@@ -20,7 +20,9 @@ final class HomeViewModel {
         self.selectedTeam = BehaviorRelay(value: team)
         
         // 홈 화면에서 처음에 보여줄 구장은 '관심구단의 기본 홈구장'
-        self.selectedStadium = BehaviorRelay(value: team.stadium)
+        self.selectedStadium = BehaviorRelay(
+            value: StadiumInfo(name: team.stadium, city: team.city)
+        )
         
         self.weatherService = weatherService
         
@@ -47,8 +49,8 @@ final class HomeViewModel {
     }
     
     // 홈코디네이터에서 호출되는 함수
-    func updateSelectedStadium(name: String) {
-        selectedStadium.accept(name)
+    func updateSelectedStadium(_ info: StadiumInfo) {
+        selectedStadium.accept(info)
     }
 }
 

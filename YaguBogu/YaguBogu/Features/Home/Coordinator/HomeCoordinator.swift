@@ -27,8 +27,8 @@ final class HomeCoordinator: BaseCoordinator {
         let vc = StadiumSelectViewController()
 
         vc.selectedStadium
-            .subscribe(onNext: { [weak self] stadiumName in
-                self?.homeViewModel?.updateSelectedStadium(name: stadiumName)
+            .subscribe(onNext: { [weak self] stadiumInfo in
+                self?.homeViewModel?.updateSelectedStadium(stadiumInfo)
             })
             .disposed(by: disposeBag)
 
