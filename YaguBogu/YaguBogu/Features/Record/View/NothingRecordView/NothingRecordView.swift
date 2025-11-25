@@ -34,11 +34,6 @@ final class NothingRecordView: UIView {
         
         addSubview(stackView)
         
-        notingImage.snp.makeConstraints { make in
-            make.width.equalTo(60)
-            make.height.equalTo(64)
-        }
-        
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
