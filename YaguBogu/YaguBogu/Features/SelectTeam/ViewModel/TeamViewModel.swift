@@ -4,7 +4,7 @@ import RxSwift
 import RxRelay
 import RxCocoa
 
-class TeamViewModel {
+final class TeamViewModel {
     
     let itemSelected = PublishRelay<IndexPath>()
     let confirmButtonTapped = PublishRelay<Void>()

@@ -8,6 +8,7 @@ final class TabBarCoordinator: BaseCoordinator {
         self.team = team
         super.init(navigationController: navigationController)
     }
+    
 
     override func start() {
         super.start()
@@ -38,7 +39,7 @@ final class TabBarCoordinator: BaseCoordinator {
 
         // 직관기록
         let recordNav = UINavigationController()
-        let recordCoordinator = RecordCoordinator(navigationController: recordNav)
+        let recordCoordinator = RecordCoordinator(navigationController: recordNav, team: team)
         addChild(recordCoordinator)
         recordCoordinator.start()
         recordNav.tabBarItem = UITabBarItem(
@@ -46,10 +47,13 @@ final class TabBarCoordinator: BaseCoordinator {
             image: UIImage(named: "tab_record_default"),
             selectedImage: UIImage(named: "tab_record_selected")
         )
+        
 
         tabBarController.viewControllers = [homeNav, scheduleNav, recordNav]
 
         navigationController.setViewControllers([tabBarController], animated: true)
+        
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
 }
 
