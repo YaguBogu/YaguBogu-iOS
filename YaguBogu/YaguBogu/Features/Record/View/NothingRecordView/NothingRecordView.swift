@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class NotingView: UIView {
+final class NothingRecordView: UIView {
     
     let notingImage: UIImageView = {
         let image = UIImageView()
@@ -31,9 +31,6 @@ final class NotingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        [notingImage, notingTextLabel].forEach{
-            addSubview($0)
-        }
         
         addSubview(stackView)
         

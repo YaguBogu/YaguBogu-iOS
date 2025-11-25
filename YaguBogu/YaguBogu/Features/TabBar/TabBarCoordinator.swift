@@ -11,6 +11,7 @@ final class TabBarCoordinator: BaseCoordinator {
     
 
     override func start() {
+        super.start()
         let tabBarController = TabBarController()
 
         // 홈

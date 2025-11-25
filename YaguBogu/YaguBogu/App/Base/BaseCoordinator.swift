@@ -3,7 +3,10 @@ import UIKit
 class BaseCoordinator {
     var navigationController: UINavigationController
     var childCoordinators: [BaseCoordinator] = []
-    let titleTextFont = [ NSAttributedString.Key.foregroundColor: UIColor.appBlack, NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17) ]
+    let titleTextFont: [NSAttributedString.Key: Any] = [
+        .foregroundColor: UIColor.appBlack,
+        .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .semibold)
+    ]
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

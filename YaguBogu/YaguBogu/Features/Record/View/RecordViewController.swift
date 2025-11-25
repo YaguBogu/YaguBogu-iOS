@@ -4,18 +4,17 @@ import RxSwift
 import RxCocoa
 
 final class RecordViewController: BaseViewController {
-
+    
     private let viewModel: RecordViewModel
-    private let notingView = NotingView()
+    private let notingView = NothingRecordView()
     
     private let floatingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "floatingbutton"), for: .normal)
-        button.contentVerticalAlignment = .fill
-            button.contentHorizontalAlignment = .fill
-            
-            // 이미지 비율 유지 설정
-            button.imageView?.contentMode = .scaleAspectFit 
+        button.layer.shadowColor = UIColor.appBlack.cgColor
+        button.layer.shadowOpacity = 0.16
+        button.layer.shadowRadius = 16
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
         return button
     }()
     
@@ -23,11 +22,11 @@ final class RecordViewController: BaseViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("에러메세지")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.loadMergeData()
