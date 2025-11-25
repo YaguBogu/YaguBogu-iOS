@@ -18,6 +18,8 @@ final class RecordViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.loadMergeData()
+        
     }
 }
 

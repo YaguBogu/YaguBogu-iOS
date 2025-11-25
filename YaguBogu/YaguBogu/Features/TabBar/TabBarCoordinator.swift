@@ -36,7 +36,7 @@ final class TabBarCoordinator: BaseCoordinator {
 
         // 직관기록
         let recordNav = UINavigationController()
-        let recordCoordinator = RecordCoordinator(navigationController: recordNav)
+        let recordCoordinator = RecordCoordinator(navigationController: recordNav, team: team)
         addChild(recordCoordinator)
         recordCoordinator.start()
         recordNav.tabBarItem = UITabBarItem(
