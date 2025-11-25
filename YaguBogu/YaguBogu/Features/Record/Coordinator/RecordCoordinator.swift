@@ -5,9 +5,9 @@ final class RecordCoordinator: BaseCoordinator {
     
     private let team: TeamInfo
     
-    init(navigationController:UIViewController, team: TeamInfo) {
+    init(navigationController:UINavigationController, team: TeamInfo) {
         self.team = team
-        super.init(navigationController: navigationController as! UINavigationController)
+        super.init(navigationController: navigationController)
     }
     
     override func start() {
