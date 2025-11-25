@@ -8,6 +8,7 @@ final class TabBarCoordinator: BaseCoordinator {
         self.team = team
         super.init(navigationController: navigationController)
     }
+    
 
     override func start() {
         let tabBarController = TabBarController()
@@ -44,10 +45,13 @@ final class TabBarCoordinator: BaseCoordinator {
             image: UIImage(named: "tab_record_default"),
             selectedImage: UIImage(named: "tab_record_selected")
         )
+        
 
         tabBarController.viewControllers = [homeNav, scheduleNav, recordNav]
 
         navigationController.setViewControllers([tabBarController], animated: true)
+        
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
 }
 

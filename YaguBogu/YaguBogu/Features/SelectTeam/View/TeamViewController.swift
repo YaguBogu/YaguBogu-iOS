@@ -26,6 +26,15 @@ class TeamViewController: BaseViewController {
         let view = UIView()
         view.backgroundColor = .appWhite
         view.layer.cornerRadius = 16
+        
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        view.layer.shadowColor = UIColor.appBlack.cgColor
+        view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0, height: -4)
+        view.layer.shadowRadius = 8
+        
+        view.layer.masksToBounds = false
         return view
     }()
     
@@ -100,7 +109,7 @@ class TeamViewController: BaseViewController {
         selectButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(bottomView.safeAreaLayoutGuide).offset(-30)
+            make.bottom.equalTo(bottomView.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(57)
         }
         
