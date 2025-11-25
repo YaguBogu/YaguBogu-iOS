@@ -66,11 +66,6 @@ class HomeViewController: BaseViewController {
             make.centerX.equalToSuperview()
         }
 
-        tempLabel.snp.makeConstraints { make in
-            make.top.equalTo(stadiumLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
-        }
-
         rainLabel.snp.makeConstraints { make in
             make.top.equalTo(tempLabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
