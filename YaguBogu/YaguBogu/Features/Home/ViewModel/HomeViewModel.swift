@@ -98,7 +98,7 @@ final class HomeViewModel {
         
         let stadiumTitleDriver = selectedStadiumRelay
             .map { stadium in
-                "선택된 구장: \(stadium.name), \(stadium.city)"
+                "선택된 구장: \(stadium.name)"
             }
             .asDriver(onErrorJustReturn: "선택된 구장: -")
         
