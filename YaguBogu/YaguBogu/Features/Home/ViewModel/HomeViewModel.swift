@@ -18,6 +18,8 @@ final class HomeViewModel {
         let rainText: Driver<String>
         let humidityText: Driver<String>
         let windText: Driver<String>
+        
+        let weatherIconName: Driver<String>
     }
     
     // ViewController가 구독할 아웃풋
@@ -139,6 +141,18 @@ final class HomeViewModel {
                 return "\(w.windSpeed)m/s"
             }
         
+        let weatherIconDriver = weatherDriver
+            .map { [weak self] weather -> String in
+                guard
+                    let self = self,
+                    let w = weather
+                else {
+                    return "clearSkyEmoji"
+                }
+                return self.emojiAssetName(for: w.description)
+            }
+
+        
         return Output(
             teamName: teamNameDriver,
             cityName: cityNameDriver,
@@ -146,8 +160,35 @@ final class HomeViewModel {
             temperatureText: temperatureTextDriver,
             rainText: rainTextDriver,
             humidityText: humidityTextDriver,
-            windText: windTextDriver
+            windText: windTextDriver,
+            weatherIconName: weatherIconDriver  
         )
     }
+    
+    private func emojiAssetName(for description: String) -> String {
+        switch description.lowercased() {
+        case "clear sky":
+            return "clearSkyEmoji"
+        case "few clouds":
+            return "fewCloudsEmoji"
+        case "scattered clouds":
+            return "scatteredCloudsEmoji"
+        case "broken clouds":
+            return "brokenCloudsEmoji"
+        case "shower rain":
+            return "showerRainEmoji"
+        case "rain":
+            return "rainEmoji"
+        case "thunderstorm":
+            return "thunderStormEmoji"
+        case "snow":
+            return "snowEmoji"
+        case "mist":
+            return "mistEmoji"
+        default:
+            return "clearSkyEmoji"
+        }
+    }
+
 }
 

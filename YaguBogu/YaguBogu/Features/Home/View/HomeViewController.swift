@@ -35,6 +35,10 @@ class HomeViewController: BaseViewController {
     private let windIcon = UIImageView(image: UIImage(named: "windIcon"))
     private let rainIcon = UIImageView(image: UIImage(named: "rainIcon"))
     private let dropIcon = UIImageView(image: UIImage(named: "rainDropIcon"))
+    
+    private let weatherEmoji = UIImageView()
+    private let emojiBox = UIView()
+
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -125,6 +129,16 @@ class HomeViewController: BaseViewController {
 
         
         weatherContainer.addSubview(rightStack)
+        
+        // 이모지 투명박스 추가
+        emojiBox.backgroundColor = UIColor.systemPink.withAlphaComponent(0.3)
+        view.addSubview(emojiBox)
+
+        // weatherEmoji 추가
+        weatherEmoji.contentMode = .scaleAspectFit
+        emojiBox.addSubview(weatherEmoji)
+
+        
     }
 
     override func setupConstraints() {
@@ -171,6 +185,20 @@ class HomeViewController: BaseViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(100)
         }
+        
+        // weatherContainer 아래 투명박스 (375 × 166)
+        emojiBox.snp.makeConstraints { make in
+            make.top.equalTo(weatherContainer.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(166)
+        }
+
+        // 가운데 60×60 이모지
+        weatherEmoji.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(60)
+        }
+
         
         tempLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
@@ -315,6 +343,12 @@ class HomeViewController: BaseViewController {
                         .kern: 0
                     ]
                 )
+            })
+            .disposed(by: disposeBag)
+        
+        output.weatherIconName
+            .drive(onNext: { [weak self] iconName in
+                self?.weatherEmoji.image = UIImage(named: iconName)
             })
             .disposed(by: disposeBag)
 
