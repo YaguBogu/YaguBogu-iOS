@@ -15,6 +15,8 @@ final class HomeCoordinator: BaseCoordinator {
     }
 
     override func start() {
+        navigationController.isNavigationBarHidden = true
+        
         let viewModel = HomeViewModel(team: team)
         self.homeViewModel = viewModel
 

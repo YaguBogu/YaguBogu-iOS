@@ -14,13 +14,13 @@ final class StadiumSelectViewController: UIViewController {
     // 표시할 구장 리스트 (구장겹침이 있어서 총 9개)
     private let stadiums: [StadiumInfo] = [
         StadiumInfo(
-            name: "서울종합운동장(잠실 야구장)",
+            name: "서울종합운동장(잠실야구장)",
             city: "서울",
             latitude: 37.5131,
             longitude: 127.0710
         ),
         StadiumInfo(
-            name: "한화생명 이글스파크",
+            name: "대전한화생명이글스파크",
             city: "대전",
             latitude: 36.3171,
             longitude: 127.4290
@@ -62,7 +62,7 @@ final class StadiumSelectViewController: UIViewController {
             longitude: 128.6812
         ),
         StadiumInfo(
-            name: "인천 SSG 랜더스필드",
+            name: "인천SSG랜더스필드",
             city: "인천",
             latitude: 37.4350,
             longitude: 126.6909

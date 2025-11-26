@@ -98,9 +98,9 @@ final class HomeViewModel {
         
         let stadiumTitleDriver = selectedStadiumRelay
             .map { stadium in
-                "선택된 구장: \(stadium.name)"
+                "\(stadium.name)"
             }
-            .asDriver(onErrorJustReturn: "선택된 구장: -")
+            .asDriver(onErrorJustReturn: "-")
         
         // 날씨 변화 스트림
         let weatherDriver = stadiumWeatherRelay.asDriver()
@@ -110,7 +110,7 @@ final class HomeViewModel {
                 guard let w = weather else {
                     return "구장 온도 정보를 불러오는 중"
                 }
-                return "현재 구장 온도: \(w.temperatureC)°C"
+                return "\(w.temperatureC)°"
             }
         
         let rainTextDriver = weatherDriver
@@ -119,7 +119,7 @@ final class HomeViewModel {
                     return "강수량 정보를 불러오는 중"
                 }
                 let rain = w.precipitation ?? 0
-                return "현재 구장 강수량: \(rain)mm"
+                return "\(rain)mm"
             }
         
         let humidityTextDriver = weatherDriver
@@ -127,7 +127,7 @@ final class HomeViewModel {
                 guard let w = weather else {
                     return "습도 정보를 불러오는 중"
                 }
-                return "현재 구장 습도: \(w.humidity)%"
+                return "\(w.humidity)%"
             }
         
         let windTextDriver = weatherDriver
@@ -135,7 +135,7 @@ final class HomeViewModel {
                 guard let w = weather else {
                     return "현재 구장 풍속 정보를 불러오는 중"
                 }
-                return "현재 구장 풍속: \(w.windSpeed)m/s"
+                return "\(w.windSpeed)m/s"
             }
         
         return Output(

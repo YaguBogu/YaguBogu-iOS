@@ -10,11 +10,24 @@ class HomeViewController: BaseViewController {
     
     private let viewModel: HomeViewModel
     
-    private let teamName = UILabel()
-    private let cityName = UILabel()
+    private let headerContainer = UIView()
+
+    private let headerLogoImageView: UIImageView = {
+        let iv = UIImageView(image: UIImage(named: "headerLogo"))
+        iv.contentMode = .scaleAspectFit
+        return iv
+    }()
     
-    private let tempLabel = UILabel()
+
+    private let stadiumTapArea = UIView()
     private let stadiumLabel = UILabel()
+    private let downIcon = UIImageView(image: UIImage(named: "downIcon"))
+
+
+    private let weatherContainer = UIView()
+    private let tempLabel = UILabel()
+    
+    private let rightStack = UIStackView()
     private let rainLabel = UILabel()
     private let humidityLabel = UILabel()
     private let windLabel = UILabel()
@@ -33,89 +46,179 @@ class HomeViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+
     override func configureUI() {
         super.configureUI()
-        [teamName, cityName, stadiumLabel, tempLabel, rainLabel, humidityLabel, windLabel]
-            .forEach { view.addSubview($0) }
         
-        stadiumLabel.isUserInteractionEnabled = true
+        view.addSubview(headerContainer)
+        headerContainer.addSubview(headerLogoImageView)
+        headerContainer.backgroundColor = UIColor.yellow.withAlphaComponent(0.3)
+        
+        view.addSubview(stadiumTapArea)
+        stadiumTapArea.addSubview(stadiumLabel)
+        stadiumTapArea.addSubview(downIcon)
+        stadiumTapArea.isUserInteractionEnabled = true
+        
+
+        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.minimumLineHeight = 22
+        paragraphStyle.maximumLineHeight = 22
+        paragraphStyle.alignment = .center
+
+        
+
+        view.addSubview(weatherContainer)
+        weatherContainer.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+        
+        weatherContainer.addSubview(tempLabel)
+        
+        rightStack.axis = .vertical
+        rightStack.spacing = 6
+        rightStack.alignment = .trailing
+        rightStack.distribution = .equalSpacing
+        
+        rightStack.addArrangedSubview(rainLabel)
+        rightStack.addArrangedSubview(humidityLabel)
+        rightStack.addArrangedSubview(windLabel)
+        
+        weatherContainer.addSubview(rightStack)
     }
 
     override func setupConstraints() {
         super.setupConstraints()
         
-        teamName.snp.makeConstraints { make in
+
+        headerContainer.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(48)
+        }
+
+        headerLogoImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(100)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(100)
+            make.height.equalTo(28)
         }
         
-        cityName.snp.makeConstraints { make in
-            make.top.equalTo(teamName.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+
+        stadiumTapArea.snp.makeConstraints { make in
+            make.top.equalTo(headerContainer.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(42)
         }
-        
+
+
         stadiumLabel.snp.makeConstraints { make in
-            make.top.equalTo(cityName.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+        }
+
+
+        downIcon.snp.makeConstraints { make in
+            make.leading.equalTo(stadiumLabel.snp.trailing).offset(4)
+            make.centerY.equalTo(stadiumLabel)
+            make.width.height.equalTo(16)
+            make.trailing.lessThanOrEqualToSuperview().inset(16)
+        }
+
+
+        weatherContainer.snp.makeConstraints { make in
+            make.top.equalTo(stadiumTapArea.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(100)
         }
         
         tempLabel.snp.makeConstraints { make in
-            make.top.equalTo(stadiumLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(130) // 원래 114인데, 잘려서 늘림
+            make.height.equalTo(80)
         }
-
-        rainLabel.snp.makeConstraints { make in
-            make.top.equalTo(tempLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+        
+        rightStack.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(16)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(76)
+            make.height.equalTo(66)
         }
-
-        humidityLabel.snp.makeConstraints { make in
-            make.top.equalTo(rainLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
-        }
-
-        windLabel.snp.makeConstraints { make in
-            make.top.equalTo(humidityLabel.snp.bottom).offset(8)
-            make.centerX.equalToSuperview()
+        
+        [rainLabel, humidityLabel, windLabel].forEach { label in
+            label.snp.makeConstraints { make in
+                make.height.equalTo(18)
+            }
         }
     }
 
     private func bind() {
         let output = viewModel.output
         
-        // 팀명, 도시
-        output.teamName
-            .drive(teamName.rx.text)
-            .disposed(by: disposeBag)
-        
-        output.cityName
-            .drive(cityName.rx.text)
-            .disposed(by: disposeBag)
-        
-        // 선택된 구장 타이틀
+
         output.stadiumTitle
-            .drive(stadiumLabel.rx.text)
+            .drive(onNext: { [weak self] title in
+                guard let self = self else { return }
+
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.minimumLineHeight = 22
+                paragraphStyle.maximumLineHeight = 22
+                paragraphStyle.alignment = .center
+
+                self.stadiumLabel.attributedText = NSAttributedString(
+                    string: title,
+                    attributes: [
+                        .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 17)!,
+                        .foregroundColor: UIColor.gray08,
+                        .paragraphStyle: paragraphStyle,
+                        .kern: 0
+                    ]
+                )
+            })
             .disposed(by: disposeBag)
+
         
-        // 날씨 정보 텍스트
+
         output.temperatureText
-            .drive(tempLabel.rx.text)
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+
+                let paragraph = NSMutableParagraphStyle()
+                paragraph.minimumLineHeight = 80
+                paragraph.alignment = .center
+
+                self.tempLabel.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .font: UIFont.systemFont(ofSize: 80, weight: .thin),
+                        .foregroundColor: UIColor.appBlack,
+                        .paragraphStyle: paragraph,
+                        .kern: -2
+                    ]
+                )
+            })
             .disposed(by: disposeBag)
+
         
+
         output.rainText
             .drive(rainLabel.rx.text)
             .disposed(by: disposeBag)
-        
+
         output.humidityText
             .drive(humidityLabel.rx.text)
             .disposed(by: disposeBag)
-        
+
         output.windText
             .drive(windLabel.rx.text)
             .disposed(by: disposeBag)
         
-        // 스타디움 라벨 탭 -> 구장 선택 화면 표시 (코디네이터한테 넘김)
-        stadiumLabel.rx.tapGesture()
+
+        stadiumTapArea.rx.tapGesture()
             .when(.recognized)
             .bind { [weak self] _ in
                 self?.coordinator?.showStadiumSelect()
