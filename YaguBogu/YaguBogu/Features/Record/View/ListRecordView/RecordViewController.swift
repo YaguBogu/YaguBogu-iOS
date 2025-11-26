@@ -44,6 +44,7 @@ final class RecordViewController: BaseViewController {
         bind()
     }
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         listViewModel.fetchData()
     }
     
