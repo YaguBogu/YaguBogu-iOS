@@ -15,27 +15,28 @@ final class HomeCoordinator: BaseCoordinator {
     }
 
     override func start() {
-        let vm = HomeViewModel(team: team)
-        self.homeViewModel = vm
+        let viewModel = HomeViewModel(team: team)
+        self.homeViewModel = viewModel
 
-        let vc = HomeViewController(viewModel: vm)
-        vc.coordinator = self
-        navigationController.setViewControllers([vc], animated: false)
+        let viewController = HomeViewController(viewModel: viewModel)
+        viewController.coordinator = self
+        navigationController.setViewControllers([viewController], animated: false)
     }
     
     func showStadiumSelect() {
-        let vc = StadiumSelectViewController()
+        let viewController = StadiumSelectViewController()
+        
+        guard let viewModel = homeViewModel else { return }
 
-        vc.selectedStadium
-            .subscribe(onNext: { [weak self] stadiumInfo in
-                self?.homeViewModel?.updateSelectedStadium(stadiumInfo)
-            })
+        // 구장 선택 스트림을 뷰모델 인풋에 바인딩함
+        viewController.selectedStadium
+            .bind(to: viewModel.stadiumSelected)
             .disposed(by: disposeBag)
 
         // 모달 시트 크기 (375 x 374)
-        if let sheet = vc.sheetPresentationController {
+        if let sheet = viewController.sheetPresentationController {
             sheet.detents = [
-                .custom { context in
+                .custom { _ in
                     return 374
                 }
             ]
@@ -43,10 +44,8 @@ final class HomeCoordinator: BaseCoordinator {
             sheet.preferredCornerRadius = 38
         }
 
-        vc.modalPresentationStyle = .pageSheet
-        navigationController.present(vc, animated: true)
+        viewController.modalPresentationStyle = .pageSheet
+        navigationController.present(viewController, animated: true)
     }
-
-
-
 }
+
