@@ -110,7 +110,8 @@ final class HomeViewModel {
                 guard let w = weather else {
                     return "구장 온도 정보를 불러오는 중"
                 }
-                return "\(w.temperatureC)°"
+                let temp = String(format: "%.1f", w.temperatureC)
+                return "\(temp)°"
             }
         
         let rainTextDriver = weatherDriver

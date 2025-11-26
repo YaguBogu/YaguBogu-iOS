@@ -138,7 +138,7 @@ class HomeViewController: BaseViewController {
         tempLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
-            make.width.equalTo(130) // 원래 114인데, 잘려서 늘림
+            make.width.equalTo(170) // 원래 114인데, 잘려서 늘림
             make.height.equalTo(80)
         }
         
