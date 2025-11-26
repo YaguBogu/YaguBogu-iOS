@@ -32,11 +32,11 @@ struct GameInfoResponse: Codable {
     let timestamp: Int
     let timezone: Timezone
     let week: String?
-    let status: Status
+    let status: RecordStatus
     let country: Country
     let league: League
-    let teams: Teams
-    let scores: Scores
+    let teams: RecordTeams
+    let scores: RecordScores
 }
 
 // MARK: - Country
@@ -73,7 +73,7 @@ enum TypeEnum: String, Codable {
 }
 
 // MARK: - Scores
-struct Scores: Codable {
+struct RecordScores: Codable {
     let home, away: ScoresAway
 }
 
@@ -105,7 +105,7 @@ struct Innings: Codable {
 }
 
 // MARK: - Status
-struct Status: Codable {
+struct RecordStatus: Codable {
     let long: Long
     let short: Short
 }
@@ -123,7 +123,7 @@ enum Short: String, Codable {
 }
 
 // MARK: - Teams
-struct Teams: Codable {
+struct RecordTeams: Codable {
     let home, away: TeamsAway
 }
 

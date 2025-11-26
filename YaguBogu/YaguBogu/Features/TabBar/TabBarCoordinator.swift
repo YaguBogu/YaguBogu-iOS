@@ -28,7 +28,7 @@ final class TabBarCoordinator: BaseCoordinator {
 
         // 경기일정
         let scheduleNav = UINavigationController()
-        let scheduleCoordinator = ScheduleCoordinator(navigationController: scheduleNav)
+        let scheduleCoordinator = ScheduleCoordinator(navigationController: scheduleNav, team: team)
         addChild(scheduleCoordinator)
         scheduleCoordinator.start()
         scheduleNav.tabBarItem = UITabBarItem(
