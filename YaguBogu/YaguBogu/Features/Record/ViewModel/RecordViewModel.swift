@@ -13,9 +13,6 @@ final class RecordViewModel {
     init(team: TeamInfo){
         self.selectedTeam = BehaviorRelay(value: team)
     }
-    
-    
-    
     func loadMergeData(){
         Task {
             var collectGames: [GameInfoResponse] = []

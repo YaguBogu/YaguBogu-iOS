@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
 
         self.window = window
+        
+        
+        //배포시 제거
+        CoreDataStack.shared.addDummyData()
     }
 }
 

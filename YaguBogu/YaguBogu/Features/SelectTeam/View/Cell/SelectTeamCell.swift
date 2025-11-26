@@ -1,7 +1,7 @@
 
 import Foundation
 import UIKit
-
+import SnapKit
 
 class SelectTeamCell: UICollectionViewCell{
     static let identifier = "SelectTeamCell"
@@ -46,8 +46,8 @@ class SelectTeamCell: UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
-        configureLayout()
+        configureUI()
+        setupConstraints()
         
     }
     
@@ -55,14 +55,14 @@ class SelectTeamCell: UICollectionViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUI(){
+    private func configureUI(){
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16
         contentView.clipsToBounds = true
         contentView.addSubview(mainStackView)
     }
     
-    private func configureLayout(){
+    private func setupConstraints(){
         logoImage.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.width).multipliedBy(0.4)
         }

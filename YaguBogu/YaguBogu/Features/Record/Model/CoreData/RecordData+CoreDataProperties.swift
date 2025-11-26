@@ -12,7 +12,7 @@ extension RecordData {
     @NSManaged public var awayScore: Int64
     @NSManaged public var awayTeamLogo: String?
     @NSManaged public var contentText: String?
-    @NSManaged public var gameDate: Date?
+    @NSManaged public var gameDate: String?
     @NSManaged public var gameInfo: String?
     @NSManaged public var homeTeamLogo: String?
     @NSManaged public var matchStatus: String?
