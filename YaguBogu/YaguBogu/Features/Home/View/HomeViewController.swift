@@ -31,6 +31,10 @@ class HomeViewController: BaseViewController {
     private let rainLabel = UILabel()
     private let humidityLabel = UILabel()
     private let windLabel = UILabel()
+    
+    private let windIcon = UIImageView(image: UIImage(named: "windIcon"))
+    private let rainIcon = UIImageView(image: UIImage(named: "rainIcon"))
+    private let dropIcon = UIImageView(image: UIImage(named: "rainDropIcon"))
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -78,14 +82,47 @@ class HomeViewController: BaseViewController {
         
         weatherContainer.addSubview(tempLabel)
         
+        windIcon.contentMode = .center
+        rainIcon.contentMode = .center
+        dropIcon.contentMode = .center
+        
         rightStack.axis = .vertical
         rightStack.spacing = 6
         rightStack.alignment = .trailing
         rightStack.distribution = .equalSpacing
         
-        rightStack.addArrangedSubview(rainLabel)
-        rightStack.addArrangedSubview(humidityLabel)
-        rightStack.addArrangedSubview(windLabel)
+        // 수평 스택 3개 만들기
+        let windRow = UIStackView(arrangedSubviews: [windIcon, windLabel])
+        windRow.axis = .horizontal
+        windRow.spacing = 11
+        windRow.alignment = .center
+
+        let rainRow = UIStackView(arrangedSubviews: [rainIcon, rainLabel])
+        rainRow.axis = .horizontal
+        rainRow.spacing = 11
+        rainRow.alignment = .center
+
+        let humidityRow = UIStackView(arrangedSubviews: [dropIcon, humidityLabel])
+        humidityRow.axis = .horizontal
+        humidityRow.spacing = 11
+        humidityRow.alignment = .center
+        
+        // 라벨이 늘어날 때 왼쪽으로 늘어나게 하기
+        windLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        rainLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        humidityLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+
+        // rightStack 설정
+        rightStack.axis = .vertical
+        rightStack.spacing = 6
+        rightStack.alignment = .leading
+        rightStack.distribution = .equalSpacing
+
+        // 세 개의 row 막대기를 rightStack에 넣기
+        rightStack.addArrangedSubview(windRow)
+        rightStack.addArrangedSubview(rainRow)
+        rightStack.addArrangedSubview(humidityRow)
+
         
         weatherContainer.addSubview(rightStack)
     }
@@ -145,8 +182,19 @@ class HomeViewController: BaseViewController {
         rightStack.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
-            make.width.equalTo(76)
             make.height.equalTo(66)
+        }
+        
+        windIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(18)
+        }
+
+        rainIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(18)
+        }
+
+        dropIcon.snp.makeConstraints { make in
+            make.width.height.equalTo(18)
         }
         
         [rainLabel, humidityLabel, windLabel].forEach { label in
@@ -189,7 +237,7 @@ class HomeViewController: BaseViewController {
 
                 let paragraph = NSMutableParagraphStyle()
                 paragraph.minimumLineHeight = 80
-                paragraph.alignment = .center
+                paragraph.alignment = .left
 
                 self.tempLabel.attributedText = NSAttributedString(
                     string: text,
@@ -206,16 +254,70 @@ class HomeViewController: BaseViewController {
         
 
         output.rainText
-            .drive(rainLabel.rx.text)
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+
+                let paragraph = NSMutableParagraphStyle()
+                paragraph.minimumLineHeight = 18
+                paragraph.maximumLineHeight = 18
+                paragraph.alignment = .center
+
+                self.rainLabel.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray09,
+                        .paragraphStyle: paragraph,
+                        .kern: 0
+                    ]
+                )
+            })
             .disposed(by: disposeBag)
+
 
         output.humidityText
-            .drive(humidityLabel.rx.text)
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+
+                let paragraph = NSMutableParagraphStyle()
+                paragraph.minimumLineHeight = 18
+                paragraph.maximumLineHeight = 18
+                paragraph.alignment = .center
+
+                self.humidityLabel.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray09,
+                        .paragraphStyle: paragraph,
+                        .kern: 0
+                    ]
+                )
+            })
             .disposed(by: disposeBag)
 
+
         output.windText
-            .drive(windLabel.rx.text)
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+
+                let paragraph = NSMutableParagraphStyle()
+                paragraph.minimumLineHeight = 18
+                paragraph.maximumLineHeight = 18
+                paragraph.alignment = .center
+
+                self.windLabel.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray09,
+                        .paragraphStyle: paragraph,
+                        .kern: 0
+                    ]
+                )
+            })
             .disposed(by: disposeBag)
+
         
 
         stadiumTapArea.rx.tapGesture()
