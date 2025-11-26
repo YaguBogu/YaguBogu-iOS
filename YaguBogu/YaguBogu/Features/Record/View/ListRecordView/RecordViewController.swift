@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import CoreData
 
 final class RecordViewController: BaseViewController {
     
@@ -50,19 +51,17 @@ final class RecordViewController: BaseViewController {
     
     override func configureUI() {
         super.configureUI()
-//        [emptyView].forEach{
-//            view.addSubview($0)
-//        }
-        [collectionView,floatingButton].forEach{
+        
+        [collectionView,emptyView,floatingButton].forEach{
             view.addSubview($0)
         }
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-//        emptyView.snp.makeConstraints{ make in
-//            make.center.equalToSuperview()
-//        }
+        emptyView.snp.makeConstraints{ make in
+            make.center.equalToSuperview()
+        }
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
             
@@ -84,6 +83,15 @@ final class RecordViewController: BaseViewController {
             )) { index, data, cell in
                 cell.configure(with: data)
             }
+            .disposed(by: disposeBag)
+        
+        listViewModel.recordList
+            .map { $0.isEmpty }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isEmpty in
+                self?.emptyView.isHidden = !isEmpty
+                self?.collectionView.isHidden = isEmpty
+            })
             .disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(RecordData.self)
@@ -116,4 +124,5 @@ final class RecordViewController: BaseViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+    
 }
