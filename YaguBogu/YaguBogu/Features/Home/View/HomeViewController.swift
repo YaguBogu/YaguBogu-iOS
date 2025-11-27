@@ -49,6 +49,8 @@ class HomeViewController: BaseViewController {
     }()
     private let emojiStack = UIStackView()
 
+    private let mascotBox = UIView()
+    private let mascotImageView = UIImageView()
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -74,7 +76,7 @@ class HomeViewController: BaseViewController {
         
         view.addSubview(headerContainer)
         headerContainer.addSubview(headerLogoImageView)
-        headerContainer.backgroundColor = UIColor.yellow.withAlphaComponent(0.3)
+        //headerContainer.backgroundColor = UIColor.yellow.withAlphaComponent(0.3)
         
         view.addSubview(stadiumTapArea)
         stadiumTapArea.addSubview(stadiumLabel)
@@ -92,7 +94,7 @@ class HomeViewController: BaseViewController {
         
 
         view.addSubview(weatherContainer)
-        weatherContainer.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+        //weatherContainer.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
         
         weatherContainer.addSubview(tempLabel)
         
@@ -140,8 +142,7 @@ class HomeViewController: BaseViewController {
         
         weatherContainer.addSubview(rightStack)
         
-        // 이모지 + 커스텀 문구가 들어갈 투명 박스
-        emojiBox.backgroundColor = UIColor.systemPink.withAlphaComponent(0.3)
+        //emojiBox.backgroundColor = UIColor.systemPink.withAlphaComponent(0.3)
         view.addSubview(emojiBox)
         
         // 스택뷰 설정 (세로 정렬)
@@ -157,6 +158,12 @@ class HomeViewController: BaseViewController {
         emojiStack.addArrangedSubview(weatherEmoji)
         emojiStack.addArrangedSubview(customWeatherLabel)
 
+        // 팀 마스코트 박스
+        mascotBox.backgroundColor = .clear
+        view.addSubview(mascotBox)
+
+        mascotImageView.contentMode = .scaleAspectFit
+        mascotBox.addSubview(mascotImageView)
 
         
     }
@@ -211,6 +218,19 @@ class HomeViewController: BaseViewController {
             make.top.equalTo(weatherContainer.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(166)
+        }
+        
+        // 팀 마스코트 박스 (375 x 300)
+        mascotBox.snp.makeConstraints { make in
+            make.top.equalTo(emojiBox.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(300)
+        }
+
+        // 마스코트 이미지뷰 (280 x 280)
+        mascotImageView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(300)
         }
 
         // 이모지 + 문구가 들어있는 스택뷰를 emojiBox 중앙에 배치
@@ -394,6 +414,13 @@ class HomeViewController: BaseViewController {
                         .kern: 0
                     ]
                 )
+            })
+            .disposed(by: disposeBag)
+
+        output.teamMascotAssetName
+            .drive(onNext: { [weak self] assetName in
+                guard let self = self else { return }
+                self.mascotImageView.image = UIImage(named: assetName)
             })
             .disposed(by: disposeBag)
 

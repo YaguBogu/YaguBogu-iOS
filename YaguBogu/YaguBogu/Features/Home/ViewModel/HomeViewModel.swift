@@ -21,6 +21,8 @@ final class HomeViewModel {
         
         let weatherIconName: Driver<String>
         let customSentence: Driver<String>
+        
+        let teamMascotAssetName: Driver<String>
     }
     
     // ViewController가 구독할 아웃풋
@@ -105,7 +107,6 @@ final class HomeViewModel {
             }
             .asDriver(onErrorJustReturn: "-")
         
-        // 날씨 변화 스트림
         let weatherDriver = stadiumWeatherRelay.asDriver()
         
         let temperatureTextDriver = weatherDriver
@@ -164,6 +165,9 @@ final class HomeViewModel {
                 return self.customSentence(for: w.description)
             }
 
+        let teamMascotAssetNameDriver = selectedTeamRelay
+            .map { $0.defalutCharacter }
+            .asDriver(onErrorJustReturn: "")
         
         return Output(
             teamName: teamNameDriver,
@@ -174,7 +178,8 @@ final class HomeViewModel {
             humidityText: humidityTextDriver,
             windText: windTextDriver,
             weatherIconName: weatherIconDriver,
-            customSentence: customSentenceDriver
+            customSentence: customSentenceDriver,
+            teamMascotAssetName: teamMascotAssetNameDriver
         )
     }
     
@@ -236,5 +241,6 @@ final class HomeViewModel {
                 return "완벽한 야구 관람일이에요!"
             }
         }
+
 }
 
