@@ -3,12 +3,10 @@ import SnapKit
 
 final class CustomCalendarHeaderView: UIView {
     
-
     let monthLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .center
-        label.text = "2025년 11월" // 예시 텍스트
         label.backgroundColor = .systemYellow
         return label
     }()
@@ -67,9 +65,5 @@ final class CustomCalendarHeaderView: UIView {
             make.leading.equalTo(monthLabel.snp.trailing).offset(16)
             make.width.height.equalTo(24)
         }
-        
-        // 전체 monthHstack(여기서는 containerView)의 width, height는
-        // ScheduleViewController에서 이 CustomCalendarHeaderView를 사용할 때 설정하는 것이 더 좋습니다.
-        // 예: headerView.snp.makeConstraints { $0.width.equalTo(343); $0.height.equalTo(48) }
     }
 }

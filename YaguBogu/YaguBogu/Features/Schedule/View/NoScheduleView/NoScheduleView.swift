@@ -22,6 +22,7 @@ final class NoScheduleView: UIView {
     private let noScheduleImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "Emptylogo")
+        image.contentMode = .scaleAspectFit
         return image
     }()
     
@@ -57,27 +58,27 @@ final class NoScheduleView: UIView {
             $0.edges.equalToSuperview()
         }
         
-        VStackView.snp.makeConstraints {
-            $0.center.equalToSuperview()
-        }
-        
         scheduleDateLabel.snp.makeConstraints {
             $0.leading.top.equalTo(16)
-            $0.top.equalTo(VStackView.snp.top).offset(-28)
             $0.height.equalTo(22)
         }
         
+        VStackView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(103)
+            $0.height.equalTo(74)
+        }
+        
+        noScheduleTextLabel.snp.makeConstraints {
+            $0.height.equalTo(12)
+        }
+        
         noScheduleImage.snp.makeConstraints {
-            $0.width.equalTo(50)
-            $0.height.equalTo(50)
+            $0.width.height.equalTo(50)
         }
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-
-#Preview {
-    NoScheduleView()
 }

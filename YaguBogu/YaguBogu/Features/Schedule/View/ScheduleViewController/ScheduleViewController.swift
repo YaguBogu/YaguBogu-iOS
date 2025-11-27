@@ -7,7 +7,7 @@ import FSCalendar
 final class ScheduleViewController: BaseViewController {
     
     private let viewModel: ScheduleViewModel
-    private let calendarView = CalendarView()
+    private let calendarView = CustomCalendarView()
     private let scheduleCardView = BaseScheduleCardView()
     private let noScheduleView = NoScheduleView()
     
@@ -37,13 +37,13 @@ final class ScheduleViewController: BaseViewController {
         }
         
         scheduleCardView.snp.makeConstraints {
-            $0.top.equalTo(calendarView.snp.bottom).offset(10)
+            $0.top.equalTo(calendarView.snp.bottom).offset(1)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
         }
         
         noScheduleView.snp.makeConstraints {
-            $0.top.equalTo(calendarView.snp.bottom).offset(10)
+            $0.top.equalTo(calendarView.snp.bottom).offset(1)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
         }
