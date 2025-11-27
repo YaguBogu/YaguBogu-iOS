@@ -204,6 +204,17 @@ class HomeViewController: BaseViewController {
         forecastBox.addSubview(forecastTitleLabel)
         forecastBox.addSubview(forecastStack)
 
+        forecastBox.backgroundColor = .white
+        forecastBox.layer.cornerRadius = 20
+        forecastBox.layer.masksToBounds = false
+
+
+        forecastBox.layer.shadowColor = UIColor(red: 1, green: 114/255, blue: 116/255, alpha: 1).cgColor
+        forecastBox.layer.shadowOpacity = 0.04
+        forecastBox.layer.shadowOffset = CGSize(width: 4, height: 4)
+        forecastBox.layer.shadowRadius = 4
+
+        
         infoContainer.addSubview(forecastBox)
         infoContainer.addSubview(stadiumLocationBox)
 
@@ -304,15 +315,15 @@ class HomeViewController: BaseViewController {
         }
         
         forecastTitleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(16)
+            make.top.equalToSuperview().offset(22)   
+            make.leading.equalToSuperview().offset(20)
         }
 
-        // 일기예보 스택 영역
         forecastStack.snp.makeConstraints { make in
-            make.top.equalTo(forecastTitleLabel.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(20)
+            make.top.equalTo(forecastTitleLabel.snp.bottom).offset(14)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(22)
         }
 
 
