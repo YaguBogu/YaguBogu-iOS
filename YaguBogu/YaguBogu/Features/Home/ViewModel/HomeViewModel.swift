@@ -166,7 +166,7 @@ final class HomeViewModel {
             }
 
         let teamMascotAssetNameDriver = selectedTeamRelay
-            .map { $0.defalutCharacter }
+            .map { $0.defaultCharacter }
             .asDriver(onErrorJustReturn: "")
         
         return Output(
