@@ -33,7 +33,8 @@ final class HomeViewModel {
     private let selectedTeamRelay: BehaviorRelay<TeamInfo>
     private let selectedStadiumRelay: BehaviorRelay<StadiumInfo>
     private let stadiumWeatherRelay = BehaviorRelay<StadiumWeather?>(value: nil)
-    
+    private let stadiumForecastRelay = BehaviorRelay<[StadiumForecast]>(value: [])
+
     // Input으로 들어온 구장 선택 이벤트를 받는 Subject
     private let stadiumSelectedSubject = PublishSubject<StadiumInfo>()
     
@@ -87,6 +88,23 @@ final class HomeViewModel {
             }
             .bind(to: stadiumWeatherRelay)
             .disposed(by: disposeBag)
+        
+        // selectedStadium 값이 바뀔 때마다 해당 구장 일기예보도 같이 fetch
+        selectedStadiumRelay
+            .asObservable()
+            .flatMapLatest { [weak self] stadium -> Observable<[StadiumForecast]> in
+                guard let self = self else { return .just([]) }
+
+                return self.weatherService.fetchForecast(
+                    lat: stadium.latitude,
+                    lon: stadium.longitude
+                )
+                .asObservable()
+                .catchAndReturn([])   // 에러 시 빈 배열
+            }
+            .bind(to: stadiumForecastRelay)
+            .disposed(by: disposeBag)
+
     }
     
     
