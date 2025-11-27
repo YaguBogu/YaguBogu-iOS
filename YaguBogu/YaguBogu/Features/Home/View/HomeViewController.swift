@@ -10,6 +10,9 @@ class HomeViewController: BaseViewController {
     
     private let viewModel: HomeViewModel
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+
     private let headerContainer = UIView()
 
     private let headerLogoImageView: UIImageView = {
@@ -52,6 +55,11 @@ class HomeViewController: BaseViewController {
     private let mascotBox = UIView()
     private let mascotImageView = UIImageView()
 
+    private let infoContainer = UIView()
+    private let forecastBox = UIView()
+    private let stadiumLocationBox = UIView()
+
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -76,9 +84,11 @@ class HomeViewController: BaseViewController {
         
         view.addSubview(headerContainer)
         headerContainer.addSubview(headerLogoImageView)
-        //headerContainer.backgroundColor = UIColor.yellow.withAlphaComponent(0.3)
         
-        view.addSubview(stadiumTapArea)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubview(stadiumTapArea)
         stadiumTapArea.addSubview(stadiumLabel)
         stadiumTapArea.addSubview(downIcon)
         stadiumTapArea.isUserInteractionEnabled = true
@@ -93,8 +103,7 @@ class HomeViewController: BaseViewController {
 
         
 
-        view.addSubview(weatherContainer)
-        //weatherContainer.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+        contentView.addSubview(weatherContainer)
         
         weatherContainer.addSubview(tempLabel)
         
@@ -142,8 +151,7 @@ class HomeViewController: BaseViewController {
         
         weatherContainer.addSubview(rightStack)
         
-        //emojiBox.backgroundColor = UIColor.systemPink.withAlphaComponent(0.3)
-        view.addSubview(emojiBox)
+        contentView.addSubview(emojiBox)
         
         // 스택뷰 설정 (세로 정렬)
         emojiStack.axis = .vertical
@@ -160,17 +168,39 @@ class HomeViewController: BaseViewController {
 
         // 팀 마스코트 박스
         mascotBox.backgroundColor = .clear
-        view.addSubview(mascotBox)
+        contentView.addSubview(mascotBox)
 
         mascotImageView.contentMode = .scaleAspectFit
         mascotBox.addSubview(mascotImageView)
-
         
+        // infoContainer 추가 (일기예보 + 구장위치 박스 영역)
+        contentView.addSubview(infoContainer)
+
+        infoContainer.addSubview(forecastBox)
+        infoContainer.addSubview(stadiumLocationBox)
+
+        infoContainer.backgroundColor = .primary
+        forecastBox.backgroundColor = .yellow
+        stadiumLocationBox.backgroundColor = .blue
+
+        // 스크롤뷰 제스처 허용
+        scrollView.isScrollEnabled = true
+        scrollView.alwaysBounceVertical = true
     }
 
     override func setupConstraints() {
         super.setupConstraints()
         
+
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(headerContainer.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView.contentLayoutGuide)
+            make.width.equalTo(scrollView.frameLayoutGuide)
+        }
 
         headerContainer.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -187,8 +217,8 @@ class HomeViewController: BaseViewController {
         
 
         stadiumTapArea.snp.makeConstraints { make in
-            make.top.equalTo(headerContainer.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(contentView.snp.top)
+            make.leading.trailing.equalTo(contentView)
             make.height.equalTo(42)
         }
 
@@ -209,23 +239,47 @@ class HomeViewController: BaseViewController {
 
         weatherContainer.snp.makeConstraints { make in
             make.top.equalTo(stadiumTapArea.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalTo(contentView)
             make.height.equalTo(100)
         }
         
-        // weatherContainer 아래 투명박스 (375 × 166)
         emojiBox.snp.makeConstraints { make in
             make.top.equalTo(weatherContainer.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalTo(contentView)
             make.height.equalTo(166)
         }
         
         // 팀 마스코트 박스 (375 x 300)
         mascotBox.snp.makeConstraints { make in
             make.top.equalTo(emojiBox.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalTo(contentView)
             make.height.equalTo(300)
         }
+        
+        // 인포컨테이너(일기예보랑 구장위치) (375 x 476)
+        infoContainer.snp.makeConstraints { make in
+            make.top.equalTo(mascotBox.snp.bottom)
+            make.leading.trailing.equalTo(contentView)
+            make.height.equalTo(476)
+            make.bottom.equalToSuperview()
+        }
+        
+        // 일기예보 영역 (343 x 162)
+        forecastBox.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(343)
+            make.height.equalTo(162)
+        }
+
+        // 구장위치 영역 (343 x 268)
+        stadiumLocationBox.snp.makeConstraints { make in
+            make.top.equalTo(forecastBox.snp.bottom).offset(14)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(343)
+            make.height.equalTo(268)
+        }
+
 
         // 마스코트 이미지뷰 (280 x 280)
         mascotImageView.snp.makeConstraints { make in
@@ -247,7 +301,7 @@ class HomeViewController: BaseViewController {
         tempLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
-            make.width.equalTo(170) // 원래 114인데, 잘려서 늘림
+            make.width.equalTo(180) 
             make.height.equalTo(80)
         }
         

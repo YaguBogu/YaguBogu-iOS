@@ -23,6 +23,9 @@ final class HomeViewModel {
         let customSentence: Driver<String>
         
         let teamMascotAssetName: Driver<String>
+        
+        // UI에서 쓸 예보리스트 아웃풋
+        let forecastList: Driver<[StadiumForecast]>
     }
     
     // ViewController가 구독할 아웃풋
@@ -33,7 +36,8 @@ final class HomeViewModel {
     private let selectedTeamRelay: BehaviorRelay<TeamInfo>
     private let selectedStadiumRelay: BehaviorRelay<StadiumInfo>
     private let stadiumWeatherRelay = BehaviorRelay<StadiumWeather?>(value: nil)
-    
+    private let stadiumForecastRelay = BehaviorRelay<[StadiumForecast]>(value: [])
+
     // Input으로 들어온 구장 선택 이벤트를 받는 Subject
     private let stadiumSelectedSubject = PublishSubject<StadiumInfo>()
     
@@ -87,6 +91,23 @@ final class HomeViewModel {
             }
             .bind(to: stadiumWeatherRelay)
             .disposed(by: disposeBag)
+        
+        // selectedStadium 값이 바뀔 때마다 해당 구장 일기예보도 같이 fetch
+        selectedStadiumRelay
+            .asObservable()
+            .flatMapLatest { [weak self] stadium -> Observable<[StadiumForecast]> in
+                guard let self = self else { return .just([]) }
+
+                return self.weatherService.fetchForecast(
+                    lat: stadium.latitude,
+                    lon: stadium.longitude
+                )
+                .asObservable()
+                .catchAndReturn([])   // 에러 시 빈 배열
+            }
+            .bind(to: stadiumForecastRelay)
+            .disposed(by: disposeBag)
+
     }
     
     
@@ -109,6 +130,9 @@ final class HomeViewModel {
         
         let weatherDriver = stadiumWeatherRelay.asDriver()
         
+        let forecastListDriver = stadiumForecastRelay
+            .asDriver(onErrorJustReturn: [])
+        
         let temperatureTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
@@ -117,6 +141,37 @@ final class HomeViewModel {
                 let temp = String(format: "%.1f", currentWeather.temperatureC)
                 return "\(temp)°"
             }
+        
+        let filteredForecastDriver = forecastListDriver
+            .map { list -> [StadiumForecast] in
+                
+                // 오늘 날짜 (yyyy-MM-dd) 를 문자열로 변환하기
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let todayString = formatter.string(from: Date())
+                
+                // 보여줄 시간대 (09, 12, 15, 18, 21시)
+                let targetHours = ["09", "12", "15", "18", "21"]
+                
+                return list.filter { item in
+                    // 2025-11-27 09:00:00 형태임
+                    let dateText = item.dateTimeText
+                    
+                    // 프리픽스 확인해서 오늘 날짜인지 확인하기
+                    guard dateText.hasPrefix(todayString) else { return false }
+                    
+                    // 그 중에서, 시간 부분만 추출해야됨 (HH)
+                    // 2025-11-27 09:00:00 -> 09:00:00 -> 09
+                    let components = dateText.split(separator: " ")
+                    guard components.count == 2 else { return false }
+                    
+                    let timePart = String(components[1])        // 09:00:00 형태로옴
+                    let hour = String(timePart.prefix(2))       // 09 형태로옴
+                    
+                    return targetHours.contains(hour)
+                }
+            }
+
         
         let rainTextDriver = weatherDriver
             .map { weather -> String in
@@ -179,7 +234,8 @@ final class HomeViewModel {
             windText: windTextDriver,
             weatherIconName: weatherIconDriver,
             customSentence: customSentenceDriver,
-            teamMascotAssetName: teamMascotAssetNameDriver
+            teamMascotAssetName: teamMascotAssetNameDriver,
+            forecastList: filteredForecastDriver
         )
     }
     
