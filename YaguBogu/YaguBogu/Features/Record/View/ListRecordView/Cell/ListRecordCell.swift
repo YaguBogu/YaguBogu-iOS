@@ -7,13 +7,27 @@ enum MatchResult: String {
     case lose = "TypeLose"
     case draw = "TypeDraw"
     
-    init<T: Comparable>(home: T, away: T) {
-        if home > away {
-            self = .win
-        } else if home < away {
-            self = .lose
+    init?(myTeamId: Int, homeTeamId: Int, awayTeamId: Int, homeScore: Int, awayScore: Int) {
+        
+        if myTeamId == homeTeamId {
+            if homeScore > awayScore {
+                self = .win
+            } else if homeScore < awayScore {
+                self = .lose
+            } else {
+                self = .draw
+            }
+            
+        } else if myTeamId == awayTeamId {
+            if awayScore > homeScore {
+                self = .win
+            } else if awayScore < homeScore {
+                self = .lose
+            } else {
+                self = .draw
+            }
         } else {
-            self = .draw
+            return nil
         }
     }
 }
@@ -103,8 +117,25 @@ class ListRecordCell: UICollectionViewCell{
         titleLabel.text = data.title
         gameDate.text = data.gameDate
         
-        let result = MatchResult(home: data.homeScore, away: data.awayScore)
-        matchStatus.image = UIImage(named: result.rawValue)
+        let myTeamId = Int(data.myTeamId)
+        let homeTeamId = Int(data.homeTeamId)
+        let awayTeamId = Int(data.awayTeamId)
+        let homeScore = Int(data.homeScore)
+        let awayScore = Int(data.awayScore)
+        
+        let result = MatchResult(
+            myTeamId: myTeamId,
+            homeTeamId: homeTeamId,
+            awayTeamId: awayTeamId,
+            homeScore: homeScore,
+            awayScore: awayScore
+        )
+        
+        if let matchResult = result {
+            matchStatus.image = UIImage(named: matchResult.rawValue)
+        } else {
+            matchStatus.image = UIImage(named: "Emptylogo")
+        }
     }
     
 }

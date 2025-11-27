@@ -4,7 +4,7 @@ final class RecordService{
     static let shared = RecordService()
     private init() {}
     
-    func fetchGames(teamId: Int, date: Date) async -> [GameInfoResponse]{
+    func fetchData(teamId: Int, date: Date) async -> [GameInfoResponse]{
         let dateString = dateToString(date)
         let year = Calendar.current.component(.year, from: date)
         

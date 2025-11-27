@@ -9,8 +9,8 @@ enum DetailMatchResult: String {
     case lose = "TypeLoseLarge"
     case draw = "TypeDrawLarge"
     
-    var koreanTitle: String{
-        switch self{
+    var koreanTitle: String {
+        switch self {
         case .win:
             return "승리"
         case .lose:
@@ -20,13 +20,27 @@ enum DetailMatchResult: String {
         }
     }
     
-    init<T: Comparable>(home: T, away: T) {
-        if home > away {
-            self = .win
-        } else if home < away {
-            self = .lose
+    init?(myTeamId: Int, homeTeamId: Int, awayTeamId: Int, homeScore: Int, awayScore: Int) {
+        
+        if myTeamId == homeTeamId {
+            if homeScore > awayScore {
+                self = .win
+            } else if homeScore < awayScore {
+                self = .lose
+            } else {
+                self = .draw
+            }
+            
+        } else if myTeamId == awayTeamId {
+            if awayScore > homeScore {
+                self = .win
+            } else if awayScore < homeScore {
+                self = .lose
+            } else {
+                self = .draw
+            }
         } else {
-            self = .draw
+            return nil
         }
     }
 }
@@ -203,7 +217,7 @@ final class DetailRecordModalView: BaseViewController {
         super.viewDidLoad()
         configureUI()
         setupConstraints()
-        setupData(with: viewModel.data)
+        setupData()
     }
     
     override func configureUI() {
@@ -261,7 +275,7 @@ final class DetailRecordModalView: BaseViewController {
         }
     }
     
-    private func setupData(with data: RecordData) {
+    private func setupData() {
         photoImage.backgroundColor = .lightGray
         titleLabel.text = viewModel.title
         gameDate.text = viewModel.gameDate
@@ -274,7 +288,7 @@ final class DetailRecordModalView: BaseViewController {
         
         contentTitleLabel.text = "내용"
         
-        let contentLabelText = data.contentText
+        let contentLabelText = viewModel.contentText
         contentLabel.text = contentLabelText
         contentLabel.setSpacingInPixels(text: contentLabelText, spacingInPx: 21)
     }

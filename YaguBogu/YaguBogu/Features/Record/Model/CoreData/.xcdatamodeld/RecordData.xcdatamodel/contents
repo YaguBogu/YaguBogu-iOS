@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23231" systemVersion="24G231" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="RecordData" representedClassName="RecordData" syncable="YES">
-        <attribute name="awayScore" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="awayScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="awayTeam" optional="YES" attributeType="String"/>
+        <attribute name="awayTeamId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="contentText" optional="YES" attributeType="String"/>
         <attribute name="gameDate" optional="YES" attributeType="String"/>
-        <attribute name="homeScore" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="homeScore" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="homeTeam" optional="YES" attributeType="String"/>
+        <attribute name="homeTeamId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="myTeamId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="selectedTeam" optional="YES" attributeType="String"/>
         <attribute name="stadium" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>

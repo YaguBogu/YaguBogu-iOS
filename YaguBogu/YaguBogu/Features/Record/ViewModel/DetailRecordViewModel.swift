@@ -1,13 +1,9 @@
 
 import RxSwift
-import RxRelay
-import RxCocoa
-
 
 final class DetailRecordViewModel{
     
     let data: RecordData
-    private var disposeBag = DisposeBag()
     
     let title: String?
     let gameDate: String?
@@ -23,15 +19,22 @@ final class DetailRecordViewModel{
         self.stadiumName = data.stadium
         self.contentText = data.contentText
         
+        
         let homeTeam = data.homeTeam ?? "홈팀"
         let awayTeam = data.awayTeam ?? "원정팀"
         self.matchTeamText = "\(homeTeam) vs \(awayTeam)"
         
-        self.matchResult = DetailMatchResult(home: data.homeScore, away: data.awayScore)
-        bind()
-    }
-    
-    private func bind(){
+        let myTeamId = Int(data.myTeamId)
+        let homeTeamId = Int(data.homeTeamId)
+        let awayTeamId = Int(data.awayTeamId)
+        let homeScore = Int(data.homeScore)
+        let awayScore = Int(data.awayScore)
         
+        
+        if let result = DetailMatchResult(myTeamId: myTeamId, homeTeamId: homeTeamId, awayTeamId: awayTeamId, homeScore: homeScore, awayScore: awayScore) {
+            self.matchResult = result
+        } else {
+            self.matchResult = .draw
+        }
     }
 }

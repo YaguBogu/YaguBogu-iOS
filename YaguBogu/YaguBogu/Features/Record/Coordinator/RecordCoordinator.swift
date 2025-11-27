@@ -13,17 +13,21 @@ final class RecordCoordinator: BaseCoordinator {
     
     override func start() {
         super.start()
+        let coreDataService = RecordCoreDataService()
+        let gameInfoService = RecordGameInfoService()
         
-        let recordViewModel = RecordViewModel(team: team)
-        let listViewModel = ListViewModel()
+        let recordViewModel = RecordViewModel(
+            team: team,
+            recordStorage: coreDataService,
+            gameInfoService: gameInfoService
+        )
         
         let viewController = RecordViewController(
-            viewModel: recordViewModel,
-            listViewModel: listViewModel
+            viewModel: recordViewModel
         )
         viewController.navigationItem.title = "나의 직관 기록"
         
-        listViewModel.navigateToDetail
+        recordViewModel.navigateToDetail
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] recordData in
                 
