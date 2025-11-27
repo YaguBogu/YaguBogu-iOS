@@ -2,7 +2,7 @@
     "ExtraTeamModel": [
         {
             "teamId": "Doosan Bears",
-            "stadium": "잠실야구장",
+            "stadium": "서울종합운동장(잠실야구장)",
             "city" : "서울",
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
@@ -11,7 +11,7 @@
         },
         {
             "teamId": "Hanwha Eagles",
-            "stadium": "대전한화생명볼파크",
+            "stadium": "대전한화생명이글스파크",
             "city" : "대전",
             "latitude" : "36.316066596569165",
             "longtitude" : "127.43167645403133",
@@ -20,7 +20,7 @@
         },
         {
             "teamId": "KIA Tigers",
-            "stadium": "기아챔피언스필드",
+            "stadium": "광주기아챔피언스필드",
             "city" : "광주",
             "latitude" : "35.168143901359784",
             "longtitude" : "126.8891423364501",
@@ -38,7 +38,7 @@
         },
         {
             "teamId": "KT Wiz Suwon",
-            "stadium": "수원케이티위즈파크",
+            "stadium": "수원KT위즈파크",
             "city" : "수원",
             "latitude" : "37.29966537879378",
             "longtitude" : "127.00977034570677",
@@ -47,7 +47,7 @@
         },
         {
             "teamId": "LG Twins",
-            "stadium": "잠실야구장",
+            "stadium": "서울종합운동장(잠실야구장)",
             "city" : "서울",
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
