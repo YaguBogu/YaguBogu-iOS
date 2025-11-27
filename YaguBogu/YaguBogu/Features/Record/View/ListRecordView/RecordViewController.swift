@@ -7,9 +7,9 @@ import CoreData
 final class RecordViewController: BaseViewController {
     
     private let viewModel: RecordViewModel
-    private let emptyView = EmptyRecordView()
+    private let listViewModel: ListViewModel
     
-    private let listViewModel = ListViewModel()
+    private let emptyView = EmptyRecordView()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -30,8 +30,9 @@ final class RecordViewController: BaseViewController {
     }()
     
     
-    init(viewModel: RecordViewModel) {
+    init(viewModel: RecordViewModel, listViewModel: ListViewModel) {
         self.viewModel = viewModel
+        self.listViewModel = listViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -97,12 +98,7 @@ final class RecordViewController: BaseViewController {
         collectionView.rx.modelSelected(RecordData.self)
             .bind(to: listViewModel.navigateToDetail)
             .disposed(by: disposeBag)
-        
-        listViewModel.navigateToDetail
-            .subscribe(onNext: {[weak self] data in
-                
-            })
-            .disposed(by: disposeBag)
+            
     }
     
     private func createLayout() -> UICollectionViewLayout{

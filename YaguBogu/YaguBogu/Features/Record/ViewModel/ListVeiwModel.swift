@@ -8,11 +8,11 @@ import CoreData
 final class ListViewModel {
     
     private var disposeBag = DisposeBag()
+    private let context: NSManagedObjectContext
     
     let recordList = BehaviorRelay<[RecordData]>(value: [])
     let navigateToDetail = PublishSubject<RecordData>()
     
-    private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext = CoreDataStack.shared.persistentContainer.viewContext) {
         self.context = context

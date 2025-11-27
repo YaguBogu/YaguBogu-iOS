@@ -179,7 +179,3 @@ class CustomAlertView:BaseViewController{
         self.confirmButton.setTitle(confirmTitle, for: .normal)
     }
 }
-
-#Preview{
-    CustomAlertView(viewModel: CustomAlertViewModel())
-}
