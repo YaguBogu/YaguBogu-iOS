@@ -31,3 +31,13 @@ struct RainInfo: Decodable {
     }
 }
 
+struct ForecastResponse: Decodable {
+    let list: [ForecastItem]
+}
+
+struct ForecastItem: Decodable {
+    let dt: Int
+    let main: MainInfo
+    let weather: [WeatherInfo]
+    let dt_txt: String
+}
