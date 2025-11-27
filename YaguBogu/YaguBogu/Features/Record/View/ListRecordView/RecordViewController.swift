@@ -7,9 +7,8 @@ import CoreData
 final class RecordViewController: BaseViewController {
     
     private let viewModel: RecordViewModel
-    private let emptyView = EmptyRecordView()
     
-    private let listViewModel = ListViewModel()
+    private let emptyView = EmptyRecordView()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -41,12 +40,12 @@ final class RecordViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.loadMergeData()
         bind()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        listViewModel.fetchData()
+        viewModel.loadMergeData()
     }
     
     override func configureUI() {
@@ -75,7 +74,7 @@ final class RecordViewController: BaseViewController {
     }
     
     private func bind(){
-        listViewModel.recordList
+        viewModel.recordList
             .observe(on: MainScheduler.instance)
             .bind(to: collectionView.rx.items(
                 cellIdentifier: ListRecordCell.identifier,
@@ -85,7 +84,7 @@ final class RecordViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        listViewModel.recordList
+        viewModel.recordList
             .map { $0.isEmpty }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] isEmpty in
@@ -95,14 +94,9 @@ final class RecordViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         collectionView.rx.modelSelected(RecordData.self)
-            .bind(to: listViewModel.navigateToDetail)
+            .bind(to: viewModel.navigateToDetail)
             .disposed(by: disposeBag)
-        
-        listViewModel.navigateToDetail
-            .subscribe(onNext: {[weak self] data in
-                
-            })
-            .disposed(by: disposeBag)
+            
     }
     
     private func createLayout() -> UICollectionViewLayout{

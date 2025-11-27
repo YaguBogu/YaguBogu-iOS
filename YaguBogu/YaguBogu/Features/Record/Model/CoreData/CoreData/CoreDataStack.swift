@@ -51,16 +51,30 @@ extension CoreDataStack {
     
     private func createDummyData(context: NSManagedObjectContext) {
         
-//        for i in 1...6 {
-//            let newRecord = RecordData(context: context)
-//            
-//            newRecord.id = UUID()
-//            newRecord.title = "테스트\(i)"
-//            newRecord.homeScore = Int64(Int.random(in: 0...5))
-//            newRecord.awayScore = Int64(Int.random(in: 0...5))
-//            newRecord.gameDate = "2025-03-2\(i)"
-//            
-//        }
+        for i in 1...6 {
+            let newRecord = RecordData(context: context)
+            
+            newRecord.id = UUID()
+            newRecord.myTeamId = 88
+            newRecord.homeTeamId = 88
+            newRecord.awayTeamId = 91
+            
+            newRecord.title = "test\(i)"
+            newRecord.gameDate = "2025-03-2\(i)"
+            
+            newRecord.homeTeam = "LG"
+            newRecord.awayTeam = "KIA"
+            newRecord.stadium = "stadium"
+            
+            
+            newRecord.contentText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            newRecord.homeScore = Int32(Int.random(in: 0...5))
+            newRecord.awayScore = Int32(Int.random(in: 0...5))
+            
+            newRecord.selectedTeam = "LG"
+            
+            
+        }
         
         saveContext()
     }
