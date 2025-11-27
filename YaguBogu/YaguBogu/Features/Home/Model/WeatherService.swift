@@ -37,7 +37,8 @@ final class WeatherService: WeatherServiceProtocol {
                         temperatureC: decoded.main.temp,
                         humidity: decoded.main.humidity,
                         windSpeed: decoded.wind.speed,
-                        precipitation: decoded.rain?.oneHour
+                        precipitation: decoded.rain?.oneHour,
+                        description: decoded.weather.first?.description ?? ""
                     )
                     single(.success(weather))
                 } catch {
