@@ -274,8 +274,6 @@ final class DetailRecordModalView: BaseViewController {
         
         contentTitleLabel.text = "내용"
         
-        contentTitleLabel.text = "내용"
-        
         let contentLabelText = data.contentText
         contentLabel.text = contentLabelText
         contentLabel.setSpacingInPixels(text: contentLabelText, spacingInPx: 21)
