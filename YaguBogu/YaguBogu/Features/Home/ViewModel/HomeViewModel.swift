@@ -111,58 +111,58 @@ final class HomeViewModel {
         
         let temperatureTextDriver = weatherDriver
             .map { weather -> String in
-                guard let w = weather else {
+                guard let currentWeather = weather else {
                     return "구장 온도 정보를 불러오는 중"
                 }
-                let temp = String(format: "%.1f", w.temperatureC)
+                let temp = String(format: "%.1f", currentWeather.temperatureC)
                 return "\(temp)°"
             }
         
         let rainTextDriver = weatherDriver
             .map { weather -> String in
-                guard let w = weather else {
+                guard let currentWeather = weather else {
                     return "강수량 정보를 불러오는 중"
                 }
-                let rain = w.precipitation ?? 0
+                let rain = currentWeather.precipitation ?? 0
                 return "\(rain)mm"
             }
         
         let humidityTextDriver = weatherDriver
             .map { weather -> String in
-                guard let w = weather else {
+                guard let currentWeather = weather else {
                     return "습도 정보를 불러오는 중"
                 }
-                return "\(w.humidity)%"
+                return "\(currentWeather.humidity)%"
             }
         
         let windTextDriver = weatherDriver
             .map { weather -> String in
-                guard let w = weather else {
+                guard let currentWeather = weather else {
                     return "현재 구장 풍속 정보를 불러오는 중"
                 }
-                return "\(w.windSpeed)m/s"
+                return "\(currentWeather.windSpeed)m/s"
             }
         
         let weatherIconDriver = weatherDriver
             .map { [weak self] weather -> String in
                 guard
                     let self = self,
-                    let w = weather
+                    let currentWeather = weather
                 else {
                     return "clearSkyEmoji"
                 }
-                return self.emojiAssetName(for: w.description)
+                return self.emojiAssetName(for: currentWeather.description)
             }
         
         let customSentenceDriver = weatherDriver
             .map { [weak self] weather -> String in
                 guard
                     let self = self,
-                    let w = weather
+                    let currentWeather = weather
                 else {
                     return ""
                 }
-                return self.customSentence(for: w.description)
+                return self.customSentence(for: currentWeather.description)
             }
 
         let teamMascotAssetNameDriver = selectedTeamRelay
