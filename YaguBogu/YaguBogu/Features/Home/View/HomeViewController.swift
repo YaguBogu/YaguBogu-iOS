@@ -59,6 +59,31 @@ class HomeViewController: BaseViewController {
     private let forecastBox = UIView()
     private let stadiumLocationBox = UIView()
 
+    private let forecastTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        label.textColor = .appBlack
+        label.text = "시간대별 날씨"
+        
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.minimumLineHeight = 21
+        paragraph.maximumLineHeight = 21
+        paragraph.alignment = .left
+        
+        label.attributedText = NSAttributedString(
+            string: "시간대별 날씨",
+            attributes: [
+                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 16)!,
+                .foregroundColor: UIColor.appBlack,
+                .paragraphStyle: paragraph
+            ]
+        )
+        return label
+    }()
+
+    
+    private let forecastStack = UIStackView()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -176,12 +201,18 @@ class HomeViewController: BaseViewController {
         // infoContainer 추가 (일기예보 + 구장위치 박스 영역)
         contentView.addSubview(infoContainer)
 
+        forecastBox.addSubview(forecastTitleLabel)
+        forecastBox.addSubview(forecastStack)
+
         infoContainer.addSubview(forecastBox)
         infoContainer.addSubview(stadiumLocationBox)
 
-        infoContainer.backgroundColor = .primary
-        forecastBox.backgroundColor = .yellow
-        stadiumLocationBox.backgroundColor = .blue
+        // 일기예보 스택
+        forecastBox.addSubview(forecastStack)
+        forecastStack.axis = .horizontal
+        forecastStack.alignment = .center
+        forecastStack.distribution = .equalCentering   
+        forecastStack.spacing = 25.75
 
         // 스크롤뷰 제스처 허용
         scrollView.isScrollEnabled = true
@@ -271,6 +302,19 @@ class HomeViewController: BaseViewController {
             make.width.equalTo(343)
             make.height.equalTo(162)
         }
+        
+        forecastTitleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(16)
+        }
+
+        // 일기예보 스택 영역
+        forecastStack.snp.makeConstraints { make in
+            make.top.equalTo(forecastTitleLabel.snp.bottom).offset(12)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview().inset(20)
+        }
+
 
         // 구장위치 영역 (343 x 268)
         stadiumLocationBox.snp.makeConstraints { make in
@@ -485,6 +529,38 @@ class HomeViewController: BaseViewController {
             .bind { [weak self] _ in
                 self?.coordinator?.showStadiumSelect()
             }
+            .disposed(by: disposeBag)
+
+        output.forecastList
+            .drive(onNext: { [weak self] list in
+                guard let self = self else { return }
+
+                // 기존 뷰 제거
+                self.forecastStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+
+                for forecast in list {
+                    // 시간 변환 → "2025-11-27 15:00:00" → "15시"
+                    let time = String(forecast.dateTimeText.split(separator: " ")[1].prefix(2)) + "시"
+
+                    // description -> 이모티콘 에셋 변환
+                    let iconName = self.viewModel.emojiAssetName(for: forecast.description)
+
+                    // 온도 변환 (정수)
+                    let tempInt = Int(forecast.temperatureC)
+
+                    // 새로운 아이템 뷰 생성
+                    let itemView = ForecastItemView()
+                    itemView.configure(time: time, iconName: iconName, temp: tempInt)
+
+                    // 고정 크기
+                    itemView.snp.makeConstraints { make in
+                        make.width.equalTo(40)
+                        make.height.equalTo(83)
+                    }
+
+                    self.forecastStack.addArrangedSubview(itemView)
+                }
+            })
             .disposed(by: disposeBag)
 
     }
