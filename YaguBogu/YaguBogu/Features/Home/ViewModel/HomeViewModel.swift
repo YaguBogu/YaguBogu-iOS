@@ -23,6 +23,9 @@ final class HomeViewModel {
         let customSentence: Driver<String>
         
         let teamMascotAssetName: Driver<String>
+        
+        // UI에서 쓸 예보리스트 아웃풋
+        let forecastList: Driver<[StadiumForecast]>
     }
     
     // ViewController가 구독할 아웃풋
@@ -127,6 +130,9 @@ final class HomeViewModel {
         
         let weatherDriver = stadiumWeatherRelay.asDriver()
         
+        let forecastListDriver = stadiumForecastRelay
+            .asDriver(onErrorJustReturn: [])
+        
         let temperatureTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
@@ -197,7 +203,8 @@ final class HomeViewModel {
             windText: windTextDriver,
             weatherIconName: weatherIconDriver,
             customSentence: customSentenceDriver,
-            teamMascotAssetName: teamMascotAssetNameDriver
+            teamMascotAssetName: teamMascotAssetNameDriver,
+            forecastList: forecastListDriver
         )
     }
     
