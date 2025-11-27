@@ -38,6 +38,16 @@ class HomeViewController: BaseViewController {
     
     private let weatherEmoji = UIImageView()
     private let emojiBox = UIView()
+    private let customWeatherLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.textColor = .appBlack
+        label.textAlignment = .center
+        label.numberOfLines = 0
+
+        return label
+    }()
+    private let emojiStack = UIStackView()
 
 
     init(viewModel: HomeViewModel) {
@@ -130,13 +140,23 @@ class HomeViewController: BaseViewController {
         
         weatherContainer.addSubview(rightStack)
         
-        // 이모지 투명박스 추가
+        // 이모지 + 커스텀 문구가 들어갈 투명 박스
         emojiBox.backgroundColor = UIColor.systemPink.withAlphaComponent(0.3)
         view.addSubview(emojiBox)
-
-        // weatherEmoji 추가
+        
+        // 스택뷰 설정 (세로 정렬)
+        emojiStack.axis = .vertical
+        emojiStack.alignment = .center
+        emojiStack.spacing = 12
+        
+        // 이모지 이미지 뷰 설정
         weatherEmoji.contentMode = .scaleAspectFit
-        emojiBox.addSubview(weatherEmoji)
+        
+        // 스택뷰를 emojiBox 안에 넣고, 그 안에 이모지+라벨 넣기
+        emojiBox.addSubview(emojiStack)
+        emojiStack.addArrangedSubview(weatherEmoji)
+        emojiStack.addArrangedSubview(customWeatherLabel)
+
 
         
     }
@@ -193,9 +213,13 @@ class HomeViewController: BaseViewController {
             make.height.equalTo(166)
         }
 
-        // 가운데 60×60 이모지
-        weatherEmoji.snp.makeConstraints { make in
+        // 이모지 + 문구가 들어있는 스택뷰를 emojiBox 중앙에 배치
+        emojiStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
+        }
+
+        // 이모지 사이즈만 지정
+        weatherEmoji.snp.makeConstraints { make in
             make.width.height.equalTo(60)
         }
 
@@ -351,6 +375,27 @@ class HomeViewController: BaseViewController {
                 self?.weatherEmoji.image = UIImage(named: iconName)
             })
             .disposed(by: disposeBag)
+        
+        output.customSentence
+            .drive(onNext: { [weak self] text in
+                guard let self = self else { return }
+
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.minimumLineHeight = 22
+                paragraphStyle.maximumLineHeight = 22
+                paragraphStyle.alignment = .center
+
+                self.customWeatherLabel.attributedText = NSAttributedString(
+                    string: text,
+                    attributes: [
+                        .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)!,
+                        .foregroundColor: UIColor.appBlack,
+                        .paragraphStyle: paragraphStyle,
+                        .kern: 0
+                    ]
+                )
+            })
+            .disposed(by: disposeBag)
 
         
 
@@ -360,6 +405,7 @@ class HomeViewController: BaseViewController {
                 self?.coordinator?.showStadiumSelect()
             }
             .disposed(by: disposeBag)
+
     }
 }
 

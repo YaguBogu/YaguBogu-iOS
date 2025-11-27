@@ -20,6 +20,7 @@ final class HomeViewModel {
         let windText: Driver<String>
         
         let weatherIconName: Driver<String>
+        let customSentence: Driver<String>
     }
     
     // ViewController가 구독할 아웃풋
@@ -151,6 +152,17 @@ final class HomeViewModel {
                 }
                 return self.emojiAssetName(for: w.description)
             }
+        
+        let customSentenceDriver = weatherDriver
+            .map { [weak self] weather -> String in
+                guard
+                    let self = self,
+                    let w = weather
+                else {
+                    return ""
+                }
+                return self.customSentence(for: w.description)
+            }
 
         
         return Output(
@@ -161,7 +173,8 @@ final class HomeViewModel {
             rainText: rainTextDriver,
             humidityText: humidityTextDriver,
             windText: windTextDriver,
-            weatherIconName: weatherIconDriver  
+            weatherIconName: weatherIconDriver,
+            customSentence: customSentenceDriver
         )
     }
     
@@ -190,5 +203,38 @@ final class HomeViewModel {
         }
     }
 
+    private func customSentence(for description: String) -> String {
+            switch description.lowercased() {
+            case "clear sky":
+                return "완벽한 야구 관람일이에요!"
+
+            case "few clouds":
+                return "시원하게 보기 좋은 날이에요!"
+
+            case "scattered clouds":
+                return "햇빛 부담 없이 관람할 수 있어요!"
+
+            case "broken clouds":
+                return "조금 어둡지만 관람에 큰 지장은 없어요!"
+
+            case "shower rain":
+                return "비가 와요, 우산 꼭 챙겨주세요!"
+
+            case "rain":
+                return "관람이 어려워요, 경기 일정 확인 필수!"
+
+            case "thunderstorm":
+                return "번개 주의! 경기 일정 꼭 확인해주세요!"
+
+            case "snow":
+                return "눈이 내려요, 따뜻하게 입고 관람하세요!"
+
+            case "mist":
+                return "안개가 껴요, 시야가 흐릴 수 있어요!"
+
+            default:
+                return "완벽한 야구 관람일이에요!"
+            }
+        }
 }
 
