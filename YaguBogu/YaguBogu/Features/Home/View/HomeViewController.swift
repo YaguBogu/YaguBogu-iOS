@@ -55,6 +55,11 @@ class HomeViewController: BaseViewController {
     private let mascotBox = UIView()
     private let mascotImageView = UIImageView()
 
+    private let infoContainer = UIView()
+    private let forecastBox = UIView()
+    private let stadiumLocationBox = UIView()
+
+    
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -168,6 +173,16 @@ class HomeViewController: BaseViewController {
         mascotImageView.contentMode = .scaleAspectFit
         mascotBox.addSubview(mascotImageView)
         
+        // infoContainer 추가 (일기예보 + 구장위치 박스 영역)
+        contentView.addSubview(infoContainer)
+
+        infoContainer.addSubview(forecastBox)
+        infoContainer.addSubview(stadiumLocationBox)
+
+        infoContainer.backgroundColor = .primary
+        forecastBox.backgroundColor = .yellow
+        stadiumLocationBox.backgroundColor = .blue
+
         // 스크롤뷰 제스처 허용
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
@@ -239,8 +254,32 @@ class HomeViewController: BaseViewController {
             make.top.equalTo(emojiBox.snp.bottom)
             make.leading.trailing.equalTo(contentView)
             make.height.equalTo(300)
-            make.bottom.equalToSuperview().inset(20)
         }
+        
+        // 인포컨테이너(일기예보랑 구장위치) (375 x 476)
+        infoContainer.snp.makeConstraints { make in
+            make.top.equalTo(mascotBox.snp.bottom)
+            make.leading.trailing.equalTo(contentView)
+            make.height.equalTo(476)
+            make.bottom.equalToSuperview()
+        }
+        
+        // 일기예보 영역 (343 x 162)
+        forecastBox.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(343)
+            make.height.equalTo(162)
+        }
+
+        // 구장위치 영역 (343 x 268)
+        stadiumLocationBox.snp.makeConstraints { make in
+            make.top.equalTo(forecastBox.snp.bottom).offset(14)
+            make.centerX.equalToSuperview()
+            make.width.equalTo(343)
+            make.height.equalTo(268)
+        }
+
 
         // 마스코트 이미지뷰 (280 x 280)
         mascotImageView.snp.makeConstraints { make in
@@ -262,7 +301,7 @@ class HomeViewController: BaseViewController {
         tempLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.centerY.equalToSuperview()
-            make.width.equalTo(170) // 원래 114인데, 잘려서 늘림
+            make.width.equalTo(180) 
             make.height.equalTo(80)
         }
         
