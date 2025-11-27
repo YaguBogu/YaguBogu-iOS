@@ -217,6 +217,8 @@ class HomeViewController: BaseViewController {
         
         infoContainer.addSubview(forecastBox)
         infoContainer.addSubview(stadiumLocationBox)
+        
+        stadiumLocationBox.backgroundColor = .systemGreen // 임시 배경
 
         // 일기예보 스택
         forecastBox.addSubview(forecastStack)
@@ -546,24 +548,19 @@ class HomeViewController: BaseViewController {
             .drive(onNext: { [weak self] list in
                 guard let self = self else { return }
 
-                // 기존 뷰 제거
                 self.forecastStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
 
                 for forecast in list {
-                    // 시간 변환 → "2025-11-27 15:00:00" → "15시"
-                    let time = String(forecast.dateTimeText.split(separator: " ")[1].prefix(2)) + "시"
+                    let hourString = String(forecast.dateTimeText.split(separator: " ")[1].prefix(2))
+                    let hourInt = Int(hourString) ?? 0
+                    let time = "\(hourInt)시"
 
-                    // description -> 이모티콘 에셋 변환
                     let iconName = self.viewModel.emojiAssetName(for: forecast.description)
-
-                    // 온도 변환 (정수)
                     let tempInt = Int(forecast.temperatureC)
 
-                    // 새로운 아이템 뷰 생성
                     let itemView = ForecastItemView()
                     itemView.configure(time: time, iconName: iconName, temp: tempInt)
 
-                    // 고정 크기
                     itemView.snp.makeConstraints { make in
                         make.width.equalTo(40)
                         make.height.equalTo(83)
@@ -573,6 +570,7 @@ class HomeViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+
 
     }
 }
