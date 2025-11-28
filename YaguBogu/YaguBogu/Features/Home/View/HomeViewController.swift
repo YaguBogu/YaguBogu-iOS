@@ -57,7 +57,6 @@ class HomeViewController: BaseViewController {
 
     private let infoContainer = UIView()
     private let forecastBox = UIView()
-    private let stadiumLocationBox = UIView()
 
     private let forecastTitleLabel: UILabel = {
         let label = UILabel()
@@ -81,9 +80,9 @@ class HomeViewController: BaseViewController {
         )
         return label
     }()
-
-    
     private let forecastStack = UIStackView()
+    
+    private let stadiumLocationView = StadiumLocationView()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -216,9 +215,7 @@ class HomeViewController: BaseViewController {
 
         
         infoContainer.addSubview(forecastBox)
-        infoContainer.addSubview(stadiumLocationBox)
-        
-        stadiumLocationBox.backgroundColor = .systemGreen // 임시 배경
+        infoContainer.addSubview(stadiumLocationView)
 
         // 일기예보 스택
         forecastBox.addSubview(forecastStack)
@@ -330,7 +327,7 @@ class HomeViewController: BaseViewController {
 
 
         // 구장위치 영역 (343 x 268)
-        stadiumLocationBox.snp.makeConstraints { make in
+        stadiumLocationView.snp.makeConstraints { make in
             make.top.equalTo(forecastBox.snp.bottom).offset(14)
             make.centerX.equalToSuperview()
             make.width.equalTo(343)
