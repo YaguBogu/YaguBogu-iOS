@@ -59,6 +59,31 @@ class HomeViewController: BaseViewController {
     private let forecastBox = UIView()
     private let stadiumLocationBox = UIView()
 
+    private let forecastTitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        label.textColor = .appBlack
+        label.text = "시간대별 날씨"
+        
+
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.minimumLineHeight = 21
+        paragraph.maximumLineHeight = 21
+        paragraph.alignment = .left
+        
+        label.attributedText = NSAttributedString(
+            string: "시간대별 날씨",
+            attributes: [
+                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 16)!,
+                .foregroundColor: UIColor.appBlack,
+                .paragraphStyle: paragraph
+            ]
+        )
+        return label
+    }()
+
+    
+    private let forecastStack = UIStackView()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -176,12 +201,31 @@ class HomeViewController: BaseViewController {
         // infoContainer 추가 (일기예보 + 구장위치 박스 영역)
         contentView.addSubview(infoContainer)
 
+        forecastBox.addSubview(forecastTitleLabel)
+        forecastBox.addSubview(forecastStack)
+
+        forecastBox.backgroundColor = .white
+        forecastBox.layer.cornerRadius = 20
+        forecastBox.layer.masksToBounds = false
+
+
+        forecastBox.layer.shadowColor = UIColor(red: 1, green: 114/255, blue: 116/255, alpha: 1).cgColor
+        forecastBox.layer.shadowOpacity = 0.04
+        forecastBox.layer.shadowOffset = CGSize(width: 4, height: 4)
+        forecastBox.layer.shadowRadius = 4
+
+        
         infoContainer.addSubview(forecastBox)
         infoContainer.addSubview(stadiumLocationBox)
+        
+        stadiumLocationBox.backgroundColor = .systemGreen // 임시 배경
 
-        infoContainer.backgroundColor = .primary
-        forecastBox.backgroundColor = .yellow
-        stadiumLocationBox.backgroundColor = .blue
+        // 일기예보 스택
+        forecastBox.addSubview(forecastStack)
+        forecastStack.axis = .horizontal
+        forecastStack.alignment = .center
+        forecastStack.distribution = .equalCentering   
+        forecastStack.spacing = 25.75
 
         // 스크롤뷰 제스처 허용
         scrollView.isScrollEnabled = true
@@ -271,6 +315,19 @@ class HomeViewController: BaseViewController {
             make.width.equalTo(343)
             make.height.equalTo(162)
         }
+        
+        forecastTitleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(22)   
+            make.leading.equalToSuperview().offset(20)
+        }
+
+        forecastStack.snp.makeConstraints { make in
+            make.top.equalTo(forecastTitleLabel.snp.bottom).offset(14)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().inset(22)
+        }
+
 
         // 구장위치 영역 (343 x 268)
         stadiumLocationBox.snp.makeConstraints { make in
@@ -486,6 +543,34 @@ class HomeViewController: BaseViewController {
                 self?.coordinator?.showStadiumSelect()
             }
             .disposed(by: disposeBag)
+
+        output.forecastList
+            .drive(onNext: { [weak self] list in
+                guard let self = self else { return }
+
+                self.forecastStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
+
+                for forecast in list {
+                    let hourString = String(forecast.dateTimeText.split(separator: " ")[1].prefix(2))
+                    let hourInt = Int(hourString) ?? 0
+                    let time = "\(hourInt)시"
+
+                    let iconName = self.viewModel.emojiAssetName(for: forecast.description)
+                    let tempInt = Int(forecast.temperatureC)
+
+                    let itemView = ForecastItemView()
+                    itemView.configure(time: time, iconName: iconName, temp: tempInt)
+
+                    itemView.snp.makeConstraints { make in
+                        make.width.equalTo(40)
+                        make.height.equalTo(83)
+                    }
+
+                    self.forecastStack.addArrangedSubview(itemView)
+                }
+            })
+            .disposed(by: disposeBag)
+
 
     }
 }
