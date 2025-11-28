@@ -23,6 +23,9 @@ final class HomeViewModel {
         let customSentence: Driver<String>
         
         let teamMascotAssetName: Driver<String>
+        
+        // UI에서 쓸 예보리스트 아웃풋
+        let forecastList: Driver<[StadiumForecast]>
     }
     
     // ViewController가 구독할 아웃풋
@@ -33,7 +36,8 @@ final class HomeViewModel {
     private let selectedTeamRelay: BehaviorRelay<TeamInfo>
     private let selectedStadiumRelay: BehaviorRelay<StadiumInfo>
     private let stadiumWeatherRelay = BehaviorRelay<StadiumWeather?>(value: nil)
-    
+    private let stadiumForecastRelay = BehaviorRelay<[StadiumForecast]>(value: [])
+
     // Input으로 들어온 구장 선택 이벤트를 받는 Subject
     private let stadiumSelectedSubject = PublishSubject<StadiumInfo>()
     
@@ -87,6 +91,23 @@ final class HomeViewModel {
             }
             .bind(to: stadiumWeatherRelay)
             .disposed(by: disposeBag)
+        
+        // selectedStadium 값이 바뀔 때마다 해당 구장 일기예보도 같이 fetch
+        selectedStadiumRelay
+            .asObservable()
+            .flatMapLatest { [weak self] stadium -> Observable<[StadiumForecast]> in
+                guard let self = self else { return .just([]) }
+
+                return self.weatherService.fetchForecast(
+                    lat: stadium.latitude,
+                    lon: stadium.longitude
+                )
+                .asObservable()
+                .catchAndReturn([])   // 에러 시 빈 배열
+            }
+            .bind(to: stadiumForecastRelay)
+            .disposed(by: disposeBag)
+
     }
     
     
@@ -109,6 +130,9 @@ final class HomeViewModel {
         
         let weatherDriver = stadiumWeatherRelay.asDriver()
         
+        let forecastListDriver = stadiumForecastRelay
+            .asDriver(onErrorJustReturn: [])
+        
         let temperatureTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
@@ -117,6 +141,49 @@ final class HomeViewModel {
                 let temp = String(format: "%.1f", currentWeather.temperatureC)
                 return "\(temp)°"
             }
+        
+        let filteredForecastDriver = forecastListDriver
+            .map { list -> [StadiumForecast] in
+                
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd"
+                let todayString = formatter.string(from: Date())
+                
+                // 뽑아올 시간
+                let targetHours = ["09", "12", "15", "18", "21"]
+                
+                // 오늘 날짜의 예보만 필터링하기
+                let todaysForecast = list.filter { $0.dateTimeText.hasPrefix(todayString) }
+                
+                // 결과 저장 배열
+                var finalList: [StadiumForecast] = []
+                
+                for target in targetHours {
+                    // "09"
+                    let matched = todaysForecast.min(by: { lhs, rhs in
+                        let lhsHour = Int(lhs.dateTimeText.split(separator: " ")[1].prefix(2)) ?? 0
+                        let rhsHour = Int(rhs.dateTimeText.split(separator: " ")[1].prefix(2)) ?? 0
+                        let targetInt = Int(target) ?? 0
+                        
+                        // target 시간과의 차이가 더 작은 거로..
+                        return abs(lhsHour - targetInt) < abs(rhsHour - targetInt)
+                    })
+                    
+                    if let matched = matched {
+                        // hour 라벨은 target 그대로 사용
+                        let fixedItem = StadiumForecast(
+                            dateTimeText: "\(todayString) \(target):00:00",
+                            temperatureC: matched.temperatureC,
+                            description: matched.description
+                        )
+                        finalList.append(fixedItem)
+                    }
+                }
+                
+                return finalList
+            }
+
+
         
         let rainTextDriver = weatherDriver
             .map { weather -> String in
@@ -179,11 +246,12 @@ final class HomeViewModel {
             windText: windTextDriver,
             weatherIconName: weatherIconDriver,
             customSentence: customSentenceDriver,
-            teamMascotAssetName: teamMascotAssetNameDriver
+            teamMascotAssetName: teamMascotAssetNameDriver,
+            forecastList: filteredForecastDriver
         )
     }
     
-    private func emojiAssetName(for description: String) -> String {
+    func emojiAssetName(for description: String) -> String {
         switch description.lowercased() {
         case "clear sky":
             return "clearSkyEmoji"
