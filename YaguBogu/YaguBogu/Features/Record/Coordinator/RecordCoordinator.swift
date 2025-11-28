@@ -61,9 +61,6 @@ final class RecordCoordinator: BaseCoordinator {
             sheet.selectedDetentIdentifier = customDetent.identifier
             sheet.prefersGrabberVisible = true
         }
-        
-        
-        
         navigationController.present(detailVC, animated: true)
     }
     

@@ -1,5 +1,5 @@
 
-import SwiftUI
+import UIKit
 import SnapKit
 
 class CreateRecordView: BaseViewController {
@@ -142,7 +142,7 @@ class CreateRecordView: BaseViewController {
     
     private let photoPlaceholderIcon: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "photoplus")
+        imageView.image = UIImage(named: "photoPlus")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -324,7 +324,7 @@ class CreateRecordView: BaseViewController {
             make.top.equalTo(photoTitle.snp.bottom).offset(8)
             make.trailing.leading.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(14)
-            make.height.width.equalTo(311)
+            make.height.equalTo(photoImage.snp.width)
         }
         
         photoPlaceHolderStackView.snp.makeConstraints { make in
