@@ -96,6 +96,10 @@ final class RecordViewController: BaseViewController {
         collectionView.rx.modelSelected(RecordData.self)
             .bind(to: viewModel.navigateToDetail)
             .disposed(by: disposeBag)
+        
+        floatingButton.rx.tap
+            .bind(to: viewModel.floatingButtonTapped)
+            .disposed(by: disposeBag)
             
     }
     

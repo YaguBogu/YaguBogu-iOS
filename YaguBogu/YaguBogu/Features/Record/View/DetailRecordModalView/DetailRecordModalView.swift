@@ -111,6 +111,7 @@ final class DetailRecordModalView: BaseViewController {
         return label
     }()
     
+    
     private var gameResult: UIImageView = {
         let imageView = UIImageView()
         return imageView

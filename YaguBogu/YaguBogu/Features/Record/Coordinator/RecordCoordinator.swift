@@ -35,6 +35,13 @@ final class RecordCoordinator: BaseCoordinator {
             })
             .disposed(by: disposeBag)
         
+        recordViewModel.navigateToCreate
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] in
+                self?.showCreate()
+            })
+            .disposed(by: disposeBag)
+        
         navigationController.setViewControllers([viewController], animated: false)
     }
     
@@ -54,9 +61,21 @@ final class RecordCoordinator: BaseCoordinator {
             sheet.selectedDetentIdentifier = customDetent.identifier
             sheet.prefersGrabberVisible = true
         }
-        
-        
-        
         navigationController.present(detailVC, animated: true)
+    }
+    
+    private func showCreate(){
+        let createVM = CreateViewModel()
+        let createVC = CreateRecordView(viewModel: createVM)
+        let navigationController = UINavigationController(rootViewController: createVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        
+        createVM.dismiss
+            .subscribe(onNext: {[weak navigationController] in
+                navigationController?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        self.navigationController.present(navigationController, animated: true)
     }
 }
