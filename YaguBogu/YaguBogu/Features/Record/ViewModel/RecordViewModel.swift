@@ -11,9 +11,11 @@ final class RecordViewModel {
     let recordList = BehaviorRelay<[RecordData]>(value: [])
     let gameInfoResults = BehaviorRelay<[GameInfoResponse]>(value: [])
     let navigateToDetail = PublishSubject<RecordData>()
-    
+    let floatingButtonTapped = PublishSubject<Void>()
+    let navigateToCreate = PublishSubject<Void>()
     
     let selectedTeam: BehaviorRelay<TeamInfo>
+    
     
     private let disposeBag = DisposeBag()
 
@@ -22,8 +24,14 @@ final class RecordViewModel {
         self.selectedTeam = BehaviorRelay(value: team)
         self.recordStorage = recordStorage
         self.gameInfoService = gameInfoService
+        bind()
     }
 
+    private func bind(){
+        floatingButtonTapped
+            .bind(to: navigateToCreate)
+            .disposed(by: disposeBag)
+    }
     
     func loadMergeData() {
         recordStorage.fetchRecords()
