@@ -51,7 +51,7 @@ extension CustomCalendarView {
         calendar.appearance.todaySelectionColor = .clear
 
         calendar.appearance.selectionColor = .clear
-        calendar.appearance.titleSelectionColor = .black
+        calendar.appearance.titleSelectionColor = .clear
         
         calendar.dataSource = self
         calendar.delegate = self

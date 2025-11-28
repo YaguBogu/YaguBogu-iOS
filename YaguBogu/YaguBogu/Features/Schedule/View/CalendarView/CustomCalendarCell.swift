@@ -78,7 +78,6 @@ class CustomCalendarCell: FSCalendarCell {
             dotView.backgroundColor = .appWhite
             titleLabel.textColor = .appWhite
             titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
-
         } else if isSelected {
             // 선택된 날짜
             circleLayer.isHidden = false

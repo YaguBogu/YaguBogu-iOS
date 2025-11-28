@@ -31,7 +31,7 @@ final class BaseScheduleCardView: UIView {
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
         label.text = "날짜 정보 미정"
-        label.font = UIFont(name: "AppleSDGothicNedo-SemiBold", size: 17)
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         return label
     }()
     
@@ -54,8 +54,8 @@ final class BaseScheduleCardView: UIView {
         setConstraints()
         
         // 더미 데이터
-        let away = BaseScheduleCardView.TeamStackView(image: UIImage(named: "SelectDOOSAN"), name: "두산")
-        let home = BaseScheduleCardView.TeamStackView(image: UIImage(named: "SelectSSG"), name: "SSG")
+        let away = BaseScheduleCardView.teamStackView(image: UIImage(named: "SelectDOOSAN"), name: "두산")
+        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: "SelectSSG"), name: "SSG")
         [away, home].forEach {
             teamsStackView.addArrangedSubview($0) }
         configureCenterInfo(.time(time: "18 : 30", stadium: "SSG 랜더스 필드"))
@@ -95,7 +95,7 @@ final class BaseScheduleCardView: UIView {
 
 extension BaseScheduleCardView {
     // 팀 스택뷰 생성
-    static func TeamStackView(image: UIImage?, name: String) -> UIStackView {
+    static func teamStackView(image: UIImage?, name: String) -> UIStackView {
         let imageView = UIImageView()
         imageView.image = image
         imageView.contentMode = .scaleAspectFit
