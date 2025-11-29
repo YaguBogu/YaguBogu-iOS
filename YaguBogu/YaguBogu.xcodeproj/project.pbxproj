@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A1CF5202ED693D900E6EEEC /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1CF51F2ED693D900E6EEEC /* FSCalendar */; };
 		9421256E2ECC5DF400FE7314 /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9421256D2ECC5DF400FE7314 /* ConfidentialKit */; };
+		94CC30342ED953AB007CF03D /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 94CC30332ED953AB007CF03D /* FSCalendar */; };
 		94FAED742ECD5F0B00954D45 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 94FAED732ECD5F0B00954D45 /* Kingfisher */; };
 		FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C219F2ECC1BD600B78A0E /* SnapKit */; };
 		FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A22ECC1C1600B78A0E /* RxCocoa */; };
@@ -52,7 +52,7 @@
 				FB76EF2B2ECC69E300BBA0FD /* NMapsMap in Frameworks */,
 				FB8ECD352ED57F0A0034C9B6 /* RxGesture in Frameworks */,
 				94FAED742ECD5F0B00954D45 /* Kingfisher in Frameworks */,
-				3A1CF5202ED693D900E6EEEC /* FSCalendar in Frameworks */,
+				94CC30342ED953AB007CF03D /* FSCalendar in Frameworks */,
 				FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */,
 				FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */,
 				FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */,
@@ -108,7 +108,7 @@
 				FB76EF2A2ECC69E300BBA0FD /* NMapsMap */,
 				94FAED732ECD5F0B00954D45 /* Kingfisher */,
 				FB8ECD342ED57F0A0034C9B6 /* RxGesture */,
-				3A1CF51F2ED693D900E6EEEC /* FSCalendar */,
+				94CC30332ED953AB007CF03D /* FSCalendar */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -146,7 +146,7 @@
 				FB76EF292ECC69E300BBA0FD /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 				94FAED722ECD5F0B00954D45 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FB8ECD332ED57F0A0034C9B6 /* XCRemoteSwiftPackageReference "RxGesture" */,
-				3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				94CC30322ED953AB007CF03D /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -397,14 +397,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.4;
-			};
-		};
 		9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/securevale/swift-confidential-plugin";
@@ -419,6 +411,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.5.0;
+			};
+		};
+		94CC30322ED953AB007CF03D /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
 			};
 		};
 		94FAED722ECD5F0B00954D45 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -464,11 +464,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3A1CF51F2ED693D900E6EEEC /* FSCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */;
-			productName = FSCalendar;
-		};
 		9421256D2ECC5DF400FE7314 /* ConfidentialKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */;
@@ -478,6 +473,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */;
 			productName = "plugin:Confidential";
+		};
+		94CC30332ED953AB007CF03D /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 94CC30322ED953AB007CF03D /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
 		};
 		94FAED732ECD5F0B00954D45 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

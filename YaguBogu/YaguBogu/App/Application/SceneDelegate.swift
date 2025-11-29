@@ -22,9 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window = window
         
-        
-        //배포시 제거
-        CoreDataStack.shared.addDummyData()
     }
 }
 

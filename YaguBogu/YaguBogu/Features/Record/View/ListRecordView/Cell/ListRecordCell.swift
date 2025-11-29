@@ -93,6 +93,7 @@ class ListRecordCell: UICollectionViewCell{
     func configureUI() {
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
+        contentView.backgroundColor = .bg
         self.backgroundView = backgroundPicture
         [matchStatus,bottomStackView].forEach{
             contentView.addSubview($0)

@@ -1,6 +1,7 @@
 
 import UIKit
 import SnapKit
+import RxGesture
 
 class CreateRecordView: BaseViewController {
     
@@ -15,10 +16,7 @@ class CreateRecordView: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private let headerView: UIView = {
-        let view = UIView()
-        return view
-    }()
+    private let headerView = UIView()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -156,7 +154,6 @@ class CreateRecordView: BaseViewController {
         label.textAlignment = .center
         return label
     }()
-    
     
     let photoPlaceHolderStackView: UIStackView = {
         let stackView = UIStackView()
@@ -343,6 +340,19 @@ class CreateRecordView: BaseViewController {
         cancelButton.rx.tap
             .bind(to: viewModel.cancelButtonTapped)
             .disposed(by: disposeBag)
+        
+        selectGameView.rx
+            .tapGesture()
+            .when(.recognized)
+            .map{ _ in ()}
+            .bind(to: viewModel.navigateToSelectGame)
+            .disposed(by: disposeBag)
+        
+        viewModel.selectedGameText
+            .asDriver()
+            .drive(selectText.rx.text)
+            .disposed(by: disposeBag)
+        
     }
     
 }
