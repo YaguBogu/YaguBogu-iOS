@@ -60,6 +60,12 @@ class CustomCalendarCell: FSCalendarCell {
             height: 6
         )
     }
+    
+    var hasDot: Bool = false {
+        didSet {
+            dotView.isHidden = !hasDot
+        }
+    }
 
     override func configureAppearance() {
         super.configureAppearance()

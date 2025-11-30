@@ -9,7 +9,24 @@ final class CustomCalendarView: UIView {
     let headerView = CustomCalendarHeaderView()
     let calendar = FSCalendar()
     
+    var viewModel: ScheduleViewModel? {
+        didSet {
+            bindViewModel()
+        }
+    }
+    
     private let disposeBag = DisposeBag()
+    
+    private func bindViewModel() {
+        guard let viewModel = viewModel else { return }
+        
+        viewModel.gameDatesForCalendar
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.calendar.reloadData()
+            })
+            .disposed(by: disposeBag)
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -92,7 +109,6 @@ extension CustomCalendarView {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy. MM월"
         headerView.monthLabel.text = formatter.string(from: calendar.currentPage)
-        headerView.monthLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
     }
 
     private func moveCurrentPage(by monthDelta: Int) {
@@ -112,5 +128,15 @@ extension CustomCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "CustomCalendarCell", for: date, at: position) as! CustomCalendarCell
         return cell
+    }
+  
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
+        guard let cell = cell as? CustomCalendarCell else { return }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let dateString = formatter.string(from: date)
+        
+        cell.hasDot = viewModel?.gameDatesForCalendar.value.contains(dateString) ?? false
     }
 }

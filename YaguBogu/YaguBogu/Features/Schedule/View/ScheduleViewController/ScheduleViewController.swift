@@ -24,6 +24,9 @@ final class ScheduleViewController: BaseViewController {
         super.viewDidLoad()
         
         setConstraints()
+        
+        calendarView.viewModel = viewModel
+
     }
     
     private func setConstraints() {
