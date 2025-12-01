@@ -9,17 +9,21 @@ final class CustomCalendarView: UIView {
     let headerView = CustomCalendarHeaderView()
     let calendar = FSCalendar()
     
-    var viewModel: ScheduleViewModel? {
-        didSet {
-            bindViewModel()
-        }
-    }
-    
+    private let viewModel: ScheduleViewModel
     private let disposeBag = DisposeBag()
     
-    private func bindViewModel() {
-        guard let viewModel = viewModel else { return }
+    init(frame: CGRect = .zero, viewModel: ScheduleViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: frame)
         
+        bindViewModel()
+        setupCalendar()
+        setupActions()
+        setupLayout()
+        updateHeaderMonthLabel()
+    }
+
+    private func bindViewModel() {
         viewModel.gameDatesForCalendar
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] _ in
@@ -27,16 +31,7 @@ final class CustomCalendarView: UIView {
             })
             .disposed(by: disposeBag)
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupCalendar()
-        setupActions()
-        setupLayout()
-        updateHeaderMonthLabel()
-    }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -137,6 +132,6 @@ extension CustomCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         formatter.dateFormat = "yyyy-MM-dd"
         let dateString = formatter.string(from: date)
         
-        cell.hasDot = viewModel?.gameDatesForCalendar.value.contains(dateString) ?? false
+        cell.hasDot = viewModel.gameDatesForCalendar.value.contains(dateString) ?? false
     }
 }
