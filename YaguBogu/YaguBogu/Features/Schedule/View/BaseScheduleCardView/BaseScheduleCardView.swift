@@ -11,13 +11,13 @@ final class BaseScheduleCardView: UIView {
     
     let contentContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .bg
         return view
     }()
     
     let backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = .appWhite
         view.layer.cornerRadius = 16
         view.layer.borderColor = UIColor.gray01.cgColor
         view.layer.borderWidth = 1
@@ -41,7 +41,7 @@ final class BaseScheduleCardView: UIView {
         stack.alignment = .center
         stack.distribution = .equalSpacing
         stack.spacing = 20
-        stack.backgroundColor = .red
+        stack.backgroundColor = .appWhite
         return stack
     }()
     
@@ -144,7 +144,7 @@ extension BaseScheduleCardView {
         vStack.axis = .vertical
         vStack.spacing = 8
         vStack.alignment = .center
-        vStack.backgroundColor = .red
+        vStack.backgroundColor = .appWhite
         
         return vStack
     }

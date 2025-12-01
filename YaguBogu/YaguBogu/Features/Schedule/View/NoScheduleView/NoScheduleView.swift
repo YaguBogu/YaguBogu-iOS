@@ -5,7 +5,7 @@ final class NoScheduleView: UIView {
     
     private let bottomNoScheduleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .bg
         
         return view
     }()
@@ -13,10 +13,9 @@ final class NoScheduleView: UIView {
     // 선택한 날짜 라벨
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-//        label.text = "날짜 정보 미정"
         
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
-        label.backgroundColor = .white
+        label.backgroundColor = .bg
         return label
     }()
     
