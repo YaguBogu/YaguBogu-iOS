@@ -4,14 +4,14 @@ final class SelectGameCell: UITableViewCell{
     static let identifier = "SelectGameCell"
     
     private lazy var myTeamView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [myTemaLogo,myTeamLabel])
+        let view = UIStackView(arrangedSubviews: [myTeamLogo,myTeamLabel])
         view.spacing = 6
         view.axis = .vertical
         view.alignment = .center
         return view
     }()
     
-    private let myTemaLogo: UIImageView = {
+    private let myTeamLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -117,7 +117,7 @@ final class SelectGameCell: UITableViewCell{
         stadiumLabel.text = model.stadium
         opposingTeamLabel.text = model.opposingTeamName
         
-        myTemaLogo.image = UIImage(named: model.myTeamLogo)
+        myTeamLogo.image = UIImage(named: model.myTeamLogo)
         opposingTemaLogo.image = UIImage(named: model.opposingTeamLogo)
     }
     

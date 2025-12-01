@@ -7,18 +7,19 @@ final class RecordCoordinator: BaseCoordinator {
     private let team: TeamInfo
     private let disposeBag = DisposeBag()
     private let extraTeamsJson: ExtraTeamsJsonService
+    private let gameInfoService: RecordGameInfoService
     
     private weak var createViewModel: CreateViewModel?
     
     init(navigationController: UINavigationController, team: TeamInfo, extraTeamsJson: ExtraTeamsJsonService) {
         self.team = team
         self.extraTeamsJson = extraTeamsJson
+        self.gameInfoService = RecordGameInfoService()
         super.init(navigationController: navigationController)
     }
     override func start() {
         super.start()
         let coreDataService = RecordCoreDataService()
-        let gameInfoService = RecordGameInfoService()
         
         let recordViewModel = RecordViewModel(
             team: team,
@@ -48,8 +49,8 @@ final class RecordCoordinator: BaseCoordinator {
         
         navigationController.setViewControllers([viewController], animated: false)
     }
-
-
+    
+    
     private func showDetail(data: RecordData) {
         let detailVM = DetailRecordViewModel(data: data)
         let detailVC = DetailRecordModalView(viewModel: detailVM)
@@ -67,7 +68,7 @@ final class RecordCoordinator: BaseCoordinator {
         }
         navigationController.present(detailVC, animated: true)
     }
-
+    
     private func showCreate(){
         let createVM = CreateViewModel()
         self.createViewModel = createVM
@@ -89,14 +90,14 @@ final class RecordCoordinator: BaseCoordinator {
         
         self.navigationController.present(navigationController, animated: true)
     }
-
+    
     private func showSelectGame() {
         let extraTeamsData: [TeamExtra] = extraTeamsJson.loadExtraTeams()
-            
+        
         let selectVM = SelectGameViewModel(
             selectedTeam: self.team,
             extraTeams: extraTeamsData,
-            gameService: RecordGameInfoService()
+            gameService: self.gameInfoService
         )
         
         let selectVC = SelectGameModalView(viewModel: selectVM)

@@ -36,9 +36,9 @@
             "city" : "서울",
             "latitude" : "37.49848034218344",
             "longtitude" : "126.86716482656504",
-            "selectTeamLogo" : "SelectKIWOON",
+            "selectTeamLogo" : "SelectKIWOOM",
             "defaultCharacter": "KIWOOMDefault",
-            "listCharacter": "ListKiwoon"
+            "listCharacter": "ListKiwoom"
         },
         {
             "teamId": "KT Wiz Suwon",
