@@ -2,6 +2,9 @@
 import UIKit
 import SnapKit
 import RxGesture
+import RxSwift
+import RxCocoa
+import PhotosUI
 
 class CreateRecordView: BaseViewController {
     
@@ -128,6 +131,7 @@ class CreateRecordView: BaseViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray01
         imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -135,6 +139,8 @@ class CreateRecordView: BaseViewController {
         let button = UIButton()
         button.setImage(UIImage(named: "trash"), for: .normal)
         button.isHidden = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        button.layer.cornerRadius = 15
         return button
     }()
     
@@ -144,7 +150,7 @@ class CreateRecordView: BaseViewController {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-
+    
     private let photoPlaceholderLabel: UILabel = {
         let label = UILabel()
         label.text = "사진 불러오기"
@@ -331,7 +337,8 @@ class CreateRecordView: BaseViewController {
         }
         
         photoDeleteButton.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(20)
+            make.top.trailing.equalTo(photoImage).inset(20)
+            make.height.width.equalTo(30)
         }
         
     }
@@ -353,8 +360,32 @@ class CreateRecordView: BaseViewController {
             .drive(selectText.rx.text)
             .disposed(by: disposeBag)
         
+        photoImageView.rx.tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                self?.presentPicker()
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.selectedImage
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] image in
+                self?.photoImage.image = image
+                self?.photoPlaceHolderStackView.isHidden = (image != nil)
+                self?.photoDeleteButton.isHidden = (image == nil)
+            })
+            .disposed(by: disposeBag)
     }
     
+    private func presentPicker(){
+        var pickerConfig = PHPickerConfiguration()
+        pickerConfig.selectionLimit = 1
+        pickerConfig.filter = .images
+        
+        let picker = PHPickerViewController(configuration: pickerConfig)
+        picker.delegate = self
+        self.present(picker, animated: true)
+    }
 }
 
 extension CreateRecordView: UITextViewDelegate {
@@ -368,5 +399,24 @@ extension UITextField {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: self.frame.height))
         self.leftView = paddingView
         self.leftViewMode = .always
+    }
+}
+
+extension CreateRecordView: PHPickerViewControllerDelegate{
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        guard let result = results.first else {return}
+        
+        let selectImage = result.itemProvider
+        if selectImage.canLoadObject(ofClass: UIImage.self){
+            selectImage.loadObject(ofClass: UIImage.self) {[weak self] image, error in
+                
+                DispatchQueue.main.async{
+                    guard let image = image as? UIImage else { return}
+                    self?.viewModel.photoSelected.accept(image)
+                }
+            }
+        }
     }
 }

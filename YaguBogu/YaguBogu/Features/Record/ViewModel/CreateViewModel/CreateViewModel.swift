@@ -1,6 +1,7 @@
 import RxSwift
 import RxRelay
 import RxCocoa
+import UIKit
 
 final class CreateViewModel{
     private let disposeBag = DisposeBag()
@@ -16,7 +17,8 @@ final class CreateViewModel{
     let isConfirmButtonState = BehaviorRelay<Bool>(value: false)
     let dismiss = PublishRelay<Void>()
     
-    
+    let photoSelected = PublishRelay<UIImage>()
+    let selectedImage = BehaviorRelay<UIImage?>(value: nil)
     
     init(){
         bind()
@@ -34,6 +36,10 @@ final class CreateViewModel{
         gameSelected
             .map{"\($0.myTeamName) vs \($0.opposingTeamName)"}
             .bind(to: selectedGameText)
+            .disposed(by: disposeBag)
+        
+        photoSelected
+            .bind(to: selectedImage)
             .disposed(by: disposeBag)
     }
     
