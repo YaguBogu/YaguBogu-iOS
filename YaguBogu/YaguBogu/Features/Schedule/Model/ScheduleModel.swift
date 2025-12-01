@@ -47,6 +47,7 @@ struct Game: Identifiable {
     let awayTeamName: String
     let homeTeamName: String
     let result: GameResult?
+    let stadiumName: String?
 }
 
 enum GameStatus {
@@ -87,6 +88,8 @@ extension ScheduleItem {
             result = GameResult(homeTeamScore: homeTeamScore, awayTeamScore: awayTeamScore)
         }
         
+        let stadiumName = StadiumManager.shared.stadiumName(for: homeTeamName)
+        
         return Game(
             id: id,
             date: gameDate,
@@ -94,7 +97,8 @@ extension ScheduleItem {
             time: timeString,
             awayTeamName: awayTeamName,
             homeTeamName: homeTeamName,
-            result: result
+            result: result,
+            stadiumName: stadiumName
         )
     }
 }

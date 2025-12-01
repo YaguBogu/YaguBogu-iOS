@@ -165,14 +165,14 @@ extension BaseScheduleCardView {
         if let result = game.result, game.status == .finished {
             let center = BaseScheduleCardView.scoreStadiumStackView(
                 score: "\(result.awayTeamScore) : \(result.homeTeamScore)",
-                stadium: game.homeTeamName
+                stadium: game.stadiumName ?? "구장 정보 없음"
             )
             teamsStackView.insertArrangedSubview(center, at: 1)
             cardInfoView = center
         } else {
             let center = BaseScheduleCardView.timeStadiumStackView(
                 time: game.time,
-                stadium: game.homeTeamName
+                stadium: game.stadiumName ?? "구장 정보 없음"
             )
             teamsStackView.insertArrangedSubview(center, at: 1)
             cardInfoView = center
