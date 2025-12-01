@@ -12,6 +12,8 @@ final class CustomCalendarView: UIView {
     private let viewModel: ScheduleViewModel
     private let disposeBag = DisposeBag()
     
+    var didSelectDate: ((Date) -> Void)?
+    
     init(frame: CGRect = .zero, viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
@@ -133,5 +135,9 @@ extension CustomCalendarView: FSCalendarDelegate, FSCalendarDataSource {
         let dateString = formatter.string(from: date)
         
         cell.hasDot = viewModel.gameDatesForCalendar.value.contains(dateString) ?? false
+    }
+    
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        didSelectDate?(date)
     }
 }

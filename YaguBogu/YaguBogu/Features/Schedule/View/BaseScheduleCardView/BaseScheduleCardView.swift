@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 // 경기 여부에 따라 점수 or 시간으로 바뀌어야 함
-enum MatchCenterInfo {
+enum MatchCardInfo {
     case score(score: String, stadium: String)
     case time(time: String, stadium: String)
 }
@@ -30,7 +30,6 @@ final class BaseScheduleCardView: UIView {
     
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "날짜 정보 미정"
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         return label
     }()
@@ -47,18 +46,11 @@ final class BaseScheduleCardView: UIView {
     }()
     
     // 외부에서 가져온 score, time 정보 설정을 위해
-    private var centerInfoView: UIView?
+    private var cardInfoView: UIView?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setConstraints()
-        
-        // 더미 데이터
-        let away = BaseScheduleCardView.teamStackView(image: UIImage(named: "SelectDOOSAN"), name: "두산")
-        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: "SelectSSG"), name: "SSG")
-        [away, home].forEach {
-            teamsStackView.addArrangedSubview($0) }
-        configureCenterInfo(.time(time: "18 : 30", stadium: "SSG 랜더스 필드"))
     }
     
     required init?(coder: NSCoder) {
@@ -157,18 +149,33 @@ extension BaseScheduleCardView {
         return vStack
     }
     
-    // 상황에 따르 점수 / 시간 표시
-    func configureCenterInfo(_ info: MatchCenterInfo) {
-        centerInfoView?.removeFromSuperview()
+    func configureCardViewInfo(with game: Game) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM월 dd일 경기 일정"
+        scheduleDateLabel.text = formatter.string(from: game.date)
         
-        let newCenterView: UIView
-        switch info {
-        case .score(let score, let stadium):
-            newCenterView = BaseScheduleCardView.scoreStadiumStackView(score: score, stadium: stadium)
-        case .time(let time, let stadium):
-            newCenterView = BaseScheduleCardView.timeStadiumStackView(time: time, stadium: stadium)
+        teamsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        cardInfoView?.removeFromSuperview()
+        
+        let away = BaseScheduleCardView.teamStackView(image: UIImage(named: "Onboarding1"), name: BaseBallNameTranslator.getKoreanName(for: game.awayTeamName))
+        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: "Onboarding2"), name: BaseBallNameTranslator.getKoreanName(for: game.homeTeamName))
+        [away, home].forEach { teamsStackView.addArrangedSubview($0) }
+        
+        // 점수, 시간 표시
+        if let result = game.result, game.status == .finished {
+            let center = BaseScheduleCardView.scoreStadiumStackView(
+                score: "\(result.awayTeamScore) : \(result.homeTeamScore)",
+                stadium: game.homeTeamName
+            )
+            teamsStackView.insertArrangedSubview(center, at: 1)
+            cardInfoView = center
+        } else {
+            let center = BaseScheduleCardView.timeStadiumStackView(
+                time: game.time,
+                stadium: game.homeTeamName
+            )
+            teamsStackView.insertArrangedSubview(center, at: 1)
+            cardInfoView = center
         }
-        centerInfoView = newCenterView
-        teamsStackView.insertArrangedSubview(newCenterView, at: 1)
     }
 }

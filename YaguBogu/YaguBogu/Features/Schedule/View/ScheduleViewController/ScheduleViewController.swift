@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 import FSCalendar
 
-final class ScheduleViewController: BaseViewController {
+final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     
     private let viewModel: ScheduleViewModel
     private let calendarView: CustomCalendarView
@@ -25,6 +25,23 @@ final class ScheduleViewController: BaseViewController {
         super.viewDidLoad()
         
         setConstraints()
+        
+        calendarView.didSelectDate = {[weak self] date in
+            self?.updateSchedule(for: date)
+        }
+        
+        // 초기 선택 날짜 반영
+        if let today = calendarView.calendar.selectedDate {
+            updateSchedule(for: today)
+        }
+        
+        // viewModel의 gameDatesForCalendar가 바뀌면 reload
+        viewModel.gameDatesForCalendar
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.calendarView.calendar.reloadData()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setConstraints() {
@@ -48,5 +65,21 @@ final class ScheduleViewController: BaseViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(200)
         }
+    }
+    
+    private func updateSchedule(for date: Date) {
+        let calendar = Calendar.current
+        
+        guard let game = viewModel.allGames.value.first(where: { calendar.isDate($0.date, inSameDayAs: date) }) else {
+            scheduleCardView.isHidden = true
+            noScheduleView.isHidden = false
+            noScheduleView.configureDateInfo(with: date)
+            return
+        }
+        
+        // 경기 있을 때
+        scheduleCardView.isHidden = false
+        noScheduleView.isHidden = true
+        scheduleCardView.configureCardViewInfo(with: game)
     }
 }

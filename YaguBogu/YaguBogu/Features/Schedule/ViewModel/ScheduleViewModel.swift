@@ -9,7 +9,7 @@ final class ScheduleViewModel {
     
     let selectedTeam: BehaviorRelay<TeamInfo>
     
-    private let allGames = BehaviorRelay<[Game]>(value: [])
+    let allGames = BehaviorRelay<[Game]>(value: [])
     let gameDatesForCalendar = BehaviorRelay<Set<String>>(value: Set())
 
     init(team: TeamInfo, scheduleService: ScheduleService = ScheduleService()) {

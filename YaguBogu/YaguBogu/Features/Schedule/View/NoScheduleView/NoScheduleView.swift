@@ -13,7 +13,8 @@ final class NoScheduleView: UIView {
     // 선택한 날짜 라벨
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "날짜 정보 미정"
+//        label.text = "날짜 정보 미정"
+        
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
         label.backgroundColor = .white
         return label
@@ -76,6 +77,12 @@ final class NoScheduleView: UIView {
         noScheduleImage.snp.makeConstraints {
             $0.width.height.equalTo(50)
         }
+    }
+    
+    func configureDateInfo(with date: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM월 dd일 경기 일정"
+        scheduleDateLabel.text = formatter.string(from: date)
     }
     
     required init?(coder: NSCoder) {
