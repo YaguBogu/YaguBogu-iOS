@@ -385,7 +385,6 @@ class CreateRecordView: BaseViewController {
         let picker = PHPickerViewController(configuration: pickerConfig)
         picker.delegate = self
         self.present(picker, animated: true)
-        
     }
 }
 
