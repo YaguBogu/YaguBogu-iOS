@@ -7,12 +7,13 @@ import FSCalendar
 final class ScheduleViewController: BaseViewController {
     
     private let viewModel: ScheduleViewModel
-    private let calendarView = CustomCalendarView()
+    private let calendarView: CustomCalendarView
     private let scheduleCardView = BaseScheduleCardView()
     private let noScheduleView = NoScheduleView()
     
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
+        self.calendarView = CustomCalendarView(viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
