@@ -557,11 +557,13 @@ class HomeViewController: BaseViewController {
                 let lon = stadium.longitude
                 let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
-                // 네이버 지도 앱 URL
-                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
-
-                // 앱 없으면 웹으로
-                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
+                guard
+                    let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)"),
+                    let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")
+                else {
+                    print("URL 생성 실패")
+                    return
+                }
 
                 if UIApplication.shared.canOpenURL(appURL) {
                     UIApplication.shared.open(appURL)
@@ -582,8 +584,13 @@ class HomeViewController: BaseViewController {
                 let lon = stadium.longitude
                 let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
 
-                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
-                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
+                guard
+                    let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)"),
+                    let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")
+                else {
+                    print("URL 생성 실패")
+                    return
+                }
 
                 if UIApplication.shared.canOpenURL(appURL) {
                     UIApplication.shared.open(appURL)
