@@ -19,7 +19,7 @@ class TeamInfoManager {
         
         response.ExtraTeamModel.forEach { team in
             if let lat = Double(team.latitude),
-               let lon = Double(team.longtitude) {
+               let lon = Double(team.longitude) {
                 let info = TeamInfo(
                     id: 0,
                     name: team.teamId,

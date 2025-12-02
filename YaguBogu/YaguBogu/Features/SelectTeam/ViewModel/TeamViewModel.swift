@@ -79,7 +79,7 @@ final class TeamViewModel {
             for apiTeam in apiTeams {
                 if let extraInfo = localTeams.first(where: {$0.teamId == apiTeam.name}) {
                     let latitude = Double(extraInfo.latitude) ?? 0.0
-                    let longitude = Double(extraInfo.longtitude) ?? 0.0
+                    let longitude = Double(extraInfo.longitude) ?? 0.0
                     
                     let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
                     let codableLocation = CodableCoordinate(coordinate: coordinate)
