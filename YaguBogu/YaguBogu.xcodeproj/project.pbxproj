@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3A84717E2EDEC6CC0026FF4C /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84717D2EDEC6CC0026FF4C /* FSCalendar */; };
+		3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471802EDEC72E0026FF4C /* SnapKit */; };
+		3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471832EDEC7440026FF4C /* RxGesture */; };
+		3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471862EDEC7670026FF4C /* ConfidentialKit */; };
+		3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84718A2EDEC7960026FF4C /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaguBogu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +44,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A84717E2EDEC6CC0026FF4C /* FSCalendar in Frameworks */,
+				3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */,
+				3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */,
+				3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */,
+				3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +91,11 @@
 			);
 			name = YaguBogu;
 			packageProductDependencies = (
+				3A84717D2EDEC6CC0026FF4C /* FSCalendar */,
+				3A8471802EDEC72E0026FF4C /* SnapKit */,
+				3A8471832EDEC7440026FF4C /* RxGesture */,
+				3A8471862EDEC7670026FF4C /* ConfidentialKit */,
+				3A84718A2EDEC7960026FF4C /* Kingfisher */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -108,6 +126,12 @@
 			mainGroup = FB6AFDAA2ECC187C001FEB2E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */,
+				3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */,
+				3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
+				3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -351,6 +375,85 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+		3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+		3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential-plugin.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A84717D2EDEC6CC0026FF4C /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		3A8471802EDEC72E0026FF4C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3A8471832EDEC7440026FF4C /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
+		};
+		3A8471862EDEC7670026FF4C /* ConfidentialKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */;
+			productName = ConfidentialKit;
+		};
+		3A84718A2EDEC7960026FF4C /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FB6AFDAB2ECC187C001FEB2E /* Project object */;
 }
