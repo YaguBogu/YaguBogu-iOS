@@ -628,7 +628,16 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-
+        output.stadiumAddress
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let stadium = self.viewModel.currentStadiumInfo()
+                self.stadiumLocationView.updateMapLocation(
+                    lat: stadium.latitude,
+                    lon: stadium.longitude
+                )
+            })
+            .disposed(by: disposeBag)
     }
 }
 

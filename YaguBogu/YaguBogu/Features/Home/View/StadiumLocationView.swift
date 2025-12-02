@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import NMapsMap
 
 final class StadiumLocationView: UIView {
 
@@ -27,15 +28,6 @@ final class StadiumLocationView: UIView {
         let v = UIView()
         v.backgroundColor = .green
         return v
-    }()
-    
-    // 지금은 웹뷰 자리니까 임시 이미지 넣어둠
-    private let placeholderImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "stadiumMap")
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        return iv
     }()
     
     // 하단 정보 박스
@@ -66,6 +58,12 @@ final class StadiumLocationView: UIView {
         return btn
     }()
     
+    private let mapView: NMFMapView = {
+        let v = NMFMapView()
+        v.allowsZooming = true
+        v.allowsScrolling = true
+        return v
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -82,7 +80,7 @@ final class StadiumLocationView: UIView {
 }
 
 
-private extension StadiumLocationView {
+extension StadiumLocationView {
     func setupUI() {
         addSubview(shadowContainer)
         shadowContainer.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -96,8 +94,8 @@ private extension StadiumLocationView {
             $0.height.equalTo(268)
         }
         
-        mapContainer.addSubview(placeholderImageView)
-        placeholderImageView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        mapContainer.addSubview(mapView)
+        mapView.snp.makeConstraints { $0.edges.equalToSuperview() }
         
         // 하단 info 영역
         let locationInfoContainer = UIView()
@@ -142,5 +140,17 @@ private extension StadiumLocationView {
         }
 
     }
+    
+    func updateMapLocation(lat: Double, lon: Double) {
+        let cameraPosition = NMFCameraPosition(NMGLatLng(lat: lat, lng: lon), zoom: 16)
+        let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+        mapView.moveCamera(cameraUpdate)
+
+        // 마커 표시
+        let marker = NMFMarker()
+        marker.position = NMGLatLng(lat: lat, lng: lon)
+        marker.mapView = mapView
+    }
+
 }
 
