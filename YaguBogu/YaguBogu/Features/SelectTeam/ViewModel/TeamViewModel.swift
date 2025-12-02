@@ -92,7 +92,8 @@ final class TeamViewModel {
                         location: codableLocation,
                         selectTeamLogo: extraInfo.selectTeamLogo,
                         defaultCharacter: extraInfo.defaultCharacter,
-                        address: extraInfo.address 
+                        address: extraInfo.address,
+                        listCharacter: extraInfo.listCharacter
                     )
                     mergeList.append(newTeam)
                 }

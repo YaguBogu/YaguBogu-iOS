@@ -28,6 +28,7 @@ class TeamInfoManager {
                     location: CodableCoordinate(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: lon)),
                     selectTeamLogo: team.selectTeamLogo,
                     defaultCharacter: team.defaultCharacter,
+                    address: team.address,
                     listCharacter: team.listCharacter
                 )
                 teams[team.teamId] = info

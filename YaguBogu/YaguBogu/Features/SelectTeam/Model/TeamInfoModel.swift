@@ -26,6 +26,7 @@ struct TeamInfo: Identifiable, Codable{
     let selectTeamLogo: String
     let defaultCharacter: String
     let address: String
+    let listCharacter: String
 }
 
 
