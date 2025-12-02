@@ -45,8 +45,11 @@ struct Game: Identifiable {
     let status: GameStatus
     let time: String
     let awayTeamName: String
-    let isMyTeamHome: Bool
+    let homeTeamName: String
     let result: GameResult?
+    let stadiumName: String?
+    let awayTeamCharacter: String?
+    let homeTeamCharacter: String?
 }
 
 enum GameStatus {
@@ -71,8 +74,9 @@ extension ScheduleItem {
         let timeString = formatter.string(from: gameDate)
         
         // 홈/원정 판별
-        let myTeam = (teams.home.id == selectedTeamID)
-        let awayTeam = myTeam ? teams.away.name : teams.home.name
+        let myTeamIsHome = (teams.home.id == selectedTeamID)
+        let homeTeamName = teams.home.name
+        let awayTeamName = teams.away.name
         
         // 경기 상태
         let gameStatus: GameStatus = (status.short == "FT") ? .finished : .scheduled
@@ -86,14 +90,22 @@ extension ScheduleItem {
             result = GameResult(homeTeamScore: homeTeamScore, awayTeamScore: awayTeamScore)
         }
         
+        let stadiumName = TeamInfoManager.shared.stadiumName(for: homeTeamName)
+        let awayCharacter = TeamInfoManager.shared.characterName(for: awayTeamName)
+        let homeCharacter = TeamInfoManager.shared.characterName(for: homeTeamName)
+        
+        
         return Game(
             id: id,
             date: gameDate,
             status: gameStatus,
             time: timeString,
-            awayTeamName: awayTeam,
-            isMyTeamHome: myTeam,
-            result: result
+            awayTeamName: awayTeamName,
+            homeTeamName: homeTeamName,
+            result: result,
+            stadiumName: stadiumName,
+            awayTeamCharacter: awayCharacter,
+            homeTeamCharacter: homeCharacter
         )
     }
 }
