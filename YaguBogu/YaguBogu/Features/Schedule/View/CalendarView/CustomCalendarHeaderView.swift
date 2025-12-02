@@ -7,7 +7,7 @@ final class CustomCalendarHeaderView: UIView {
         let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
         label.textAlignment = .center
-        label.backgroundColor = .systemYellow
+        label.backgroundColor = .bg
         return label
     }()
     
@@ -15,7 +15,7 @@ final class CustomCalendarHeaderView: UIView {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
         button.tintColor = .black
-        button.backgroundColor = .systemPink
+        button.backgroundColor = .bg
         return button
     }()
     
@@ -23,13 +23,13 @@ final class CustomCalendarHeaderView: UIView {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.tintColor = .black
-        button.backgroundColor = .systemPink
+        button.backgroundColor = .bg
         return button
     }()
     
     let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .bg
         return view
     }()
     
@@ -55,7 +55,7 @@ final class CustomCalendarHeaderView: UIView {
         }
         
         leftButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview() // 수직 중앙
+            make.centerY.equalToSuperview()
             make.trailing.equalTo(monthLabel.snp.leading).offset(-16)
             make.width.height.equalTo(24)
         }

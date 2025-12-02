@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		948F46422EDE8635006161DA /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 948F46412EDE8635006161DA /* ConfidentialKit */; };
-		948F46452EDE8645006161DA /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 948F46442EDE8645006161DA /* NMapsMap */; };
-		948F46482EDE8656006161DA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 948F46472EDE8656006161DA /* SnapKit */; };
-		948F464B2EDE8689006161DA /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 948F464A2EDE8689006161DA /* RxGesture */; };
-		948F464E2EDE8698006161DA /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 948F464D2EDE8698006161DA /* FSCalendar */; };
-		94C5E45D2EDE8208004496C6 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 94C5E45C2EDE8208004496C6 /* RxCocoa */; };
-		94C5E45F2EDE8208004496C6 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 94C5E45E2EDE8208004496C6 /* RxRelay */; };
-		94C5E4612EDE8208004496C6 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 94C5E4602EDE8208004496C6 /* RxSwift */; };
+		3A1CF5202ED693D900E6EEEC /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1CF51F2ED693D900E6EEEC /* FSCalendar */; };
+		9421256E2ECC5DF400FE7314 /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9421256D2ECC5DF400FE7314 /* ConfidentialKit */; };
+		94FAED742ECD5F0B00954D45 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 94FAED732ECD5F0B00954D45 /* Kingfisher */; };
+		FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C219F2ECC1BD600B78A0E /* SnapKit */; };
+		FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A22ECC1C1600B78A0E /* RxCocoa */; };
+		FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A42ECC1C1600B78A0E /* RxRelay */; };
+		FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A62ECC1C1600B78A0E /* RxSwift */; };
+		FB76EF2B2ECC69E300BBA0FD /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = FB76EF2A2ECC69E300BBA0FD /* NMapsMap */; };
+		FB8ECD352ED57F0A0034C9B6 /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = FB8ECD342ED57F0A0034C9B6 /* RxGesture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,14 +48,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94C5E4612EDE8208004496C6 /* RxSwift in Frameworks */,
-				94C5E45F2EDE8208004496C6 /* RxRelay in Frameworks */,
-				948F46452EDE8645006161DA /* NMapsMap in Frameworks */,
-				948F46482EDE8656006161DA /* SnapKit in Frameworks */,
-				94C5E45D2EDE8208004496C6 /* RxCocoa in Frameworks */,
-				948F464E2EDE8698006161DA /* FSCalendar in Frameworks */,
-				948F46422EDE8635006161DA /* ConfidentialKit in Frameworks */,
-				948F464B2EDE8689006161DA /* RxGesture in Frameworks */,
+				9421256E2ECC5DF400FE7314 /* ConfidentialKit in Frameworks */,
+				FB76EF2B2ECC69E300BBA0FD /* NMapsMap in Frameworks */,
+				FB8ECD352ED57F0A0034C9B6 /* RxGesture in Frameworks */,
+				94FAED742ECD5F0B00954D45 /* Kingfisher in Frameworks */,
+				3A1CF5202ED693D900E6EEEC /* FSCalendar in Frameworks */,
+				FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */,
+				FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */,
+				FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */,
+				FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,14 +99,15 @@
 			);
 			name = YaguBogu;
 			packageProductDependencies = (
-				94C5E45C2EDE8208004496C6 /* RxCocoa */,
-				94C5E45E2EDE8208004496C6 /* RxRelay */,
-				94C5E4602EDE8208004496C6 /* RxSwift */,
-				948F46412EDE8635006161DA /* ConfidentialKit */,
-				948F46442EDE8645006161DA /* NMapsMap */,
-				948F46472EDE8656006161DA /* SnapKit */,
-				948F464A2EDE8689006161DA /* RxGesture */,
-				948F464D2EDE8698006161DA /* FSCalendar */,
+				FB3C219F2ECC1BD600B78A0E /* SnapKit */,
+				FB3C21A22ECC1C1600B78A0E /* RxCocoa */,
+				FB3C21A42ECC1C1600B78A0E /* RxRelay */,
+				FB3C21A62ECC1C1600B78A0E /* RxSwift */,
+				9421256D2ECC5DF400FE7314 /* ConfidentialKit */,
+				FB76EF2A2ECC69E300BBA0FD /* NMapsMap */,
+				94FAED732ECD5F0B00954D45 /* Kingfisher */,
+				FB8ECD342ED57F0A0034C9B6 /* RxGesture */,
+				3A1CF51F2ED693D900E6EEEC /* FSCalendar */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -135,13 +138,14 @@
 			mainGroup = FB6AFDAA2ECC187C001FEB2E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				94C5E45B2EDE8208004496C6 /* XCRemoteSwiftPackageReference "RxSwift" */,
-				948F463F2EDE8622006161DA /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
-				948F46402EDE8635006161DA /* XCRemoteSwiftPackageReference "swift-confidential" */,
-				948F46432EDE8645006161DA /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
-				948F46462EDE8656006161DA /* XCRemoteSwiftPackageReference "SnapKit" */,
-				948F46492EDE8689006161DA /* XCRemoteSwiftPackageReference "RxGesture" */,
-				948F464C2EDE8698006161DA /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */,
+				FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
+				9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */,
+				FB76EF292ECC69E300BBA0FD /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
+				94FAED722ECD5F0B00954D45 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FB8ECD332ED57F0A0034C9B6 /* XCRemoteSwiftPackageReference "RxGesture" */,
+				3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -387,7 +391,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		948F463F2EDE8622006161DA /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
+		3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+		9421256B2ECC5DDC00FE7314 /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/securevale/swift-confidential-plugin";
 			requirement = {
@@ -395,7 +407,7 @@
 				minimumVersion = 0.5.0;
 			};
 		};
-		948F46402EDE8635006161DA /* XCRemoteSwiftPackageReference "swift-confidential" */ = {
+		9421256C2ECC5DF400FE7314 /* XCRemoteSwiftPackageReference "swift-confidential" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/securevale/swift-confidential";
 			requirement = {
@@ -403,12 +415,12 @@
 				minimumVersion = 0.5.0;
 			};
 		};
-		948F46432EDE8645006161DA /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+		94FAED722ECD5F0B00954D45 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap";
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.23.0;
+				minimumVersion = 8.6.2;
 			};
 		};
 		948F46462EDE8656006161DA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -446,7 +458,12 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		948F46412EDE8635006161DA /* ConfidentialKit */ = {
+		3A1CF51F2ED693D900E6EEEC /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A1CF51E2ED693D900E6EEEC /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		9421256D2ECC5DF400FE7314 /* ConfidentialKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 948F46402EDE8635006161DA /* XCRemoteSwiftPackageReference "swift-confidential" */;
 			productName = ConfidentialKit;
@@ -456,12 +473,7 @@
 			package = 948F46432EDE8645006161DA /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
 			productName = NMapsMap;
 		};
-		948F46472EDE8656006161DA /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 948F46462EDE8656006161DA /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		948F464A2EDE8689006161DA /* RxGesture */ = {
+		94FAED732ECD5F0B00954D45 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 948F46492EDE8689006161DA /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
