@@ -1,10 +1,3 @@
-//
-//  RecordData+CoreDataClass.swift
-//  YaguBogu
-//
-//  Created by oww on 11/26/25.
-//
-//
 
 import Foundation
 import CoreData
