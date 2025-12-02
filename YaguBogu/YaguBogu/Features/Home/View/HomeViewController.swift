@@ -545,6 +545,55 @@ class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
+        stadiumLocationView.rx.tapGesture()
+            .when(.recognized)
+            .bind { [weak self] _ in
+                guard let self = self else { return }
+
+                // 현재 선택된 구장 정보 가져오기
+                let stadium = self.viewModel.currentStadiumInfo()
+
+                let lat = stadium.latitude
+                let lon = stadium.longitude
+                let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+                // 네이버 지도 앱 URL
+                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
+
+                // 앱 없으면 웹으로
+                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
+
+                if UIApplication.shared.canOpenURL(appURL) {
+                    UIApplication.shared.open(appURL)
+                } else {
+                    UIApplication.shared.open(webURL)
+                }
+            }
+            .disposed(by: disposeBag)
+
+        // openButton(지도열기) 클릭 시 네이버 지도 앱 열기
+        stadiumLocationView.openButton.rx.tap
+            .bind { [weak self] in
+                guard let self = self else { return }
+
+                let stadium = self.viewModel.currentStadiumInfo()
+
+                let lat = stadium.latitude
+                let lon = stadium.longitude
+                let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
+                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
+
+                if UIApplication.shared.canOpenURL(appURL) {
+                    UIApplication.shared.open(appURL)
+                } else {
+                    UIApplication.shared.open(webURL)
+                }
+            }
+            .disposed(by: disposeBag)
+
+        
         output.forecastList
             .drive(onNext: { [weak self] list in
                 guard let self = self else { return }

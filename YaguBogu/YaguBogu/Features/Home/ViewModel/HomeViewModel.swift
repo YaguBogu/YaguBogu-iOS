@@ -319,3 +319,10 @@ final class HomeViewModel {
 
 }
 
+extension HomeViewModel {
+    func currentStadiumInfo() -> StadiumInfo {
+        return selectedStadiumRelay.value
+    }
+}
+
+
