@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "originHash" : "37b19ed0f7824dbb502c105f6d5a3b9eeeeeda05bbba5478f579086138af88da",
-=======
-  "originHash" : "e877b8cbb399f9f698debb07d12e2bb2a2150181d047cf233ec802158cf02615",
->>>>>>> Stashed changes
+  "originHash" : "f20dc004f6b713d2ab98cdaf9978de9a3b346764daeac430398472fed5814bfb",
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -15,9 +11,18 @@
       }
     },
     {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "state" : {
+        "revision" : "d30a5fad881137e2267f96a8e3fc35c58999bb94",
+        "version" : "8.6.2"
+      }
+    },
+    {
       "identity" : "rxgesture",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/RxSwiftCommunity/RxGesture",
+      "location" : "https://github.com/RxSwiftCommunity/RxGesture.git",
       "state" : {
         "revision" : "1b137c576b4aaaab949235752278956697c9e4a0",
         "version" : "4.0.4"
@@ -39,24 +44,6 @@
       "state" : {
         "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
         "version" : "5.7.1"
-      }
-    },
-    {
-      "identity" : "spm-nmapsgeometry",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/navermaps/SPM-NMapsGeometry.git",
-      "state" : {
-        "revision" : "436d5e2e684f557faf5ef5862fd6633a42d7af11",
-        "version" : "1.0.2"
-      }
-    },
-    {
-      "identity" : "spm-nmapsmap",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/navermaps/SPM-NMapsMap",
-      "state" : {
-        "revision" : "fb4eef37db9904c0a0dcdf7a828c892e13782cfa",
-        "version" : "3.23.0"
       }
     },
     {
