@@ -10,7 +10,6 @@ final class DetailRecordViewModel{
     let matchTeamText: String
     let stadiumName: String?
     let contentText: String?
-    let photoData: String?
     let matchResult: DetailMatchResult
     
     init(data: RecordData){
@@ -19,7 +18,7 @@ final class DetailRecordViewModel{
         self.gameDate = data.gameDate
         self.stadiumName = data.stadium
         self.contentText = data.contentText
-        self.photoData = data.photoData
+        
         
         let homeTeam = data.homeTeam ?? "홈팀"
         let awayTeam = data.awayTeam ?? "원정팀"

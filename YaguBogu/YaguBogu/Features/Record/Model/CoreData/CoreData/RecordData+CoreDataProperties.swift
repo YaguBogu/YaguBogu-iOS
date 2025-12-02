@@ -1,4 +1,10 @@
-
+//
+//  RecordData+CoreDataProperties.swift
+//  YaguBogu
+//
+//  Created by oww on 11/26/25.
+//
+//
 
 import Foundation
 import CoreData
@@ -15,7 +21,7 @@ extension RecordData {
     @NSManaged public var gameDate: String?
     @NSManaged public var homeScore: Int32
     @NSManaged public var id: UUID?
-    @NSManaged public var photoData: String?
+    @NSManaged public var photoData: Data?
     @NSManaged public var stadium: String?
     @NSManaged public var title: String?
     @NSManaged public var homeTeam: String?

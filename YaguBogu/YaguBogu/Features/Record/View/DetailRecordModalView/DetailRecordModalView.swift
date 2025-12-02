@@ -277,9 +277,7 @@ final class DetailRecordModalView: BaseViewController {
     }
     
     private func setupData() {
-        if let photoFileName = viewModel.photoData {
-            photoImage.image = loadImageCoreData(fileName: photoFileName)
-        }
+        photoImage.backgroundColor = .lightGray
         titleLabel.text = viewModel.title
         gameDate.text = viewModel.gameDate
         matchTeamlabel.text = viewModel.matchTeamText
