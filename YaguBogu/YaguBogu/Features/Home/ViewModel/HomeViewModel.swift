@@ -24,8 +24,9 @@ final class HomeViewModel {
         
         let teamMascotAssetName: Driver<String>
         
-        // UI에서 쓸 예보리스트 아웃풋
         let forecastList: Driver<[StadiumForecast]>
+        
+        let stadiumAddress: Driver<String>
     }
     
     // ViewController가 구독할 아웃풋
@@ -65,7 +66,8 @@ final class HomeViewModel {
                 name: team.stadium,
                 city: team.city,
                 latitude: team.location.latitude,
-                longitude: team.location.longitude
+                longitude: team.location.longitude,
+                address: team.address
             )
         )
         
@@ -236,6 +238,10 @@ final class HomeViewModel {
             .map { $0.defaultCharacter }
             .asDriver(onErrorJustReturn: "")
         
+        let stadiumAddressDriver = selectedStadiumRelay
+            .map { $0.address }
+            .asDriver(onErrorJustReturn: "")
+        
         return Output(
             teamName: teamNameDriver,
             cityName: cityNameDriver,
@@ -247,7 +253,8 @@ final class HomeViewModel {
             weatherIconName: weatherIconDriver,
             customSentence: customSentenceDriver,
             teamMascotAssetName: teamMascotAssetNameDriver,
-            forecastList: filteredForecastDriver
+            forecastList: filteredForecastDriver,
+            stadiumAddress: stadiumAddressDriver
         )
     }
     

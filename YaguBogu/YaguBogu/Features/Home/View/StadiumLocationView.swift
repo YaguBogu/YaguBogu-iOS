@@ -75,6 +75,10 @@ final class StadiumLocationView: UIView {
     required init?(coder: NSCoder) {
         fatalError("에러메세지")
     }
+    
+    func updateAddress(_ text: String) {
+        addressLabel.text = text
+    }
 }
 
 

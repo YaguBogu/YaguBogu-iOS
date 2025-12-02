@@ -532,7 +532,11 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-        
+        output.stadiumAddress
+            .drive(onNext: { [weak self] address in
+                self?.stadiumLocationView.updateAddress(address)
+            })
+            .disposed(by: disposeBag)
 
         stadiumTapArea.rx.tapGesture()
             .when(.recognized)
