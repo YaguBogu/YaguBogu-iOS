@@ -49,7 +49,7 @@ final class TeamViewModel {
     func loadMergeData(){
         
         guard let teamExtraData: TeamExtraData = self.jsonLoader.load("ExtraTeamModel") else {
-            print("JSON 로딩 실패")
+            print("JSON 로딩 실패qweqwe")
             return
         }
         let localTeams = teamExtraData.ExtraTeamModel

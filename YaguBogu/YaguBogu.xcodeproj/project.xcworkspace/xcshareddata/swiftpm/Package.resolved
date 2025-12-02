@@ -1,5 +1,9 @@
 {
+<<<<<<< Updated upstream
   "originHash" : "37b19ed0f7824dbb502c105f6d5a3b9eeeeeda05bbba5478f579086138af88da",
+=======
+  "originHash" : "e877b8cbb399f9f698debb07d12e2bb2a2150181d047cf233ec802158cf02615",
+>>>>>>> Stashed changes
   "pins" : [
     {
       "identity" : "fscalendar",

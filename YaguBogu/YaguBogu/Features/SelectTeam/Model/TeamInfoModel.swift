@@ -49,7 +49,6 @@ struct TeamExtra: Codable {
     let stadium: String
     let city: String
     let latitude: String
-    let longtitude: String
     let address: String
     let longitude: String
     let selectTeamLogo: String
