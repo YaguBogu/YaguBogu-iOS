@@ -32,7 +32,7 @@ final class StadiumLocationView: UIView {
     // 지금은 웹뷰 자리니까 임시 이미지 넣어둠
     private let placeholderImageView: UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "stadiumMap") // 없으면 아무 이미지 넣어두기
+        iv.image = UIImage(named: "stadiumMap")
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv

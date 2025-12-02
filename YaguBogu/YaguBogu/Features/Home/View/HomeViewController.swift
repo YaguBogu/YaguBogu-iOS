@@ -571,7 +571,7 @@ class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
 
-        // openButton(지도열기) 클릭 시 네이버 지도 앱 열기
+        // 지도열기 버튼 탭 시 네이버 지도 앱 열기
         stadiumLocationView.openButton.rx.tap
             .bind { [weak self] in
                 guard let self = self else { return }
