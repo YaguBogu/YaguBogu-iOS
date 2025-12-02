@@ -5,5 +5,6 @@ struct StadiumInfo {
     let city: String      // 서울
     let latitude: Double  // 위도
     let longitude: Double // 경도
+    let address: String // 주소(서울특별시 송파구 올림픽로 25)
 }
 
