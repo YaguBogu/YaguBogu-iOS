@@ -157,8 +157,10 @@ extension BaseScheduleCardView {
         teamsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         cardInfoView?.removeFromSuperview()
         
-        let away = BaseScheduleCardView.teamStackView(image: UIImage(named: "Onboarding1"), name: BaseBallNameTranslator.getKoreanName(for: game.awayTeamName))
-        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: "Onboarding2"), name: BaseBallNameTranslator.getKoreanName(for: game.homeTeamName))
+        let away = BaseScheduleCardView.teamStackView(image: UIImage(named: game.awayTeamCharacter ?? "Default"),
+                                                      name: BaseBallNameTranslator.getKoreanName(for: game.awayTeamName))
+        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: game.homeTeamCharacter ?? "Defalt"),
+                                                      name: BaseBallNameTranslator.getKoreanName(for: game.homeTeamName))
         [away, home].forEach { teamsStackView.addArrangedSubview($0) }
         
         // 점수, 시간 표시
