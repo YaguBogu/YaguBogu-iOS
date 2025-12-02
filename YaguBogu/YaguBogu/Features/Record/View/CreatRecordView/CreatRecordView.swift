@@ -115,7 +115,6 @@ class CreateRecordView: BaseViewController {
         imageView.layer.cornerRadius = 8
         imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -131,17 +130,26 @@ class CreateRecordView: BaseViewController {
         let imageView = UIImageView()
         imageView.backgroundColor = .gray01
         imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    private let photoDeleteButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "trash"), for: .normal)
-        button.isHidden = true
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        button.layer.cornerRadius = 15
-        return button
+    private let photoEditView: UIView = {
+        let view = UIView()
+        view.isHidden = true
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        view.layer.cornerRadius = 15
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+    
+    private let photoEditIcon: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "edit")
+        view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = false
+        return view
     }()
     
     private let photoPlaceholderIcon: UIImageView = {
@@ -202,8 +210,6 @@ class CreateRecordView: BaseViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    
-    
     override func configureUI() {
         super.configureUI()
         
@@ -234,13 +240,15 @@ class CreateRecordView: BaseViewController {
         
         contentTextView.addSubview(contentPlaceholderLabel)
         
-        [photoTitle, photoImage,photoPlaceHolderStackView,photoDeleteButton].forEach{
+        [photoTitle, photoImage,photoPlaceHolderStackView,photoEditView].forEach{
             photoImageView.addSubview($0)
         }
         
         [photoPlaceholderIcon, photoPlaceholderLabel].forEach {
             photoPlaceHolderStackView.addArrangedSubview($0)
         }
+        
+        photoEditView.addSubview(photoEditIcon)
         
     }
     override func setupConstraints() {
@@ -336,11 +344,15 @@ class CreateRecordView: BaseViewController {
             make.width.equalTo(77)
         }
         
-        photoDeleteButton.snp.makeConstraints { make in
+        photoEditView.snp.makeConstraints { make in
             make.top.trailing.equalTo(photoImage).inset(20)
             make.height.width.equalTo(30)
         }
-        
+        photoEditIcon.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalTo(16)
+            make.height.equalTo(13)
+        }
     }
     
     private func bind(){
@@ -372,9 +384,35 @@ class CreateRecordView: BaseViewController {
             .subscribe(onNext: { [weak self] image in
                 self?.photoImage.image = image
                 self?.photoPlaceHolderStackView.isHidden = (image != nil)
-                self?.photoDeleteButton.isHidden = (image == nil)
+                self?.photoEditView.isHidden = (image == nil)
             })
             .disposed(by: disposeBag)
+        
+        titleTextField.rx.text.orEmpty
+            .bind(to: viewModel.titleText)
+            .disposed(by: disposeBag)
+            
+        contentTextView.rx.text.orEmpty
+            .bind(to: viewModel.contentText)
+            .disposed(by: disposeBag)
+
+        viewModel.isConfirmButtonState
+            .asDriver()
+            .drive(confirmButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+            
+        viewModel.isConfirmButtonState
+            .map { isEnabled in
+                return isEnabled ? UIColor.primary : UIColor.gray02
+            }
+            .asDriver(onErrorJustReturn: .gray04)
+            .drive(confirmButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        confirmButton.rx.tap
+            .bind(to: viewModel.confirmButtonTapped)
+            .disposed(by: disposeBag)
+        
     }
     
     private func presentPicker(){

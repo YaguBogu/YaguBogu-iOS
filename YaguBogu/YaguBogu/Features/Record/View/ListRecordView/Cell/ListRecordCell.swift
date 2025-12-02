@@ -35,6 +35,7 @@ enum MatchResult: String {
 class ListRecordCell: UICollectionViewCell{
     static let identifier = "ListRecordCell"
     
+    
     private var backgroundPicture: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -84,37 +85,38 @@ class ListRecordCell: UICollectionViewCell{
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    private var currentPhotoData: String?
     override func prepareForReuse() {
         super.prepareForReuse()
         backgroundPicture.image = UIImage(named: "Emptylogo")
+        matchStatus.image = nil
+        titleLabel.text = nil
+        gameDate.text = nil
+        currentPhotoData = nil
     }
     
     func configureUI() {
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         contentView.backgroundColor = .bg
-        self.backgroundView = backgroundPicture
-        [matchStatus,bottomStackView].forEach{
+        
+        [backgroundPicture,matchStatus,bottomStackView].forEach{
             contentView.addSubview($0)
         }
     }
     func setupConstraints() {
-        matchStatus.snp.makeConstraints{ make in
-            make.top.trailing.equalTo(safeAreaLayoutGuide).inset(8)
+        backgroundPicture.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-        
-        bottomStackView.snp.makeConstraints{ make in
-            make.bottom.leading.equalTo(safeAreaLayoutGuide).inset(16)
+        matchStatus.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview().inset(8)
+        }
+        bottomStackView.snp.makeConstraints { make in
+            make.bottom.leading.trailing.equalToSuperview().inset(16)
         }
     }
     
     func configure(with data: RecordData){
-        if let photoData = data.photoData, let image = UIImage(data: photoData) {
-            backgroundPicture.image = image
-        } else {
-            backgroundPicture.image = UIImage(named: "Emptylogo")
-        }
         titleLabel.text = data.title
         gameDate.text = data.gameDate
         
@@ -131,12 +133,22 @@ class ListRecordCell: UICollectionViewCell{
             homeScore: homeScore,
             awayScore: awayScore
         )
-        
         if let matchResult = result {
             matchStatus.image = UIImage(named: matchResult.rawValue)
         } else {
-            matchStatus.image = UIImage(named: "Emptylogo")
+            matchStatus.image = nil
         }
+        
+        if let photoFileName = data.photoData, !photoFileName.isEmpty {
+            let image = loadImageCoreData(fileName: photoFileName)
+            
+            self.backgroundPicture.image = image ?? UIImage(named: "Emptylogo")
+            
+        } else {
+            
+            self.backgroundPicture.image = UIImage(named: "Emptylogo")
+        }
+        
     }
     
 }

@@ -56,13 +56,21 @@ final class SelectGameViewModel {
         } else {
             scoreString = "경기 취소"
         }
+        let homeTeamTransName = BaseBallNameTranslator.getKoreanName(for: gameInfo.teams.home.name.rawValue)
+        let awayTeamTransName = BaseBallNameTranslator.getKoreanName(for: gameInfo.teams.away.name.rawValue)
         
         return SelectGameCellModel(
+            
             myTeamName: BaseBallNameTranslator.getKoreanName(for: mySelectedTeam.name),
             myTeamLogo: mySelectedTeam.listCharacter,
             
             opposingTeamName: BaseBallNameTranslator.getKoreanName(for: opposingTeamData.name.rawValue),
             opposingTeamLogo: opposingTeamInfo?.listCharacter ?? opposingTeamData.logo,
+            
+            homeTeamName: homeTeamTransName,
+            awayTeamName: awayTeamTransName,
+            homeTeamScore: gameInfo.scores.home.total ?? 0,
+            awayTeamScore: gameInfo.scores.away.total ?? 0,
             
             gameDate: dateString,
             score: scoreString,

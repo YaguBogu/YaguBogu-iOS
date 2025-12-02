@@ -1,5 +1,5 @@
 {
-  "originHash" : "44646148226638528077f24932b631ef55cee7704dd03ee997498b4c35f3ed34",
+  "originHash" : "37b19ed0f7824dbb502c105f6d5a3b9eeeeeda05bbba5478f579086138af88da",
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -11,18 +11,9 @@
       }
     },
     {
-      "identity" : "kingfisher",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
-      "state" : {
-        "revision" : "d30a5fad881137e2267f96a8e3fc35c58999bb94",
-        "version" : "8.6.2"
-      }
-    },
-    {
       "identity" : "rxgesture",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/RxSwiftCommunity/RxGesture.git",
+      "location" : "https://github.com/RxSwiftCommunity/RxGesture",
       "state" : {
         "revision" : "1b137c576b4aaaab949235752278956697c9e4a0",
         "version" : "4.0.4"
@@ -58,7 +49,7 @@
     {
       "identity" : "spm-nmapsmap",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/navermaps/SPM-NMapsMap.git",
+      "location" : "https://github.com/navermaps/SPM-NMapsMap",
       "state" : {
         "revision" : "fb4eef37db9904c0a0dcdf7a828c892e13782cfa",
         "version" : "3.23.0"
