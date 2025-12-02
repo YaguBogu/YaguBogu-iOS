@@ -159,7 +159,7 @@ extension BaseScheduleCardView {
         
         let away = BaseScheduleCardView.teamStackView(image: UIImage(named: game.awayTeamCharacter ?? "Default"),
                                                       name: BaseBallNameTranslator.getKoreanName(for: game.awayTeamName))
-        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: game.homeTeamCharacter ?? "Defalt"),
+        let home = BaseScheduleCardView.teamStackView(image: UIImage(named: game.homeTeamCharacter ?? "Default"),
                                                       name: BaseBallNameTranslator.getKoreanName(for: game.homeTeamName))
         [away, home].forEach { teamsStackView.addArrangedSubview($0) }
         
