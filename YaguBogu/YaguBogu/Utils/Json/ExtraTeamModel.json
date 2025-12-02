@@ -7,6 +7,7 @@
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
             "address": "서울 송파구 올림픽로 25 서울종합운동장",
+            "longitude" : "127.0718969383121",
             "selectTeamLogo" : "SelectDOOSAN",
             "defaultCharacter": "DOOSANDefault",
             "listCharacter": "ListDoosan"
@@ -18,6 +19,7 @@
             "latitude" : "36.316066596569165",
             "longtitude" : "127.43167645403133",
             "address": "대전 중구 대종로 373 한화생명이글스파크",
+            "longitude" : "127.43167645403133",
             "selectTeamLogo" : "SelectHANWHA",
             "defaultCharacter": "HANHWADefault",
             "listCharacter": "ListHanhwa"
@@ -29,6 +31,7 @@
             "latitude" : "35.168143901359784",
             "longtitude" : "126.8891423364501",
             "address": "광주 북구 서림로 10 기아챔피언스필드",
+            "longitude" : "126.8891423364501",
             "selectTeamLogo" : "SelectKIA",
             "defaultCharacter": "KIADefault",
             "listCharacter": "ListKIA"
@@ -42,6 +45,10 @@
             "address": "서울 구로구 경인로 430 고척스카이돔",
             "selectTeamLogo" : "SelectKIWOON",
             "defaultCharacter": "KIWOOMDefault"
+            "longitude" : "126.86716482656504",
+            "selectTeamLogo" : "SelectKIWOOM",
+            "defaultCharacter": "KIWOOMDefault",
+            "listCharacter": "ListKiwoom"
         },
         {
             "teamId": "KT Wiz Suwon",
@@ -50,6 +57,7 @@
             "latitude" : "37.29966537879378",
             "longtitude" : "127.00977034570677",
             "address": "경기 수원시 장안구 경수대로 893 수원KT위즈파크",
+            "longitude" : "127.00977034570677",
             "selectTeamLogo" : "SelectKT",
             "defaultCharacter": "KTDefault",
             "listCharacter": "ListKT"
@@ -61,6 +69,7 @@
             "latitude" : "37.51201894088975",
             "longtitude" : "127.0718969383121",
             "address": "서울 송파구 올림픽로 25 서울종합운동장",
+            "longitude" : "127.0718969383121",
             "selectTeamLogo" : "SelectLG",
             "defaultCharacter": "LGDefault",
             "listCharacter": "ListLG"
@@ -72,6 +81,7 @@
             "latitude" : "35.1940238473883",
             "longtitude" : "129.06143988969237",
             "address": "부산 동래구 사직로 33 사직야구장",
+            "longitude" : "129.06143988969237",
             "selectTeamLogo" : "SelectLOTTE",
             "defaultCharacter": "LOTTEDefault",
             "listCharacter": "ListLotte"
@@ -83,6 +93,7 @@
             "latitude" : "35.22263093553172",
             "longtitude" : "128.58223816267258",
             "address": "경남 창원시 마산회원구 삼호로 63 창원NC파크",
+            "longitude" : "128.58223816267258",
             "selectTeamLogo" : "SelectNC",
             "defaultCharacter": "NCDefault",
             "listCharacter": "ListNC"
@@ -94,6 +105,7 @@
             "latitude" : "35.8410120804932",
             "longtitude" : "128.68163963151713",
             "address": "대구 수성구 야구전설로 1 대구삼성라이온즈파크",
+            "longitude" : "128.68163963151713",
             "selectTeamLogo" : "SelectSAMSUNG",
             "defaultCharacter": "SAMSUNGDefault",
             "listCharacter": "ListSamsung"
@@ -105,6 +117,7 @@
             "latitude" : "37.43695806700958",
             "longtitude" : "126.69324804173549",
             "address": "인천 미추홀구 매소홀로 618 인천SSG랜더스필드",
+            "longitude" : "126.69324804173549",
             "selectTeamLogo" : "SelectSSG",
             "defaultCharacter": "SSGDefault",
             "listCharacter": "ListSSG"

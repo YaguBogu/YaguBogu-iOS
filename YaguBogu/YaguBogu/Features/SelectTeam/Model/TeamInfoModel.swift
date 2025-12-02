@@ -50,6 +50,7 @@ struct TeamExtra: Codable {
     let latitude: String
     let longtitude: String
     let address: String
+    let longitude: String
     let selectTeamLogo: String
     let defaultCharacter: String
     let listCharacter: String
