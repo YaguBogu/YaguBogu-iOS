@@ -8,13 +8,14 @@ final class TabBarCoordinator: BaseCoordinator {
         self.team = team
         super.init(navigationController: navigationController)
     }
-    
+
 
     override func start() {
         super.start()
         
         let tabBarController = TabBarController()
-
+        let extraTeamsJsonService = ExtraTeamsJsonService()
+        
         // 홈
         let homeNav = UINavigationController()
         let homeCoordinator = HomeCoordinator(navigationController: homeNav, team: team)
@@ -39,7 +40,7 @@ final class TabBarCoordinator: BaseCoordinator {
 
         // 직관기록
         let recordNav = UINavigationController()
-        let recordCoordinator = RecordCoordinator(navigationController: recordNav, team: team)
+        let recordCoordinator = RecordCoordinator(navigationController: recordNav, team: team, extraTeamsJson: extraTeamsJsonService)
         addChild(recordCoordinator)
         recordCoordinator.start()
         recordNav.tabBarItem = UITabBarItem(

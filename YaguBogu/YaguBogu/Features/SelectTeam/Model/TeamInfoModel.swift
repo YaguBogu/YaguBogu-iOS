@@ -44,7 +44,7 @@ struct TeamExtraData: Codable {
 }
 
 struct TeamExtra: Codable {
-    let teamId: String
+    var teamId: String
     let stadium: String
     let city: String
     let latitude: String
@@ -52,4 +52,5 @@ struct TeamExtra: Codable {
     let address: String
     let selectTeamLogo: String
     let defaultCharacter: String
+    let listCharacter: String
 }
