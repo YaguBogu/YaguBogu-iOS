@@ -69,6 +69,8 @@ extension CustomCalendarView {
         
         calendar.dataSource = self
         calendar.delegate = self
+        
+        calendar.setCurrentPage(viewModel.today20260327, animated: false)
     }
     
     private func setupLayout() {
