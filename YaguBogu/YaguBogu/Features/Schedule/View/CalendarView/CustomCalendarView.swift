@@ -87,7 +87,7 @@ extension CustomCalendarView {
         
         calendar.snp.makeConstraints {
             $0.top.equalTo(headerView.snp.bottom).offset(8)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.bottom.equalToSuperview().inset(16)
             $0.height.equalTo(280)
         }
     }

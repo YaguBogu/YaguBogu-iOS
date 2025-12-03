@@ -78,28 +78,24 @@ class CustomCalendarCell: FSCalendarCell {
         dotView.backgroundColor = .secondary
         circleLayer.fillColor = UIColor.clear.cgColor
         borderLayer.strokeColor = UIColor.clear.cgColor
+        titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
 
 //        if dateIsToday {
         if isToday {
             // 오늘 날짜
             circleLayer.isHidden = false
-            circleLayer.fillColor = UIColor.primary.withAlphaComponent(1.0).cgColor
+            circleLayer.fillColor = UIColor.primary.cgColor
             dotView.backgroundColor = .appWhite
             titleLabel.textColor = .appWhite
-            titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         } else if isSelected {
             // 선택된 날짜
             circleLayer.isHidden = false
             circleLayer.fillColor = UIColor.primary.withAlphaComponent(0.3).cgColor
             dotView.backgroundColor = .appWhite
             titleLabel.textColor = .primary
-            titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         } else {
             // 나머지 날짜
-            circleLayer.isHidden = true
-            borderLayer.isHidden = true
             titleLabel.textColor = .appBlack
-            dotView.backgroundColor = .secondary
             titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
         }
     }

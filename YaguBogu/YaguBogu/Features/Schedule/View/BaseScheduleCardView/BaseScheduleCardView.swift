@@ -112,6 +112,9 @@ extension BaseScheduleCardView {
         scoreLabel.text = score
         scoreLabel.font = .systemFont(ofSize: 20, weight: .semibold)
         scoreLabel.textColor = .gray09
+        scoreLabel.snp.makeConstraints {
+            $0.height.equalTo(25)
+        }
         
         let stadiumLabel = UILabel()
         stadiumLabel.text = stadium
@@ -132,6 +135,9 @@ extension BaseScheduleCardView {
         timeLabel.text = time
         timeLabel.font = .systemFont(ofSize: 16, weight: .semibold)
         timeLabel.textColor = .gray09
+        timeLabel.snp.makeConstraints {
+            $0.height.equalTo(25)
+        }
         
         // 구장 라벨
         let stadiumLabel = UILabel()

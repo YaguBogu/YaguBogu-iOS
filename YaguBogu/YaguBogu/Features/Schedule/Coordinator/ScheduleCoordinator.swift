@@ -12,7 +12,7 @@ final class ScheduleCoordinator: BaseCoordinator {
         super.start()
         let viewModel = ScheduleViewModel(team: team)
         let viewController = ScheduleViewController(viewModel: viewModel)
-        viewController.navigationItem.title = "경기 일정"
+        viewController.navigationItem.title = "전체 경기 일정"
         navigationController.setViewControllers([viewController], animated: false)
     }
 }
