@@ -8,7 +8,6 @@ struct NextButtonView: View {
     var body: some View {
             Button(action: {
                 self.action()
-                print("버튼이 눌림")
             }) {
                 Text("다음")
                     .font(.custom("AppleSDGothicNeo-SemiBold", size: 16))
