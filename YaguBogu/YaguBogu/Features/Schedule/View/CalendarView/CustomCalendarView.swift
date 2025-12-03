@@ -57,8 +57,12 @@ extension CustomCalendarView {
         
         calendar.placeholderType = .none
         
-        let today = Date()
-        calendar.select(today)
+//        let today = Date()
+//        calendar.select(today)
+        
+        // today를 260327로 설정
+        let today20260327 = viewModel.today20260327
+        calendar.select(today20260327)
         calendar.reloadData()
         
         calendar.appearance.todayColor = .clear
@@ -69,6 +73,7 @@ extension CustomCalendarView {
         
         calendar.dataSource = self
         calendar.delegate = self
+        
     }
     
     private func setupLayout() {
@@ -130,11 +135,16 @@ extension CustomCalendarView: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at monthPosition: FSCalendarMonthPosition) {
         guard let cell = cell as? CustomCalendarCell else { return }
         
+        let today = viewModel.today20260327
+        cell.isToday = Calendar.current.isDate(today, inSameDayAs: date)
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = TimeZone(identifier: "Asia/Seoul")
         let dateString = formatter.string(from: date)
         
-        cell.hasDot = viewModel.gameDatesForCalendar.value.contains(dateString) ?? false
+        cell.hasDot = viewModel.gameDatesForCalendar.value.contains(dateString)
+        cell.configureAppearance()
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
