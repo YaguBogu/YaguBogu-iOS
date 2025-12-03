@@ -81,6 +81,7 @@ final class StadiumLocationView: UIView {
 
 
 extension StadiumLocationView {
+    
     func setupUI() {
         addSubview(shadowContainer)
         shadowContainer.snp.makeConstraints { $0.edges.equalToSuperview() }
@@ -148,6 +149,8 @@ extension StadiumLocationView {
 
         // 마커 표시
         let marker = NMFMarker()
+        marker.iconImage = NMF_MARKER_IMAGE_BLACK // 기본 마커 이미지 
+        marker.iconTintColor = .primary
         marker.position = NMGLatLng(lat: lat, lng: lon)
         marker.mapView = mapView
     }
