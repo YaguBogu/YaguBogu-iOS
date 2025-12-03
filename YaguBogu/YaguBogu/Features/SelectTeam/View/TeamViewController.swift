@@ -193,8 +193,6 @@ class TeamViewController: BaseViewController {
     
     
     func setupCollectionView(){
-        collectionView.isSkeletonable = true
-        
         collectionView.dataSource = self
         collectionView.register(SelectTeamCell.self, forCellWithReuseIdentifier: SelectTeamCell.identifier)
         collectionView.register(TeamHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TeamHeaderView.identifier)
