@@ -4,7 +4,6 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string></string>
 		<string>nmap</string>
 	</array>
 	<key>NMFNcpKeyId

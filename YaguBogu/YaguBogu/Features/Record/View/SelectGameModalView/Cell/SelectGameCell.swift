@@ -98,7 +98,6 @@ final class SelectGameCell: UITableViewCell{
         mainStackView.alignment = .center
         
         contentView.addSubview(mainStackView)
-        contentView.addSubview(skeletonBackgroundView)
         
         [myTeamView,gameInfoView,opposingTeamView].forEach{
             mainStackView.addArrangedSubview($0)
@@ -106,10 +105,6 @@ final class SelectGameCell: UITableViewCell{
     }
     
     private func setupConstraints(){
-        skeletonBackgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
         mainStackView.snp.makeConstraints{ make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 14, left: 32, bottom: 14, right: 32))
         }
