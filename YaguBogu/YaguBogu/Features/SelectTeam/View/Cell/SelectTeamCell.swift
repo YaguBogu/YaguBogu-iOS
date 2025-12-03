@@ -37,15 +37,17 @@ class SelectTeamCell: UICollectionViewCell{
     }()
     
     private lazy var mainStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [logoImage, labelStackView])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center
         stack.spacing = 15
+        
         return stack
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         configureUI()
         setupConstraints()
         
@@ -59,10 +61,15 @@ class SelectTeamCell: UICollectionViewCell{
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 16
         contentView.clipsToBounds = true
+        
         contentView.addSubview(mainStackView)
+        
+        mainStackView.addArrangedSubview(logoImage)
+        mainStackView.addArrangedSubview(labelStackView)
     }
     
     private func setupConstraints(){
+        
         logoImage.snp.makeConstraints { make in
             make.height.equalTo(contentView.snp.width).multipliedBy(0.4)
         }
@@ -71,6 +78,8 @@ class SelectTeamCell: UICollectionViewCell{
             make.center.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(10)
         }
+        
+        
     }
     
     func configure(with team: TeamInfo){

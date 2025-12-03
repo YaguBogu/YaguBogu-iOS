@@ -14,6 +14,7 @@ final class SelectGameViewModel {
     private let mySelectedTeam: TeamInfo
     private let extraTeams: [TeamExtra]
     
+    let isLoading = BehaviorRelay<Bool>(value: false)
     
     init(selectedTeam: TeamInfo, extraTeams: [TeamExtra], gameService: RecordGameInfoService) {
         self.mySelectedTeam = selectedTeam
@@ -22,11 +23,15 @@ final class SelectGameViewModel {
     }
     
     func fetchGameList() {
+        isLoading.accept(true)
         Task {
             let gameInfos = await gameService.fetchGames(for: mySelectedTeam.id)
             let cellModels = gameInfos.map(transformToCellModel)
             
-            self.gameListRelay.accept(cellModels)
+            DispatchQueue.main.async{
+                self.gameListRelay.accept(cellModels)
+                self.isLoading.accept(false)
+            }
         }
     }
     

@@ -5,7 +5,9 @@ import RxRelay
 import SnapKit
 
 class TeamViewController: BaseViewController {
+    
     private var viewModel: TeamViewModel!
+    
     
     init(viewModel: TeamViewModel!) {
         self.viewModel = viewModel
@@ -63,6 +65,20 @@ class TeamViewController: BaseViewController {
         button.layer.cornerRadius = 12
         return button
     }()
+    private let isLoadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        view.isHidden = false
+        return view
+    }()
+    
+    private let indicatorLoadingView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .white
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,12 +100,14 @@ class TeamViewController: BaseViewController {
         [headerView,collectionView,bottomView].forEach{
             view.addSubview($0)
         }
+        view.addSubview(isLoadingView)
+        isLoadingView.addSubview(indicatorLoadingView)
     }
     
     override func setupConstraints(){
         super.setupConstraints()
+        
         headerView.snp.makeConstraints { make in
-            // 나중에 디자이너와 함께 위치 맞추기
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview()
             
@@ -118,6 +136,13 @@ class TeamViewController: BaseViewController {
             make.bottom.equalTo(bottomView.snp.top)
             make.leading.trailing.equalToSuperview()
             
+        }
+        isLoadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        indicatorLoadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
     
@@ -151,10 +176,25 @@ class TeamViewController: BaseViewController {
         selectButton.rx.tap
             .bind(to: viewModel.confirmButtonTapped)
             .disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: {[weak self] loading in
+                if loading{
+                    self?.isLoadingView.isHidden = false
+                    self?.indicatorLoadingView.startAnimating()
+                } else{
+                    self?.isLoadingView.isHidden = true
+                    self?.indicatorLoadingView.stopAnimating()
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     
-    private func setupCollectionView(){
+    func setupCollectionView(){
+        collectionView.isSkeletonable = true
+        
         collectionView.dataSource = self
         collectionView.register(SelectTeamCell.self, forCellWithReuseIdentifier: SelectTeamCell.identifier)
         collectionView.register(TeamHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TeamHeaderView.identifier)

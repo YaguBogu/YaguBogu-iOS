@@ -80,8 +80,14 @@ final class SelectGameCell: UITableViewCell{
         return stackView
     }()
     
+    private let skeletonBackgroundView: UIImageView = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
+        
         configureUI()
         setupConstraints()
     }
@@ -97,6 +103,7 @@ final class SelectGameCell: UITableViewCell{
         mainStackView.alignment = .center
         
         contentView.addSubview(mainStackView)
+        contentView.addSubview(skeletonBackgroundView)
         
         [myTeamView,gameInfoView,opposingTeamView].forEach{
             mainStackView.addArrangedSubview($0)
@@ -104,8 +111,19 @@ final class SelectGameCell: UITableViewCell{
     }
     
     private func setupConstraints(){
+        skeletonBackgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         mainStackView.snp.makeConstraints{ make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 14, left: 32, bottom: 14, right: 32))
+        }
+        myTeamLogo.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
+        }
+        
+        opposingTemaLogo.snp.makeConstraints { make in
+            make.width.height.equalTo(50)
         }
         
     }

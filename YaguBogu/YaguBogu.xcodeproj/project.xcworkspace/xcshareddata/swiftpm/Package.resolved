@@ -1,5 +1,5 @@
 {
-  "originHash" : "f20dc004f6b713d2ab98cdaf9978de9a3b346764daeac430398472fed5814bfb",
+  "originHash" : "8cbc5b159e5e74900d26279346764d85133dbbcc565cc8651a1d6519dd0722bc",
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -22,7 +22,7 @@
     {
       "identity" : "rxgesture",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/RxSwiftCommunity/RxGesture.git",
+      "location" : "https://github.com/RxSwiftCommunity/RxGesture",
       "state" : {
         "revision" : "1b137c576b4aaaab949235752278956697c9e4a0",
         "version" : "4.0.4"
@@ -35,6 +35,15 @@
       "state" : {
         "revision" : "5004a18539bd68905c5939aa893075f578f4f03d",
         "version" : "6.9.1"
+      }
+    },
+    {
+      "identity" : "skeletonview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Juanpe/SkeletonView.git",
+      "state" : {
+        "revision" : "2f5274827d310e32c09325dd3e0007120940988e",
+        "version" : "1.31.0"
       }
     },
     {
