@@ -12,6 +12,7 @@
 		3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471832EDEC7440026FF4C /* RxGesture */; };
 		3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471862EDEC7670026FF4C /* ConfidentialKit */; };
 		3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84718A2EDEC7960026FF4C /* Kingfisher */; };
+		FBEA39E02EDEFBAF00639281 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = FBEA39DF2EDEFBAF00639281 /* NMapsMap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A84717E2EDEC6CC0026FF4C /* FSCalendar in Frameworks */,
+				FBEA39E02EDEFBAF00639281 /* NMapsMap in Frameworks */,
 				3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */,
 				3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */,
 				3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */,
@@ -96,6 +98,7 @@
 				3A8471832EDEC7440026FF4C /* RxGesture */,
 				3A8471862EDEC7670026FF4C /* ConfidentialKit */,
 				3A84718A2EDEC7960026FF4C /* Kingfisher */,
+				FBEA39DF2EDEFBAF00639281 /* NMapsMap */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -132,6 +135,7 @@
 				3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */,
 				3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
 				3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -186,7 +190,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sparta.YaguBogu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seoyeon.YaguBogu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -220,7 +224,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sparta.YaguBogu;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seoyeon.YaguBogu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -425,6 +429,14 @@
 				minimumVersion = 8.6.2;
 			};
 		};
+		FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.23.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -452,6 +464,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		FBEA39DF2EDEFBAF00639281 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
