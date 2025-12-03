@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "Property 1=삼성_로고.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "Property 1=삼성_로고.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
