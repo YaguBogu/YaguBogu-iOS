@@ -80,11 +80,6 @@ final class SelectGameCell: UITableViewCell{
         return stackView
     }()
     
-    private let skeletonBackgroundView: UIImageView = {
-        let imageView = UIImageView()
-        return imageView
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
