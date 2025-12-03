@@ -1,5 +1,4 @@
 import UIKit
-import SkeletonView
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
