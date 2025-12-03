@@ -12,7 +12,6 @@
 		3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471832EDEC7440026FF4C /* RxGesture */; };
 		3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471862EDEC7670026FF4C /* ConfidentialKit */; };
 		3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84718A2EDEC7960026FF4C /* Kingfisher */; };
-		94A7D3992EDEDAA900370547 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 94A7D3982EDEDAA900370547 /* SkeletonView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,7 +48,6 @@
 				3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */,
 				3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */,
 				3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */,
-				94A7D3992EDEDAA900370547 /* SkeletonView in Frameworks */,
 				3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,7 +96,6 @@
 				3A8471832EDEC7440026FF4C /* RxGesture */,
 				3A8471862EDEC7670026FF4C /* ConfidentialKit */,
 				3A84718A2EDEC7960026FF4C /* Kingfisher */,
-				94A7D3982EDEDAA900370547 /* SkeletonView */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -135,7 +132,6 @@
 				3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */,
 				3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
 				3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				94A7D3972EDEDAA900370547 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -433,14 +429,6 @@
 				minimumVersion = 8.6.2;
 			};
 		};
-		94A7D3972EDEDAA900370547 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.31.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -468,11 +456,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		94A7D3982EDEDAA900370547 /* SkeletonView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 94A7D3972EDEDAA900370547 /* XCRemoteSwiftPackageReference "SkeletonView" */;
-			productName = SkeletonView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
