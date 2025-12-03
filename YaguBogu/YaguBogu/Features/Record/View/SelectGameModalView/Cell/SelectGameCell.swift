@@ -19,7 +19,7 @@ final class SelectGameCell: UITableViewCell{
     
     private let myTeamLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFPro-Medium", size: 14)
+        label.font = UIFont(name: "SFPro-Medium", size: 24)
         label.textColor = .appBlack
         return label
     }()
@@ -41,14 +41,14 @@ final class SelectGameCell: UITableViewCell{
     
     private let scoreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 20)
+        label.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 20)
         label.textColor = .appBlack
         return label
     }()
     
     private let stadiumLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
+        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
         label.textColor = .gray07
         return label
     }()
@@ -119,8 +119,17 @@ final class SelectGameCell: UITableViewCell{
     }
     
     func configure(with model: SelectGameCellModel){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = dateFormatter.date(from: model.gameDate) else {return}
+        let dayFormatter = DateFormatter()
+        dayFormatter.locale = Locale(identifier: "ko_KR")
+        dayFormatter.dateFormat = "MM.dd (E)"
+        myTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        opposingTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        
         myTeamLabel.text = model.myTeamName
-        gameDateLabel.text = model.gameDate
+        gameDateLabel.text = dayFormatter.string(from: date)
         scoreLabel.text = model.score
         stadiumLabel.text = model.stadium
         opposingTeamLabel.text = model.opposingTeamName

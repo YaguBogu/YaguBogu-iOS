@@ -78,8 +78,6 @@ class ListRecordCell: UICollectionViewCell{
         super.init(frame: frame)
         configureUI()
         setupConstraints()
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -99,7 +97,6 @@ class ListRecordCell: UICollectionViewCell{
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         contentView.backgroundColor = .bg
-        
         [backgroundPicture,matchStatus,bottomStackView].forEach{
             contentView.addSubview($0)
         }
@@ -119,7 +116,8 @@ class ListRecordCell: UICollectionViewCell{
     func configure(with data: RecordData){
         titleLabel.text = data.title
         gameDate.text = data.gameDate
-        
+        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        gameDate.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         let myTeamId = Int(data.myTeamId)
         let homeTeamId = Int(data.homeTeamId)
         let awayTeamId = Int(data.awayTeamId)

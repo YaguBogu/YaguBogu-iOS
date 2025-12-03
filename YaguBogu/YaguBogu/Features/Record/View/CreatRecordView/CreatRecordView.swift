@@ -75,7 +75,7 @@ class CreateRecordView: BaseViewController {
     private let titleTextField: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = .white
-        textField.layer.cornerRadius = 8
+        textField.layer.cornerRadius = 6
         let font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
         textField.attributedPlaceholder = NSAttributedString(
             string: "제목을 입력해 주세요.",
@@ -102,17 +102,17 @@ class CreateRecordView: BaseViewController {
     private let contentTextView: UITextView = {
         let textView = UITextView()
         textView.backgroundColor = .white
-        textView.layer.cornerRadius = 8
+        textView.layer.cornerRadius = 6
         textView.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
         textView.textColor = .appBlack
-        textView.textContainerInset = UIEdgeInsets(top: 14, left: 16, bottom: 14, right: 16)
+        textView.textContainerInset = UIEdgeInsets(top: 14, left: 12, bottom: 14, right: 16)
         return textView
     }()
     
     private let photoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
-        imageView.layer.cornerRadius = 8
+        imageView.layer.cornerRadius = 6
         imageView.isUserInteractionEnabled = true
         imageView.clipsToBounds = true
         return imageView
