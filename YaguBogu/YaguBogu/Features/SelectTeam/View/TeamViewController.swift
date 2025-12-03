@@ -27,14 +27,14 @@ class TeamViewController: BaseViewController {
     private let bottomView: UIView = {
         let view = UIView()
         view.backgroundColor = .appWhite
-        view.layer.cornerRadius = 16
+        view.layer.cornerRadius = 24
         
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         
         view.layer.shadowColor = UIColor.appBlack.cgColor
-        view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 0, height: -4)
-        view.layer.shadowRadius = 8
+        view.layer.shadowOpacity = 0.04
+        view.layer.shadowOffset = CGSize(width: 0, height: -2)
+        view.layer.shadowRadius = 4
         
         view.layer.masksToBounds = false
         return view
