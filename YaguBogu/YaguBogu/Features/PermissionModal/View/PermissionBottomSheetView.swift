@@ -14,9 +14,8 @@ final class PermissionBottomSheetView: UIView {
 
     let closeButton: UIButton = {
         let btn = UIButton()
-        let config = UIImage.SymbolConfiguration(pointSize: 25, weight: .regular)
-        btn.setImage(UIImage(systemName: "xmark", withConfiguration: config), for: .normal)
-        btn.tintColor = UIColor(red: 0x38/255, green: 0x38/255, blue: 0x38/255, alpha: 1)
+        btn.setImage(UIImage(named: "closeIcon"), for: .normal)
+        btn.tintColor = .clear
         return btn
     }()
 
@@ -88,6 +87,7 @@ final class PermissionBottomSheetView: UIView {
     private func setupUI() {
         backgroundColor = .white
         layer.cornerRadius = 35
+        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         clipsToBounds = true
 
         addSubview(handleBar)
@@ -116,7 +116,7 @@ final class PermissionBottomSheetView: UIView {
         closeButton.snp.makeConstraints {
             $0.top.equalToSuperview().offset(16)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.width.height.equalTo(36)
+            $0.width.height.equalTo(44)
         }
 
 
@@ -156,7 +156,7 @@ final class PermissionBottomSheetView: UIView {
 
         subDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(divider.snp.bottom).offset(16)
-            $0.leading.trailing.equalToSuperview().inset(24)
+            $0.leading.trailing.equalToSuperview().inset(19)
         }
 
 
