@@ -34,6 +34,20 @@ final class SelectGameModalView: BaseViewController{
         return tableView
     }()
     
+    private let isLoadingView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        view.isHidden = false
+        return view
+    }()
+    
+    private let indicatorLoadingView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .white
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .appWhite
@@ -53,7 +67,8 @@ final class SelectGameModalView: BaseViewController{
         }
         
         headerView.addSubview(titleLabel)
-        
+        view.addSubview(isLoadingView)
+        isLoadingView.addSubview(indicatorLoadingView)
     }
     
     override func setupConstraints() {
@@ -71,7 +86,13 @@ final class SelectGameModalView: BaseViewController{
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        isLoadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
+        indicatorLoadingView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
     }
     
     
@@ -88,5 +109,19 @@ final class SelectGameModalView: BaseViewController{
         tableView.rx.modelSelected(SelectGameCellModel.self)
             .bind(to: viewModel.selectedGame)
             .disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: {[weak self] loading in
+                if loading{
+                    self?.isLoadingView.isHidden = false
+                    self?.indicatorLoadingView.startAnimating()
+                } else{
+                    self?.isLoadingView.isHidden = true
+                    self?.indicatorLoadingView.stopAnimating()
+                }
+            })
+            .disposed(by: disposeBag)
     }
+    
 }

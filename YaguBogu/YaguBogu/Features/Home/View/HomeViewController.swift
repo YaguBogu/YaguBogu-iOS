@@ -384,6 +384,28 @@ class HomeViewController: BaseViewController {
         }
     }
 
+    private func openNaverMapForCurrentStadium() {
+            let stadium = viewModel.currentStadiumInfo()
+
+            let lat = stadium.latitude
+            let lon = stadium.longitude
+            let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+
+            guard
+                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)"),
+                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")
+            else {
+                print("URL 생성 실패")
+                return
+            }
+
+            if UIApplication.shared.canOpenURL(appURL) {
+                UIApplication.shared.open(appURL)
+            } else {
+                UIApplication.shared.open(webURL)
+            }
+        }
+    
     private func bind() {
         let output = viewModel.output
         
@@ -546,50 +568,15 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         stadiumLocationView.rx.tapGesture()
-            .when(.recognized)
-            .bind { [weak self] _ in
-                guard let self = self else { return }
+                    .when(.recognized)
+                    .bind { [weak self] _ in
+                        self?.openNaverMapForCurrentStadium()
+                    }
+                    .disposed(by: disposeBag)
 
-                // 현재 선택된 구장 정보 가져오기
-                let stadium = self.viewModel.currentStadiumInfo()
-
-                let lat = stadium.latitude
-                let lon = stadium.longitude
-                let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
-                // 네이버 지도 앱 URL
-                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
-
-                // 앱 없으면 웹으로
-                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
-
-                if UIApplication.shared.canOpenURL(appURL) {
-                    UIApplication.shared.open(appURL)
-                } else {
-                    UIApplication.shared.open(webURL)
-                }
-            }
-            .disposed(by: disposeBag)
-
-        // 지도열기 버튼 탭 시 네이버 지도 앱 열기
         stadiumLocationView.openButton.rx.tap
             .bind { [weak self] in
-                guard let self = self else { return }
-
-                let stadium = self.viewModel.currentStadiumInfo()
-
-                let lat = stadium.latitude
-                let lon = stadium.longitude
-                let name = stadium.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-
-                let appURL = URL(string: "nmap://place?lat=\(lat)&lng=\(lon)&name=\(name)")!
-                let webURL = URL(string: "https://map.naver.com/v5/search/\(name)")!
-
-                if UIApplication.shared.canOpenURL(appURL) {
-                    UIApplication.shared.open(appURL)
-                } else {
-                    UIApplication.shared.open(webURL)
-                }
+                self?.openNaverMapForCurrentStadium()
             }
             .disposed(by: disposeBag)
 
@@ -621,7 +608,16 @@ class HomeViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
-
+        output.stadiumAddress
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                let stadium = self.viewModel.currentStadiumInfo()
+                self.stadiumLocationView.updateMapLocation(
+                    lat: stadium.latitude,
+                    lon: stadium.longitude
+                )
+            })
+            .disposed(by: disposeBag)
     }
 }
 

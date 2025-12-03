@@ -20,6 +20,8 @@ final class TeamViewModel {
     private var disposeBag = DisposeBag()
     private let selectedTeamInfo = BehaviorRelay<TeamInfo?>(value: nil)
     
+    let isLoading = BehaviorRelay<Bool>(value: false)
+    
     init() {
         bind()
     }
@@ -44,12 +46,14 @@ final class TeamViewModel {
             .bind(to: showAlert)
             .disposed(by: disposeBag)
         
+    
         }
     
     func loadMergeData(){
+        isLoading.accept(true)
         
         guard let teamExtraData: TeamExtraData = self.jsonLoader.load("ExtraTeamModel") else {
-            print("JSON 로딩 실패qweqwe")
+            print("JSON 로딩 실패")
             return
         }
         let localTeams = teamExtraData.ExtraTeamModel
@@ -100,6 +104,7 @@ final class TeamViewModel {
             }
             DispatchQueue.main.async{
                 self.teams.accept(mergeList)
+                self.isLoading.accept(false)
             }
         }
         
