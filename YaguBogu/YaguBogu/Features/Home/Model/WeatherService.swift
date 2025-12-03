@@ -55,7 +55,7 @@ final class WeatherService: WeatherServiceProtocol {
     func fetchForecast(lat: Double, lon: Double) -> Single<[StadiumForecast]> {
             let apiKey = Secrets.$WeatherApiKey
             let urlString =
-            "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&units=metric&appid=\(apiKey)&lang=kr"
+            "https://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&units=metric&appid=\(apiKey)"
 
             return Single<[StadiumForecast]>.create { single in
 
