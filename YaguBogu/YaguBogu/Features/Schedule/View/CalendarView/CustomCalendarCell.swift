@@ -7,7 +7,10 @@ class CustomCalendarCell: FSCalendarCell {
     private let circleLayer = CAShapeLayer()
     private let borderLayer = CAShapeLayer()
     private let dotView = UIView()
-
+    
+    // today를 26.03.27로 하기 위함
+    var isToday: Bool = false
+    
     override init (frame: CGRect) {
         super.init(frame: frame)
         
@@ -76,11 +79,11 @@ class CustomCalendarCell: FSCalendarCell {
         circleLayer.fillColor = UIColor.clear.cgColor
         borderLayer.strokeColor = UIColor.clear.cgColor
 
-        if dateIsToday {
+//        if dateIsToday {
+        if isToday {
             // 오늘 날짜
             circleLayer.isHidden = false
             circleLayer.fillColor = UIColor.primary.withAlphaComponent(1.0).cgColor
-            borderLayer.isHidden = true
             dotView.backgroundColor = .appWhite
             titleLabel.textColor = .appWhite
             titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
@@ -88,7 +91,6 @@ class CustomCalendarCell: FSCalendarCell {
             // 선택된 날짜
             circleLayer.isHidden = false
             circleLayer.fillColor = UIColor.primary.withAlphaComponent(0.3).cgColor
-            borderLayer.isHidden = true
             dotView.backgroundColor = .appWhite
             titleLabel.textColor = .primary
             titleLabel.font = .systemFont(ofSize: 16, weight: .semibold)
