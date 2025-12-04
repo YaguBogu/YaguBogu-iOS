@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C219F2ECC1BD600B78A0E /* SnapKit */; };
-		FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A22ECC1C1600B78A0E /* RxCocoa */; };
-		FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A42ECC1C1600B78A0E /* RxRelay */; };
-		FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FB3C21A62ECC1C1600B78A0E /* RxSwift */; };
+		3A84717E2EDEC6CC0026FF4C /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84717D2EDEC6CC0026FF4C /* FSCalendar */; };
+		3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471802EDEC72E0026FF4C /* SnapKit */; };
+		3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471832EDEC7440026FF4C /* RxGesture */; };
+		3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471862EDEC7670026FF4C /* ConfidentialKit */; };
+		3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84718A2EDEC7960026FF4C /* Kingfisher */; };
+		FBEA39E02EDEFBAF00639281 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = FBEA39DF2EDEFBAF00639281 /* NMapsMap */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,10 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB3C21A52ECC1C1600B78A0E /* RxRelay in Frameworks */,
-				FB3C21A32ECC1C1600B78A0E /* RxCocoa in Frameworks */,
-				FB3C21A72ECC1C1600B78A0E /* RxSwift in Frameworks */,
-				FB3C21A02ECC1BD600B78A0E /* SnapKit in Frameworks */,
+				3A84717E2EDEC6CC0026FF4C /* FSCalendar in Frameworks */,
+				FBEA39E02EDEFBAF00639281 /* NMapsMap in Frameworks */,
+				3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */,
+				3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */,
+				3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */,
+				3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,10 +93,12 @@
 			);
 			name = YaguBogu;
 			packageProductDependencies = (
-				FB3C219F2ECC1BD600B78A0E /* SnapKit */,
-				FB3C21A22ECC1C1600B78A0E /* RxCocoa */,
-				FB3C21A42ECC1C1600B78A0E /* RxRelay */,
-				FB3C21A62ECC1C1600B78A0E /* RxSwift */,
+				3A84717D2EDEC6CC0026FF4C /* FSCalendar */,
+				3A8471802EDEC72E0026FF4C /* SnapKit */,
+				3A8471832EDEC7440026FF4C /* RxGesture */,
+				3A8471862EDEC7670026FF4C /* ConfidentialKit */,
+				3A84718A2EDEC7960026FF4C /* Kingfisher */,
+				FBEA39DF2EDEFBAF00639281 /* NMapsMap */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -123,8 +129,13 @@
 			mainGroup = FB6AFDAA2ECC187C001FEB2E;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */,
-				FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */,
+				3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */,
+				3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
+				3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -162,15 +173,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK7C3PTQ65;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YaguBogu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "야구보구";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -179,6 +194,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sparta.YaguBogu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -194,15 +210,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BK7C3PTQ65;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YaguBogu/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "야구보구";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -211,6 +231,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sparta.YaguBogu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -273,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -281,6 +302,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = "";
 			};
 			name = Debug;
 		};
@@ -330,12 +352,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -364,7 +387,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.4;
+			};
+		};
+		3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -372,36 +403,78 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.9.1;
+				minimumVersion = 4.0.4;
+			};
+		};
+		3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/securevale/swift-confidential-plugin.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.2;
+			};
+		};
+		FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.23.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FB3C219F2ECC1BD600B78A0E /* SnapKit */ = {
+		3A84717D2EDEC6CC0026FF4C /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB3C219E2ECC1BD600B78A0E /* XCRemoteSwiftPackageReference "SnapKit" */;
+			package = 3A84717C2EDEC6CC0026FF4C /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+		3A8471802EDEC72E0026FF4C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3A84717F2EDEC72E0026FF4C /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		FB3C21A22ECC1C1600B78A0E /* RxCocoa */ = {
+		3A8471832EDEC7440026FF4C /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
+			package = 3A8471822EDEC7440026FF4C /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
-		FB3C21A42ECC1C1600B78A0E /* RxRelay */ = {
+		3A8471862EDEC7670026FF4C /* ConfidentialKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
+			package = 3A8471852EDEC7670026FF4C /* XCRemoteSwiftPackageReference "swift-confidential" */;
+			productName = ConfidentialKit;
 		};
-		FB3C21A62ECC1C1600B78A0E /* RxSwift */ = {
+		3A84718A2EDEC7960026FF4C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB3C21A12ECC1C1600B78A0E /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
+			package = 3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		FBEA39DF2EDEFBAF00639281 /* NMapsMap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */;
+			productName = NMapsMap;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

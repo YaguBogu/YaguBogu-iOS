@@ -39,3 +39,6 @@ playground.xcworkspace
 
 # Environment (환경 변수 파일)
 .env
+
+//API 보안
+Secrets.swift
