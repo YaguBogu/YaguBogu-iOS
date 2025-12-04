@@ -274,6 +274,10 @@ final class DetailRecordModalView: BaseViewController {
         topDivider.snp.makeConstraints { make in
             make.height.equalTo(1)
         }
+        
+        gameResult.snp.makeConstraints { make in
+            make.height.width.equalTo(32)
+        }
     }
     
     private func setupData() {
