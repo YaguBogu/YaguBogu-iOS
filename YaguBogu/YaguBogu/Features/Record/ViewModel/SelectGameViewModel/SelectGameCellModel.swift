@@ -10,10 +10,14 @@ struct SelectGameCellModel {
     let homeTeamName: String
     let awayTeamName: String
     
+    let homeTeamLogo: String
+    let awayTeamLogo: String
+    
     let homeTeamScore: Int
     let awayTeamScore: Int
     
     let gameDate: String
     let score: String
     let stadium: String
+    let isCancelled: Bool
 }

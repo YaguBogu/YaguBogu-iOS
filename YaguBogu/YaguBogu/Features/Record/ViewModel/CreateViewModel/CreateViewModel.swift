@@ -36,7 +36,7 @@ final class CreateViewModel{
             .disposed(by: disposeBag)
         
         gameSelected
-            .map{"\($0.myTeamName) vs \($0.opposingTeamName)"}
+            .map{"\($0.awayTeamName) vs \($0.homeTeamName)"}
             .bind(to: selectedGameText)
             .disposed(by: disposeBag)
         

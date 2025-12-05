@@ -3,23 +3,23 @@ import UIKit
 final class SelectGameCell: UITableViewCell{
     static let identifier = "SelectGameCell"
     
-    private lazy var myTeamView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [myTeamLogo,myTeamLabel])
+    private lazy var awayTeamView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [awayTeamLogo,awayTeamLabel])
         view.spacing = 6
         view.axis = .vertical
         view.alignment = .center
         return view
     }()
     
-    private let myTeamLogo: UIImageView = {
+    private let awayTeamLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    private let myTeamLabel: UILabel = {
+    private let awayTeamLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFPro-Medium", size: 24)
+        label.font = UIFont(name: "SFPro-Medium", size: 14)
         label.textColor = .appBlack
         return label
     }()
@@ -41,8 +41,9 @@ final class SelectGameCell: UITableViewCell{
     
     private let scoreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Semibold", size: 20)
-        label.textColor = .appBlack
+        label.font = UIFont(name: "SFPro-Semibold", size: 20)
+        label.textColor = .gray09
+        label.numberOfLines = 1
         return label
     }()
     
@@ -53,21 +54,21 @@ final class SelectGameCell: UITableViewCell{
         return label
     }()
     
-    private lazy var opposingTeamView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [opposingTemaLogo,opposingTeamLabel])
+    private lazy var homeTeamView: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [homeTeamLogo,homeTeamLabel])
         view.spacing = 6
         view.axis = .vertical
         view.alignment = .center
         return view
     }()
     
-    private let opposingTemaLogo: UIImageView = {
+    private let homeTeamLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    private let opposingTeamLabel: UILabel = {
+    private let homeTeamLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "SFPro-Medium", size: 14)
         label.textColor = .appBlack
@@ -94,12 +95,13 @@ final class SelectGameCell: UITableViewCell{
     private func configureUI(){
         contentView.backgroundColor = .white
         
-        mainStackView.distribution = .equalCentering
+        mainStackView.distribution = .equalSpacing
+        
         mainStackView.alignment = .center
         
         contentView.addSubview(mainStackView)
         
-        [myTeamView,gameInfoView,opposingTeamView].forEach{
+        [awayTeamView,gameInfoView,homeTeamView].forEach{
             mainStackView.addArrangedSubview($0)
         }
     }
@@ -108,11 +110,11 @@ final class SelectGameCell: UITableViewCell{
         mainStackView.snp.makeConstraints{ make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 14, left: 32, bottom: 14, right: 32))
         }
-        myTeamLogo.snp.makeConstraints { make in
+        awayTeamLogo.snp.makeConstraints { make in
             make.width.height.equalTo(50)
         }
         
-        opposingTemaLogo.snp.makeConstraints { make in
+        homeTeamLogo.snp.makeConstraints { make in
             make.width.height.equalTo(50)
         }
         
@@ -125,17 +127,28 @@ final class SelectGameCell: UITableViewCell{
         let dayFormatter = DateFormatter()
         dayFormatter.locale = Locale(identifier: "ko_KR")
         dayFormatter.dateFormat = "MM.dd (E)"
-        myTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        opposingTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        awayTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        homeTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         
-        myTeamLabel.text = model.myTeamName
+        awayTeamLabel.text = model.awayTeamName
         gameDateLabel.text = dayFormatter.string(from: date)
-        scoreLabel.text = model.score
-        stadiumLabel.text = model.stadium
-        opposingTeamLabel.text = model.opposingTeamName
         
-        myTeamLogo.image = UIImage(named: model.myTeamLogo)
-        opposingTemaLogo.image = UIImage(named: model.opposingTeamLogo)
+        scoreLabel.text = model.score
+        
+        stadiumLabel.text = model.stadium
+        homeTeamLabel.text = model.homeTeamName
+        
+        awayTeamLogo.image = UIImage(named: model.awayTeamLogo)
+        homeTeamLogo.image = UIImage(named: model.homeTeamLogo)
+        
+        if model.isCancelled{
+            scoreLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+            scoreLabel.textColor = .gray07
+        }else {
+            scoreLabel.font = .monospacedDigitSystemFont(ofSize: 20, weight: .semibold)
+            scoreLabel.textColor = .gray09
+        }
+        
     }
     
 }

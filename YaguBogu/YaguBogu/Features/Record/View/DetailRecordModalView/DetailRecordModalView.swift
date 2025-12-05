@@ -53,7 +53,6 @@ final class DetailRecordModalView: BaseViewController {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 0
         return stackView
     }()
     
@@ -186,7 +185,7 @@ final class DetailRecordModalView: BaseViewController {
     private lazy var contentBodyStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [contentTitleLabel, contentLabel])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -203,6 +202,13 @@ final class DetailRecordModalView: BaseViewController {
         label.textColor = .black
         label.numberOfLines = 0
         return label
+    }()
+    
+    private let headerInfoVStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
     }()
     
     init(viewModel: DetailRecordViewModel) {
@@ -229,7 +235,12 @@ final class DetailRecordModalView: BaseViewController {
         
         contentContainerView.addSubview(contentStackView)
         
-        [topDivider,headerStackView,matchInfoStackView,bottomDivider,contentBodyStackView].forEach{
+        [headerStackView, matchInfoStackView].forEach{
+            headerInfoVStackView.addArrangedSubview($0)
+        }
+        
+        
+        [topDivider,headerInfoVStackView,bottomDivider,contentBodyStackView].forEach{
             contentStackView.addArrangedSubview($0)
         }
         
