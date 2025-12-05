@@ -31,6 +31,7 @@ final class BaseScheduleCardView: UIView {
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.textColor = .appBlack
         return label
     }()
     

@@ -5,7 +5,8 @@ final class CustomCalendarHeaderView: UIView {
     
     let monthLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 22)
+        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
+        label.textColor = .appBlack
         label.textAlignment = .center
         label.backgroundColor = .bg
         return label
