@@ -12,6 +12,7 @@
 		3A8471842EDEC7440026FF4C /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471832EDEC7440026FF4C /* RxGesture */; };
 		3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3A8471862EDEC7670026FF4C /* ConfidentialKit */; };
 		3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A84718A2EDEC7960026FF4C /* Kingfisher */; };
+		3AB91E4D2EE2B0F7005A1CA1 /* Gifu in Frameworks */ = {isa = PBXBuildFile; productRef = 3AB91E4C2EE2B0F7005A1CA1 /* Gifu */; };
 		FBEA39E02EDEFBAF00639281 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = FBEA39DF2EDEFBAF00639281 /* NMapsMap */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 				3A8471812EDEC72E0026FF4C /* SnapKit in Frameworks */,
 				3A8471872EDEC7670026FF4C /* ConfidentialKit in Frameworks */,
 				3A84718B2EDEC7960026FF4C /* Kingfisher in Frameworks */,
+				3AB91E4D2EE2B0F7005A1CA1 /* Gifu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +101,7 @@
 				3A8471862EDEC7670026FF4C /* ConfidentialKit */,
 				3A84718A2EDEC7960026FF4C /* Kingfisher */,
 				FBEA39DF2EDEFBAF00639281 /* NMapsMap */,
+				3AB91E4C2EE2B0F7005A1CA1 /* Gifu */,
 			);
 			productName = YaguBogu;
 			productReference = FB6AFDB32ECC187C001FEB2E /* YaguBogu.app */;
@@ -136,6 +139,7 @@
 				3A8471882EDEC77E0026FF4C /* XCRemoteSwiftPackageReference "swift-confidential-plugin" */,
 				3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */,
+				3AB91E4B2EE2B0F7005A1CA1 /* XCRemoteSwiftPackageReference "Gifu" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FB6AFDB42ECC187C001FEB2E /* Products */;
@@ -435,6 +439,14 @@
 				minimumVersion = 8.6.2;
 			};
 		};
+		3AB91E4B2EE2B0F7005A1CA1 /* XCRemoteSwiftPackageReference "Gifu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaishin/Gifu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		FBEA39DE2EDEFBAF00639281 /* XCRemoteSwiftPackageReference "SPM-NMapsMap" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/navermaps/SPM-NMapsMap.git";
@@ -470,6 +482,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3A8471892EDEC7960026FF4C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3AB91E4C2EE2B0F7005A1CA1 /* Gifu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AB91E4B2EE2B0F7005A1CA1 /* XCRemoteSwiftPackageReference "Gifu" */;
+			productName = Gifu;
 		};
 		FBEA39DF2EDEFBAF00639281 /* NMapsMap */ = {
 			isa = XCSwiftPackageProductDependency;

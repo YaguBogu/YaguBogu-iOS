@@ -156,6 +156,28 @@ extension BaseScheduleCardView {
         return vStack
     }
     
+    // 경기 취소
+    static func cancleStackView(cancleTitle: String, stadium: String ) -> UIStackView {
+        let cancleLabel = UILabel()
+        cancleLabel.text = cancleTitle
+        cancleLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        cancleLabel.textColor = .gray07
+        cancleLabel.snp.makeConstraints {
+            $0.height.equalTo(25)
+        }
+        
+        let stadiumLabel = UILabel()
+        stadiumLabel.text = stadium
+        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        stadiumLabel.textColor = .gray07
+        
+        let vStack = UIStackView(arrangedSubviews: [cancleLabel, stadiumLabel])
+        vStack.axis = .vertical
+        vStack.spacing = 8
+        vStack.alignment = .center
+        return vStack
+    }
+    
     func configureCardViewInfo(with game: Game) {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM월 dd일 경기 일정"
@@ -174,6 +196,13 @@ extension BaseScheduleCardView {
         if let result = game.result, game.status == .finished {
             let center = BaseScheduleCardView.scoreStadiumStackView(
                 score: "\(result.awayTeamScore) : \(result.homeTeamScore)",
+                stadium: game.stadiumName ?? "구장 정보 없음"
+            )
+            teamsStackView.insertArrangedSubview(center, at: 1)
+            cardInfoView = center
+        } else if game.result == nil, game.status == .cancelled {
+            let center = BaseScheduleCardView.cancleStackView(
+                cancleTitle: "경기 취소",
                 stadium: game.stadiumName ?? "구장 정보 없음"
             )
             teamsStackView.insertArrangedSubview(center, at: 1)
