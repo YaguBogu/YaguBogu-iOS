@@ -55,6 +55,7 @@ struct Game: Identifiable {
 enum GameStatus {
     case finished
     case scheduled
+    case cancelled
 }
 
 struct GameResult {
@@ -79,8 +80,15 @@ extension ScheduleItem {
         let awayTeamName = teams.away.name
         
         // 경기 상태
-        let gameStatus: GameStatus = (status.short == "FT") ? .finished : .scheduled
-        
+        let gameStatus: GameStatus
+        switch status.short {
+        case "FT":
+            gameStatus = .finished
+        case "CANC", "POST":
+            gameStatus = .cancelled
+        default:
+            gameStatus = .scheduled
+        }
         // 경기 결과
         var result: GameResult? = nil
         if let scores = scores,
@@ -109,3 +117,4 @@ extension ScheduleItem {
         )
     }
 }
+
