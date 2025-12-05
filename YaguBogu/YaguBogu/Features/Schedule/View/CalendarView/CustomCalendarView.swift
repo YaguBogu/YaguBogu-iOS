@@ -53,7 +53,7 @@ extension CustomCalendarView {
         
         calendar.scrollEnabled = false
         calendar.appearance.weekdayFont = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
-        calendar.appearance.weekdayTextColor = .gray
+        calendar.appearance.weekdayTextColor = .gray05
         
         calendar.placeholderType = .none
         

@@ -67,7 +67,7 @@
     {
       "identity" : "swift-confidential",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/securevale/swift-confidential",
+      "location" : "https://github.com/securevale/swift-confidential.git",
       "state" : {
         "revision" : "95fd5cc6b01aa3d054d0f5964bb1f616a7276309",
         "version" : "0.5.0"
@@ -76,7 +76,7 @@
     {
       "identity" : "swift-confidential-plugin",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/securevale/swift-confidential-plugin",
+      "location" : "https://github.com/securevale/swift-confidential-plugin.git",
       "state" : {
         "revision" : "836e2058eecc03b62d87f4220cb48fad9f23d8f6",
         "version" : "0.5.0"
