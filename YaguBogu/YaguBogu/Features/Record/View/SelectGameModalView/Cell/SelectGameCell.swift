@@ -55,14 +55,14 @@ final class SelectGameCell: UITableViewCell{
     }()
     
     private lazy var homeTeamView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [homeTemaLogo,homeTeamLabel])
+        let view = UIStackView(arrangedSubviews: [homeTeamLogo,homeTeamLabel])
         view.spacing = 6
         view.axis = .vertical
         view.alignment = .center
         return view
     }()
     
-    private let homeTemaLogo: UIImageView = {
+    private let homeTeamLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -114,7 +114,7 @@ final class SelectGameCell: UITableViewCell{
             make.width.height.equalTo(50)
         }
         
-        homeTemaLogo.snp.makeConstraints { make in
+        homeTeamLogo.snp.makeConstraints { make in
             make.width.height.equalTo(50)
         }
         
@@ -139,7 +139,7 @@ final class SelectGameCell: UITableViewCell{
         homeTeamLabel.text = model.homeTeamName
         
         awayTeamLogo.image = UIImage(named: model.awayTeamLogo)
-        homeTemaLogo.image = UIImage(named: model.homeTeamLogo)
+        homeTeamLogo.image = UIImage(named: model.homeTeamLogo)
         
         if model.isCancelled{
             scoreLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
