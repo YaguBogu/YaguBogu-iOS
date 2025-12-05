@@ -1,5 +1,5 @@
 {
-  "originHash" : "50214daf9370f8ed523759acb7ec0602ebc5c50a390441800364ac9606ec7f6e",
+  "originHash" : "fa35dfeadf3c245417f24a042890861f0a48fe746d829b1ae8ae012d308f020f",
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -11,12 +11,12 @@
       }
     },
     {
-      "identity" : "kingfisher",
+      "identity" : "gifu",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/onevcat/Kingfisher.git",
+      "location" : "https://github.com/kaishin/Gifu.git",
       "state" : {
-        "revision" : "d30a5fad881137e2267f96a8e3fc35c58999bb94",
-        "version" : "8.6.2"
+        "revision" : "f19726eaf0dfa4dbce4d3f80293c9d38c2acba53",
+        "version" : "4.0.1"
       }
     },
     {
@@ -58,7 +58,7 @@
     {
       "identity" : "spm-nmapsmap",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/navermaps/SPM-NMapsMap.git",
+      "location" : "https://github.com/navermaps/SPM-NMapsMap",
       "state" : {
         "revision" : "fb4eef37db9904c0a0dcdf7a828c892e13782cfa",
         "version" : "3.23.0"

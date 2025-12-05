@@ -68,7 +68,8 @@ class CreateRecordView: BaseViewController {
     
     private let arrowImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "right")
+        image.image = UIImage(named: "right")?.withRenderingMode(.alwaysTemplate)
+        image.tintColor = .gray04
         return image
     }()
     
@@ -147,7 +148,7 @@ class CreateRecordView: BaseViewController {
     private let photoEditIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "edit")
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.isUserInteractionEnabled = false
         return view
     }()
