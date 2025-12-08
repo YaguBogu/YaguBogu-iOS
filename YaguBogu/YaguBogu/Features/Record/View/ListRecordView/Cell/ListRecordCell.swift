@@ -124,11 +124,11 @@ class ListRecordCell: UICollectionViewCell{
     
     private func setupGradient(){
         dimView.gradientLayer.colors = [
-            UIColor(white: 0, alpha: 0.0).cgColor,
+            UIColor(white: 0, alpha: 0.04).cgColor,
             UIColor(white: 0, alpha: 1.0).cgColor
         ]
         
-        dimView.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+        dimView.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
         dimView.gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
         
     }
