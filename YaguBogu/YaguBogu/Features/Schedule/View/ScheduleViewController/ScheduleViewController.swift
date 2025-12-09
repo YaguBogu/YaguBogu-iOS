@@ -10,7 +10,7 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     private let calendarView: CustomCalendarView
     private let scheduleCardView = BaseScheduleCardView()
     private let noScheduleView = NoScheduleView()
-    private var toolTip: ToolTipView?
+    private var toolTip: UIImageView?
     
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
@@ -88,15 +88,21 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     }
     
     private func showToolTip() {
-        if toolTip != nil {
-            return
-        }
+        if toolTip != nil { return }
         
-        let tip = ToolTipView()
-        toolTip = tip
+        let toolTipImageView: UIImageView = {
+            let image = UIImageView(image: UIImage(named: "toolTip"))
+            image.alpha = 0
+            image.snp.makeConstraints {
+                $0.width.equalTo(100)
+                $0.height.equalTo(40)
+            }
+            return image
+        }()
+    
         guard let tabBar = tabBarController?.tabBar else { return }
         
-        view.addSubview(tip)
+        view.addSubview(toolTipImageView)
         
         // 경기 일정 탭
         let index = 1  // 두 번째 탭의 중앙 X
@@ -104,13 +110,13 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         let itemWidth = tabBar.bounds.width / CGFloat(tabCount)
         let centerX = itemWidth * CGFloat(index) + itemWidth / 2
         
-        tip.snp.makeConstraints {
+        toolTipImageView.snp.makeConstraints {
             $0.bottom.equalTo(tabBar.snp.top).offset(-4)
             $0.centerX.equalToSuperview().offset(centerX - tabBar.bounds.width / 2)
             
-            tip.alpha = 0
+            toolTipImageView.alpha = 0
             UIView.animate(withDuration: 0.25) {
-                tip.alpha = 1
+                toolTipImageView.alpha = 1
             }
         }
     }
