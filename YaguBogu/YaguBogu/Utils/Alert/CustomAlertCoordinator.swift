@@ -8,10 +8,10 @@ class CustomAlertCoordinator:BaseCoordinator{
     
     private var title: String
     private var message: String
-    private var cancelTitle: String
+    private var cancelTitle: String?
     private var confirmTitle: String
     
-    init(navigationController: UINavigationController, title: String, message: String, cancelTitle: String, confirmTitle: String) {
+    init(navigationController: UINavigationController, title: String, message: String, cancelTitle: String?, confirmTitle: String) {
         self.title = title
         self.message = message
         self.cancelTitle = cancelTitle
@@ -27,8 +27,12 @@ class CustomAlertCoordinator:BaseCoordinator{
         
         alertVC.setTitle(title)
         alertVC.setMessage(message)
-        alertVC.setCancelButtonText(cancelTitle)
         alertVC.setConfirmButtonText(confirmTitle)
+        if let cancel = cancelTitle {
+                alertVC.setCancelButtonText(cancel)
+            } else {
+                alertVC.hideCancelButton()
+            }
         
         viewModel.dismissAction
             .subscribe(onNext: { [weak self] action in
