@@ -14,7 +14,7 @@ class HomeViewController: BaseViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
-    
+    private let refreshControl = UIRefreshControl()
 
     private let headerContainer = UIView()
 
@@ -230,6 +230,8 @@ class HomeViewController: BaseViewController {
         // 스크롤뷰 제스처 허용
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
+        
+        scrollView.refreshControl = refreshControl
     }
 
     override func setupConstraints() {
@@ -630,6 +632,23 @@ class HomeViewController: BaseViewController {
                 )
             })
             .disposed(by: disposeBag)
+        
+        // 새로고침
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind { [weak self] in
+                guard let self = self else { return }
+                let current = self.viewModel.currentStadiumInfo()
+                self.viewModel.stadiumSelected.onNext(current)
+            }
+            .disposed(by: disposeBag)
+
+        // 새로고침 종료
+        viewModel.output.temperatureText
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl.endRefreshing()
+            })
+            .disposed(by: disposeBag)
+
     }
 }
 
