@@ -444,7 +444,7 @@ class HomeViewController: BaseViewController {
                 self.tempLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 80, weight: .thin),
+                        .font: UIFont(name: "SFProText-Thin", size: 80) ?? UIFont.systemFont(ofSize: 80, weight: .thin),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraph,
                         .kern: -2
@@ -467,8 +467,8 @@ class HomeViewController: BaseViewController {
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
@@ -489,8 +489,8 @@ class HomeViewController: BaseViewController {
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
@@ -511,8 +511,8 @@ class HomeViewController: BaseViewController {
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
