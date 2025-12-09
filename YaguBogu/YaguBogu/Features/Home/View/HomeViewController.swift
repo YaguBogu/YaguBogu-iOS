@@ -3,6 +3,7 @@ import RxSwift
 import RxGesture
 import RxCocoa
 import SnapKit
+import Gifu
 
 class HomeViewController: BaseViewController {
     
@@ -53,7 +54,7 @@ class HomeViewController: BaseViewController {
     private let emojiStack = UIStackView()
 
     private let mascotBox = UIView()
-    private let mascotImageView = UIImageView()
+    private let mascotImageView = GIFImageView()
 
     private let infoContainer = UIView()
     private let forecastBox = UIView()
@@ -548,11 +549,20 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         output.teamMascotAssetName
-            .drive(onNext: { [weak self] assetName in
+            .drive(onNext: { [weak self] fileName in
                 guard let self = self else { return }
-                self.mascotImageView.image = UIImage(named: assetName)
+
+                guard let url = Bundle.main.url(forResource: fileName, withExtension: "gif"),
+                      let data = try? Data(contentsOf: url) else {
+                    print("GIF 파일을 찾지 못함: \(fileName).gif")
+                    return
+                }
+
+                self.mascotImageView.animate(withGIFData: data)
             })
             .disposed(by: disposeBag)
+
+
 
         output.stadiumAddress
             .drive(onNext: { [weak self] address in
