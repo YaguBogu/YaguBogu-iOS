@@ -13,6 +13,8 @@ class HomeViewController: BaseViewController {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
+    
 
     private let headerContainer = UIView()
 
