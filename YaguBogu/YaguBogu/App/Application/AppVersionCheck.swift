@@ -15,7 +15,7 @@ struct AppVersion{
     //앱 스토어 최신 정보 확인
     static func latestVersion(completion: @escaping (String?) -> Void){
         let appleID = AppIdentifier.appID
-        let urlString = "http://itunes.apple.com/lookup?id=\(appleID)&country=kr"
+        let urlString = "https://itunes.apple.com/lookup?id=\(appleID)&country=kr"
         guard let url = URL(string: urlString) else {
             print("URL이 정확하지 않음")
             completion(nil)
@@ -59,13 +59,18 @@ struct AppVersion{
         let currentVersionComponents = currentVersion.split(separator: ".").map{Int($0) ?? 0}
         let appStoreVersionComponents = appStoreVersion.split(separator: ".").map{Int($0) ?? 0}
         
-        guard currentVersionComponents.count >= 2, appStoreVersionComponents.count >= 2 else {
-            return false
+        let componentCount = min(currentVersionComponents.count, appStoreVersionComponents.count)
+        
+        for i in 0..<componentCount{
+            if appStoreVersionComponents[i] > currentVersionComponents[i]{
+                return true
+            }
+            if appStoreVersionComponents[i] < currentVersionComponents[i]{
+                return false
+            }
         }
         
-        return appStoreVersionComponents[0] > currentVersionComponents[0] ||
-        (appStoreVersionComponents[0] == currentVersionComponents[0] &&
-         appStoreVersionComponents[1] > currentVersionComponents[1])
+        return appStoreVersionComponents.count > currentVersionComponents.count
     }
 
     // 앱 스토어 연결

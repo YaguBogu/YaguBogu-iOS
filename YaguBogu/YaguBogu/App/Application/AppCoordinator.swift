@@ -14,8 +14,8 @@ final class AppCoordinator: BaseCoordinator {
                 guard let self = self else {return}
                 
                 guard let appStoreVersion = appStoreVersion,
-                      let currntVersion = AppVersion.appVersion,
-                      AppVersion.isMinorVersionUpdated(currentVersion: currntVersion, appStoreVersion: appStoreVersion) else {
+                      let currentVersion = AppVersion.appVersion,
+                      AppVersion.isMinorVersionUpdated(currentVersion: currentVersion, appStoreVersion: appStoreVersion) else {
                     self.showSplash()
                     return
                 }
