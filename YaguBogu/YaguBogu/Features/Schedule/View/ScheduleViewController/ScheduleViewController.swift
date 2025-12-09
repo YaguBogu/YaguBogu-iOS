@@ -88,6 +88,8 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     }
     
     private func showToolTip() {
+        if UserDefaults.standard.bool(forKey: "didShowScheduleToolTip") { return }
+        
         if toolTip != nil { return }
         
         let toolTipImageView: UIImageView = {
@@ -119,5 +121,6 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
                 toolTipImageView.alpha = 1
             }
         }
+        UserDefaults.standard.set(true, forKey: "didShowScheduleToolTip")
     }
 }
