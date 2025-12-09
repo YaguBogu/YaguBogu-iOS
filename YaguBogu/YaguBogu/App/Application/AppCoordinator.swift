@@ -6,14 +6,29 @@ final class AppCoordinator: BaseCoordinator {
     private let disposeBag = DisposeBag()
 
     override func start() {
-        showSplash()
+        versionCheck()
+    }
+    private func versionCheck(){
+        AppVersion.latestVersion{[weak self] appStoreVersion in
+            DispatchQueue.main.async{
+                guard let self = self else {return}
+                
+                guard let appStoreVersion = appStoreVersion,
+                      let currntVersion = AppVersion.appVersion,
+                      AppVersion.isMinorVersionUpdated(currentVersion: currntVersion, appStoreVersion: appStoreVersion) else {
+                    self.showSplash()
+                    return
+                }
+                self.showUpdateAlert()
+            }
+        }
     }
 
     private func showSplash() {
-
+        
         let vm = SplashViewModel()
         let vc = SplashViewController(viewModel: vm)
-
+        
         // '스플래시 끝남' 이벤트 구독
         vm.finishTrigger
             .subscribe(onNext: { [weak self] in
@@ -29,6 +44,27 @@ final class AppCoordinator: BaseCoordinator {
             .disposed(by: disposeBag)
 
         navigationController.setViewControllers([vc], animated: false)
+    }
+    
+    private func showUpdateAlert(){
+        let alertCoordinator = CustomAlertCoordinator(
+            navigationController: self.navigationController,
+            title: "업데이트 알림",
+            message: "최신 버전이 출시되었습니다. 원활한 서비스 이용을 위해 업데이트를 진행해주세요.",
+            cancelTitle: nil,
+            confirmTitle: "업데이트"
+        )
+        
+        addChild(alertCoordinator)
+        alertCoordinator.start{[weak self] action in
+            guard let self = self else { return }
+            
+            if action == .confirm{
+                AppVersion.openAppStore()
+            }
+            
+            self.removeChild(alertCoordinator)
+        }
     }
     
     private func showOnboarding(completion: @escaping () -> Void) {

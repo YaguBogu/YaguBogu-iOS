@@ -82,5 +82,6 @@ final class SplashViewController: BaseViewController {
             $0.height.equalTo(25)
         }
     }
+    
 }
 
