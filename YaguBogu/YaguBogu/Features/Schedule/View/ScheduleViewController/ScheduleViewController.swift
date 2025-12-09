@@ -10,6 +10,7 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     private let calendarView: CustomCalendarView
     private let scheduleCardView = BaseScheduleCardView()
     private let noScheduleView = NoScheduleView()
+    private var toolTip: ToolTipView?
     
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
@@ -42,6 +43,9 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
                 self?.calendarView.calendar.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        calendarView.didTapMonthButton = { [weak self] in
+            self?.showToolTip()}
     }
     
     private func setConstraints() {
@@ -81,5 +85,33 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         scheduleCardView.isHidden = false
         noScheduleView.isHidden = true
         scheduleCardView.configureCardViewInfo(with: game)
+    }
+    
+    private func showToolTip() {
+        if toolTip != nil {
+            return
+        }
+        
+        let tip = ToolTipView()
+        toolTip = tip
+        guard let tabBar = tabBarController?.tabBar else { return }
+        
+        view.addSubview(tip)
+        
+        // 경기 일정 탭
+        let index = 1  // 두 번째 탭의 중앙 X
+        let tabCount = tabBar.items?.count ?? 1
+        let itemWidth = tabBar.bounds.width / CGFloat(tabCount)
+        let centerX = itemWidth * CGFloat(index) + itemWidth / 2
+        
+        tip.snp.makeConstraints {
+            $0.bottom.equalTo(tabBar.snp.top).offset(-4)
+            $0.centerX.equalToSuperview().offset(centerX - tabBar.bounds.width / 2)
+            
+            tip.alpha = 0
+            UIView.animate(withDuration: 0.25) {
+                tip.alpha = 1
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ final class CustomCalendarView: UIView {
     private let disposeBag = DisposeBag()
     
     var didSelectDate: ((Date) -> Void)?
+    var didTapMonthButton: (() -> Void)?
     
     init(frame: CGRect = .zero, viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
@@ -96,10 +97,15 @@ extension CustomCalendarView {
         headerView.leftButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.moveCurrentPage(by: -1)
+                self?.didTapMonthButton?()
             })
+            .disposed(by: disposeBag)  // 이거 원래 없었는데 추가해요?말아요?
+        
         headerView.rightButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.moveCurrentPage(by: 1)
+                self?.didTapMonthButton?()
+
             })
             .disposed(by: disposeBag)
     }
