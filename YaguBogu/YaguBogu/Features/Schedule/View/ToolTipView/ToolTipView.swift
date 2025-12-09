@@ -9,7 +9,7 @@ final class ToolTipView: UIView {
     let textLabel: UILabel = {
         let label = UILabel()
         label.text = "오늘로 돌아가기"
-        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
         label.textColor = .appWhite
         label.numberOfLines = 0
         label.textAlignment = .center
