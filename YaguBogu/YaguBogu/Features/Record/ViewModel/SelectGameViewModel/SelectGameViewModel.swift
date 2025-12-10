@@ -83,13 +83,19 @@ final class SelectGameViewModel {
             myTeamName: BaseBallNameTranslator.getKoreanName(for: mySelectedTeam.name),
             myTeamLogo: mySelectedTeam.listCharacter,
             
+            
             opposingTeamName: BaseBallNameTranslator.getKoreanName(for: opposingTeamData.name.rawValue),
             opposingTeamLogo: opposingTeamInfo?.listCharacter ?? opposingTeamData.logo,
             
             homeTeamName: homeTeamTransName,
             awayTeamName: awayTeamTransName,
+            
             homeTeamLogo: homeTeamInfo?.listCharacter ?? homeTeam.logo,
             awayTeamLogo: awayTeamInfo?.listCharacter ?? awayTeam.logo,
+            
+            homeTeamID: gameInfo.teams.home.id,
+            awayTeamID: gameInfo.teams.away.id,
+            
             homeTeamScore: gameInfo.scores.home.total ?? 0,
             awayTeamScore: gameInfo.scores.away.total ?? 0,
             
