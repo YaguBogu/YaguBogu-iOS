@@ -3,8 +3,11 @@ import RxSwift
 import RxGesture
 import RxCocoa
 import SnapKit
+import Gifu
 
 class HomeViewController: BaseViewController {
+    
+    let retapEvent = PublishRelay<Void>()
     
     weak var coordinator: HomeCoordinator?
     
@@ -12,6 +15,8 @@ class HomeViewController: BaseViewController {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
+    
+    private let refreshControl = UIRefreshControl()
 
     private let headerContainer = UIView()
 
@@ -53,7 +58,7 @@ class HomeViewController: BaseViewController {
     private let emojiStack = UIStackView()
 
     private let mascotBox = UIView()
-    private let mascotImageView = UIImageView()
+    private let mascotImageView = GIFImageView()
 
     private let infoContainer = UIView()
     private let forecastBox = UIView()
@@ -96,6 +101,13 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        bindRetap()
+        
+        if let tab = self.tabBarController as? TabBarController {
+            tab.homeTabReselected
+                .bind(to: retapEvent)
+                .disposed(by: disposeBag)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,6 +239,8 @@ class HomeViewController: BaseViewController {
         // 스크롤뷰 제스처 허용
         scrollView.isScrollEnabled = true
         scrollView.alwaysBounceVertical = true
+        
+        scrollView.refreshControl = refreshControl
     }
 
     override func setupConstraints() {
@@ -444,7 +458,7 @@ class HomeViewController: BaseViewController {
                 self.tempLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 80, weight: .thin),
+                        .font: UIFont(name: "SFProText-Thin", size: 80) ?? UIFont.systemFont(ofSize: 80, weight: .thin),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraph,
                         .kern: -2
@@ -467,8 +481,8 @@ class HomeViewController: BaseViewController {
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
@@ -489,8 +503,8 @@ class HomeViewController: BaseViewController {
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
@@ -511,8 +525,8 @@ class HomeViewController: BaseViewController {
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.systemFont(ofSize: 14, weight: .medium),
-                        .foregroundColor: UIColor.gray09,
+                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
                     ]
@@ -548,11 +562,20 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
 
         output.teamMascotAssetName
-            .drive(onNext: { [weak self] assetName in
+            .drive(onNext: { [weak self] fileName in
                 guard let self = self else { return }
-                self.mascotImageView.image = UIImage(named: assetName)
+
+                guard let url = Bundle.main.url(forResource: fileName, withExtension: "gif"),
+                      let data = try? Data(contentsOf: url) else {
+                    print("GIF 파일을 찾지 못함: \(fileName).gif")
+                    return
+                }
+
+                self.mascotImageView.animate(withGIFData: data)
             })
             .disposed(by: disposeBag)
+
+
 
         output.stadiumAddress
             .drive(onNext: { [weak self] address in
@@ -618,6 +641,36 @@ class HomeViewController: BaseViewController {
                 )
             })
             .disposed(by: disposeBag)
+        
+        // 새로고침
+        refreshControl.rx.controlEvent(.valueChanged)
+            .bind { [weak self] in
+                guard let self = self else { return }
+                let current = self.viewModel.currentStadiumInfo()
+                self.viewModel.stadiumSelected.onNext(current)
+            }
+            .disposed(by: disposeBag)
+
+        // 새로고침 종료
+        viewModel.output.temperatureText
+            .drive(onNext: { [weak self] _ in
+                self?.refreshControl.endRefreshing()
+            })
+            .disposed(by: disposeBag)
+
     }
+    
+    private func bindRetap() {
+        retapEvent
+            .asSignal()
+            .emit(onNext: { [weak self] in
+                guard let self = self else { return }
+
+                self.scrollView.setContentOffset(.zero, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+    }
+
 }
 

@@ -80,11 +80,13 @@ final class CreateViewModel{
                 
                 guard let photoData = saveImageCoreData(image: image) else { return }
                 
+                guard let selectedTeam = TeamDataUserDefaults.shared.getSelectedTeam() else { return }
                 CoreDataManager.shared.saveRecord(
                     title: title,
                     contentText: content,
                     photoData: photoData,
-                    game: game
+                    game: game,
+                    myTeam: selectedTeam
                 )
                 .observe(on: MainScheduler.instance)
                 .subscribe(onCompleted: {

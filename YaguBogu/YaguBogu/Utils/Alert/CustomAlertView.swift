@@ -46,6 +46,7 @@ class CustomAlertView:BaseViewController{
         label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
         label.textColor = .appBlack
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -177,5 +178,13 @@ class CustomAlertView:BaseViewController{
     
     func setConfirmButtonText(_ confirmTitle: String) {
         self.confirmButton.setTitle(confirmTitle, for: .normal)
+    }
+    
+    func hideCancelButton(){
+        cancelButton.isHidden = true
+        
+        buttonStackView.removeArrangedSubview(cancelButton)
+        
+        cancelButton.removeFromSuperview()
     }
 }
