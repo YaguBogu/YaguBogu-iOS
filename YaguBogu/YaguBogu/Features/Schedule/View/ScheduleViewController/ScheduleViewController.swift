@@ -123,4 +123,8 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         }
         UserDefaults.standard.set(true, forKey: "didShowScheduleToolTip")
     }
+    
+    func skipToToday() {
+        calendarView.skipToDay()
+    }
 }

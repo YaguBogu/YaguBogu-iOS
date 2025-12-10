@@ -1,10 +1,13 @@
 import UIKit
 
-final class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    var scheduleCoordinator: ScheduleCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.delegate = self
+        
         tabBar.tintColor = .primary
         tabBar.unselectedItemTintColor = .gray03
 
@@ -28,6 +31,14 @@ final class TabBarController: UITabBarController {
 
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let nav = viewController as? UINavigationController else { return }
+        
+        if nav == scheduleCoordinator?.navigationController {
+            scheduleCoordinator?.goToToday()
+        }
     }
     
     override func viewDidLayoutSubviews() {

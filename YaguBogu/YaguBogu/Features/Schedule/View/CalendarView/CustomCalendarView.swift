@@ -128,6 +128,13 @@ extension CustomCalendarView {
             updateHeaderMonthLabel()
         }
     }
+    
+    func skipToDay() {
+        let today = viewModel.today20260327
+        calendar.select(today)
+        calendar.setCurrentPage(today, animated: true)
+        updateHeaderMonthLabel()
+    }
 }
 
 extension CustomCalendarView: FSCalendarDelegate, FSCalendarDataSource {
