@@ -193,7 +193,7 @@ final class HomeViewModel {
                     return "강수량 정보를 불러오는 중"
                 }
                 let rain = currentWeather.precipitation ?? 0
-                return "\(rain)mm"
+                return "\(rain)%"
             }
         
         let humidityTextDriver = weatherDriver
