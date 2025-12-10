@@ -113,12 +113,13 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         toolTipImageView.snp.makeConstraints {
             $0.bottom.equalTo(tabBar.snp.top).offset(-4)
             $0.centerX.equalToSuperview().offset(centerX - tabBar.bounds.width / 2)
-            
-            toolTipImageView.alpha = 0
-            UIView.animate(withDuration: 0.25) {
-                toolTipImageView.alpha = 1
-            }
         }
+        
+        toolTipImageView.alpha = 0
+        UIView.animate(withDuration: 0.25) {
+            toolTipImageView.alpha = 1
+        }
+        
         UserDefaults.standard.set(true, forKey: "didShowScheduleToolTip")
     }
     

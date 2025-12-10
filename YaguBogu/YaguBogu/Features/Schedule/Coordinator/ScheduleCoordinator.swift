@@ -3,7 +3,7 @@ import UIKit
 final class ScheduleCoordinator: BaseCoordinator {
     private let team: TeamInfo
     
-    private var rootViewController: ScheduleViewController!
+    private weak var rootViewController: ScheduleViewController?
     
     init(navigationController: UINavigationController, team: TeamInfo) {
         self.team = team

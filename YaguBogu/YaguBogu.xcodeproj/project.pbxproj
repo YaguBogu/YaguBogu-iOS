@@ -129,7 +129,7 @@
 				};
 			};
 			buildConfigurationList = FB6AFDAE2ECC187C001FEB2E /* Build configuration list for PBXProject "YaguBogu" */;
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
