@@ -41,13 +41,6 @@ final class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = appearance
     }
     
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        guard let nav = viewController as? UINavigationController else { return }
-        
-        if nav == scheduleCoordinator?.navigationController {
-            scheduleCoordinator?.goToToday()
-        }
-    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -66,5 +59,11 @@ extension TabBarController: UITabBarControllerDelegate {
         }
 
         previousIndex = current
+        
+        guard let nav = viewController as? UINavigationController else { return }
+        
+        if nav == scheduleCoordinator?.navigationController {
+            scheduleCoordinator?.goToToday()
+        }
     }
 }
