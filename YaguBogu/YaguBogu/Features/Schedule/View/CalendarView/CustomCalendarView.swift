@@ -99,7 +99,7 @@ extension CustomCalendarView {
                 self?.moveCurrentPage(by: -1)
                 self?.didTapMonthButton?()
             })
-            .disposed(by: disposeBag)  // 이거 원래 없었는데 추가해요?말아요?
+            .disposed(by: disposeBag)
         
         headerView.rightButton.rx.tap
             .subscribe(onNext: { [weak self] in
