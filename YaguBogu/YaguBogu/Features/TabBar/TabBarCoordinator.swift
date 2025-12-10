@@ -37,6 +37,7 @@ final class TabBarCoordinator: BaseCoordinator {
             image: UIImage(named: "tab_schedule_default"),
             selectedImage: UIImage(named: "tab_schedule_selected")
         )
+        tabBarController.scheduleCoordinator = scheduleCoordinator
 
         // 직관기록
         let recordNav = UINavigationController()

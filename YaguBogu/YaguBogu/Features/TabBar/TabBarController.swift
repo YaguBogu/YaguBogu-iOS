@@ -6,10 +6,10 @@ final class TabBarController: UITabBarController {
     
     let homeTabReselected = PublishRelay<Void>()
     private var previousIndex = 0
-
+    var scheduleCoordinator: ScheduleCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.delegate = self
         
         tabBar.tintColor = .primary
@@ -39,6 +39,14 @@ final class TabBarController: UITabBarController {
 
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        guard let nav = viewController as? UINavigationController else { return }
+        
+        if nav == scheduleCoordinator?.navigationController {
+            scheduleCoordinator?.goToToday()
+        }
     }
     
     override func viewDidLayoutSubviews() {

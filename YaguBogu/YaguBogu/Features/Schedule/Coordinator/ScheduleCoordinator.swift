@@ -3,6 +3,8 @@ import UIKit
 final class ScheduleCoordinator: BaseCoordinator {
     private let team: TeamInfo
     
+    private weak var rootViewController: ScheduleViewController?
+    
     init(navigationController: UINavigationController, team: TeamInfo) {
         self.team = team
         super.init(navigationController: navigationController)
@@ -13,7 +15,13 @@ final class ScheduleCoordinator: BaseCoordinator {
         let viewModel = ScheduleViewModel(team: team)
         let viewController = ScheduleViewController(viewModel: viewModel)
         viewController.navigationItem.title = "전체 경기 일정"
+        self.rootViewController = viewController
         navigationController.setViewControllers([viewController], animated: false)
+    }
+    
+    func goToToday() {
+        rootViewController?.hideToolTip()
+        rootViewController?.skipToToday()
     }
 }
 

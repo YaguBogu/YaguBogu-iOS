@@ -13,6 +13,7 @@ final class CustomCalendarView: UIView {
     private let disposeBag = DisposeBag()
     
     var didSelectDate: ((Date) -> Void)?
+    var didTapMonthButton: (() -> Void)?
     
     init(frame: CGRect = .zero, viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
@@ -96,10 +97,15 @@ extension CustomCalendarView {
         headerView.leftButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.moveCurrentPage(by: -1)
+                self?.didTapMonthButton?()
             })
+            .disposed(by: disposeBag)
+        
         headerView.rightButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.moveCurrentPage(by: 1)
+                self?.didTapMonthButton?()
+
             })
             .disposed(by: disposeBag)
     }
@@ -121,6 +127,14 @@ extension CustomCalendarView {
             calendar.setCurrentPage(newPage, animated: true)
             updateHeaderMonthLabel()
         }
+    }
+    
+    func skipToDay() {
+        let today = viewModel.today20260327
+        calendar.select(today)
+        calendar.setCurrentPage(today, animated: true)
+        updateHeaderMonthLabel()
+        didSelectDate?(today)
     }
 }
 

@@ -10,6 +10,7 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     private let calendarView: CustomCalendarView
     private let scheduleCardView = BaseScheduleCardView()
     private let noScheduleView = NoScheduleView()
+    private var toolTip: UIImageView?
     
     init(viewModel: ScheduleViewModel) {
         self.viewModel = viewModel
@@ -42,6 +43,9 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
                 self?.calendarView.calendar.reloadData()
             })
             .disposed(by: disposeBag)
+        
+        calendarView.didTapMonthButton = { [weak self] in
+            self?.showToolTip()}
     }
     
     private func setConstraints() {
@@ -81,5 +85,54 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         scheduleCardView.isHidden = false
         noScheduleView.isHidden = true
         scheduleCardView.configureCardViewInfo(with: game)
+    }
+    
+    private func showToolTip() {
+        if UserDefaults.standard.bool(forKey: "didShowScheduleToolTip") { return }
+        
+        if toolTip != nil { return }
+        
+        let toolTipImageView: UIImageView = {
+            let image = UIImageView(image: UIImage(named: "toolTip"))
+            image.alpha = 0
+            return image
+        }()
+        
+        self.toolTip = toolTipImageView
+        
+        guard let tabBar = tabBarController?.tabBar else { return }
+        
+        view.addSubview(toolTipImageView)
+        
+        // 경기 일정 탭
+        let index = 1  // 두 번째 탭의 중앙 X
+        let tabCount = tabBar.items?.count ?? 1
+        let itemWidth = tabBar.bounds.width / CGFloat(tabCount)
+        let centerX = itemWidth * CGFloat(index) + itemWidth / 2
+        
+        toolTipImageView.snp.makeConstraints {
+            $0.bottom.equalTo(tabBar.snp.top).offset(-4)
+            $0.centerX.equalToSuperview().offset(centerX - tabBar.bounds.width / 2)
+        }
+        
+        toolTipImageView.alpha = 0
+        UIView.animate(withDuration: 0.25) {
+            toolTipImageView.alpha = 1
+        }
+        
+        UserDefaults.standard.set(true, forKey: "didShowScheduleToolTip")
+    }
+    
+    func skipToToday() {
+        calendarView.skipToDay()
+    }
+    
+    func hideToolTip() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.toolTip?.alpha = 0
+        }, completion: { _ in
+            self.toolTip?.removeFromSuperview()
+            self.toolTip = nil
+        })
     }
 }
