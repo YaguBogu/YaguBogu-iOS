@@ -1,10 +1,17 @@
 import UIKit
+import RxRelay
+import RxSwift
 
 final class TabBarController: UITabBarController {
+    
+    let homeTabReselected = PublishRelay<Void>()
+    private var previousIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.delegate = self
+        
         tabBar.tintColor = .primary
         tabBar.unselectedItemTintColor = .gray03
 
@@ -40,4 +47,16 @@ final class TabBarController: UITabBarController {
 
 }
 
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          didSelect viewController: UIViewController) {
 
+        let current = tabBarController.selectedIndex
+
+        if current == 0, previousIndex == 0 {
+            homeTabReselected.accept(()) // 재탭 이벤트 발생하게하기
+        }
+
+        previousIndex = current
+    }
+}

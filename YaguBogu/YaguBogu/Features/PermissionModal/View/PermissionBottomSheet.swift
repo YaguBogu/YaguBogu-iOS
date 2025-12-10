@@ -23,8 +23,7 @@ final class PermissionBottomSheet: UIViewController {
         self.viewModel = viewModel
         self.sheetView = PermissionBottomSheetView(viewModel: viewModel)
 
-        let figmaHeightRatio: CGFloat = 1126.0 / 2622.0
-        self.sheetHeight = UIScreen.main.bounds.height * figmaHeightRatio
+        self.sheetHeight = 292
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,7 +37,6 @@ final class PermissionBottomSheet: UIViewController {
         setupLayout()
         setupGesture()
 
-        sheetView.closeButton.addTarget(self, action: #selector(animateDismiss), for: .touchUpInside)
         sheetView.confirmButton.addTarget(self, action: #selector(animateDismiss), for: .touchUpInside)
     }
 

@@ -22,6 +22,7 @@ final class HomeCoordinator: BaseCoordinator {
 
         let viewController = HomeViewController(viewModel: viewModel)
         viewController.coordinator = self
+        
         navigationController.setViewControllers([viewController], animated: false)
     }
     

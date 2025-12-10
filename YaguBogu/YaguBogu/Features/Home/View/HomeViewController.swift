@@ -7,6 +7,8 @@ import Gifu
 
 class HomeViewController: BaseViewController {
     
+    let retapEvent = PublishRelay<Void>()
+    
     weak var coordinator: HomeCoordinator?
     
     private let viewModel: HomeViewModel
@@ -99,6 +101,13 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        bindRetap()
+        
+        if let tab = self.tabBarController as? TabBarController {
+            tab.homeTabReselected
+                .bind(to: retapEvent)
+                .disposed(by: disposeBag)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -650,5 +659,18 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
 
     }
+    
+    private func bindRetap() {
+        retapEvent
+            .asSignal()
+            .emit(onNext: { [weak self] in
+                guard let self = self else { return }
+
+                self.scrollView.setContentOffset(.zero, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+    }
+
 }
 
