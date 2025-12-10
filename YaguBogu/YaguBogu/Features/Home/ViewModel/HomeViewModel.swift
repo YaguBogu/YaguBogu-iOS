@@ -234,9 +234,34 @@ final class HomeViewModel {
                 return self.customSentence(for: currentWeather.description)
             }
 
-        let teamMascotAssetNameDriver = selectedTeamRelay
-            .map { $0.defaultCharacter }
+        let teamMascotAssetNameDriver = Driver
+            .combineLatest(selectedTeamRelay.asDriver(), weatherDriver)
+            .map { team, weather -> String in
+                
+                guard let weather = weather else {
+                    return team.defaultCharacter
+                }
+                
+                let desc = weather.description.lowercased()
+                
+                // 날씨 공통 GIF
+                if desc.contains("thunderstorm") {
+                    return "AllThunder"
+                }
+                
+                if desc.contains("snow") {
+                    return "AllSnow"
+                }
+                
+                if desc.contains("shower rain") || desc.contains("rain") {
+                    return "AllRain"
+                }
+                
+                // 그 외에는 각 구단별 Sunny GIF
+                return team.defaultCharacter  
+            }
             .asDriver(onErrorJustReturn: "")
+
         
         let stadiumAddressDriver = selectedStadiumRelay
             .map { $0.address }

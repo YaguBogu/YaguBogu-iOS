@@ -2,6 +2,8 @@ import Foundation
 import RxSwift
 import RxRelay
 
+
+
 final class SelectGameViewModel {
     
     private let disposeBag = DisposeBag()
@@ -41,6 +43,7 @@ final class SelectGameViewModel {
         
         
         let homeTeamInfo = extraTeams.first { $0.teamId == homeTeam.name.rawValue }
+        let awayTeamInfo = extraTeams.first { $0.teamId == awayTeam.name.rawValue }
         
         let opposingTeamData: TeamsAway
         if mySelectedTeam.name == homeTeam.name.rawValue {
@@ -51,16 +54,27 @@ final class SelectGameViewModel {
         
         let opposingTeamInfo = extraTeams.first { $0.teamId == opposingTeamData.name.rawValue }
         
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: gameInfo.date)
         
         let scoreString: String
-        if gameInfo.status.short == .ft {
-            scoreString = "\(gameInfo.scores.home.total ?? 0) : \(gameInfo.scores.away.total ?? 0)"
-        } else {
+        
+        var isGameCancelled = false
+        
+        switch gameInfo.status.short {
+            
+        case .ft:
+            scoreString = "\(gameInfo.scores.away.total ?? 0) : \(gameInfo.scores.home.total ?? 0)"
+            isGameCancelled = false
+            
+        case .canc, .post:
             scoreString = "경기 취소"
+            isGameCancelled = true
+            
         }
+        
         let homeTeamTransName = BaseBallNameTranslator.getKoreanName(for: gameInfo.teams.home.name.rawValue)
         let awayTeamTransName = BaseBallNameTranslator.getKoreanName(for: gameInfo.teams.away.name.rawValue)
         
@@ -74,12 +88,16 @@ final class SelectGameViewModel {
             
             homeTeamName: homeTeamTransName,
             awayTeamName: awayTeamTransName,
+            homeTeamLogo: homeTeamInfo?.listCharacter ?? homeTeam.logo,
+            awayTeamLogo: awayTeamInfo?.listCharacter ?? awayTeam.logo,
             homeTeamScore: gameInfo.scores.home.total ?? 0,
             awayTeamScore: gameInfo.scores.away.total ?? 0,
             
+            
             gameDate: dateString,
             score: scoreString,
-            stadium: homeTeamInfo?.stadium ?? "정보 없음"
+            stadium: homeTeamInfo?.stadium ?? "정보 없음",
+            isCancelled: isGameCancelled
         )
     }
 }

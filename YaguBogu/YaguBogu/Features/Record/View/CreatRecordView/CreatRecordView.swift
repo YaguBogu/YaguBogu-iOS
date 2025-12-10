@@ -68,7 +68,8 @@ class CreateRecordView: BaseViewController {
     
     private let arrowImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "right")
+        image.image = UIImage(named: "right")?.withRenderingMode(.alwaysTemplate)
+        image.tintColor = .gray04
         return image
     }()
     
@@ -147,7 +148,7 @@ class CreateRecordView: BaseViewController {
     private let photoEditIcon: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(named: "edit")
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.isUserInteractionEnabled = false
         return view
     }()
@@ -176,26 +177,17 @@ class CreateRecordView: BaseViewController {
         return stackView
     }()
     
-    private let bottomView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .appWhite
-        view.layer.cornerRadius = 24
-        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        view.layer.shadowColor = UIColor.appBlack.cgColor
-        view.layer.shadowOpacity = 0.04
-        view.layer.shadowOffset = CGSize(width: 0, height: -2)
-        view.layer.shadowRadius = 4
-        view.layer.masksToBounds = false
-        return view
-    }()
-    
     let confirmButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
-        button.setTitle("게시", for: .normal)
-        button.titleLabel?.textColor = .appWhite
-        button.backgroundColor = .primary
-        button.layer.cornerRadius = 12
+        
+        var attTitle = AttributedString("등록")
+        attTitle.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = attTitle
+        
+        button.configuration = configuration
+        
         return button
     }()
     
@@ -213,16 +205,12 @@ class CreateRecordView: BaseViewController {
     override func configureUI() {
         super.configureUI()
         
-        [headerView,scrollView,bottomView].forEach{
+        [headerView,scrollView].forEach{
             view.addSubview($0)
         }
         
-        [cancelButton, titleLabel].forEach{
+        [cancelButton, titleLabel,confirmButton].forEach{
             headerView.addSubview($0)
-        }
-        
-        [confirmButton].forEach{
-            bottomView.addSubview($0)
         }
         
         scrollView.addSubview(contentStackView)
@@ -261,7 +249,12 @@ class CreateRecordView: BaseViewController {
         }
         
         cancelButton.snp.makeConstraints{ make in
-            make.leading.equalToSuperview().inset(26)
+            make.leading.equalToSuperview().inset(24)
+            make.centerY.equalToSuperview()
+        }
+        
+        confirmButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(24)
             make.centerY.equalToSuperview()
         }
         
@@ -270,22 +263,10 @@ class CreateRecordView: BaseViewController {
             
         }
         
-        bottomView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
-        }
-        
-        confirmButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(bottomView.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(57)
-        }
-        
         scrollView.snp.makeConstraints{ make in
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(bottomView.snp.top)
+            make.bottom.equalToSuperview()
         }
         
         contentStackView.snp.makeConstraints{ make in
@@ -402,11 +383,14 @@ class CreateRecordView: BaseViewController {
             .disposed(by: disposeBag)
             
         viewModel.isConfirmButtonState
-            .map { isEnabled in
-                return isEnabled ? UIColor.primary : UIColor.gray02
-            }
-            .asDriver(onErrorJustReturn: .gray04)
-            .drive(confirmButton.rx.backgroundColor)
+            .asDriver(onErrorJustReturn: false)
+            .drive(onNext: { [weak self] isEnabled in
+                guard let self = self else { return }
+                
+                self.confirmButton.configuration?.baseForegroundColor = isEnabled ? .primary : .gray04
+                
+                self.confirmButton.isEnabled = isEnabled
+            })
             .disposed(by: disposeBag)
         
         confirmButton.rx.tap

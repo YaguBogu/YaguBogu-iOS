@@ -44,6 +44,9 @@ class ListRecordCell: UICollectionViewCell{
         return view
     }()
     
+    private let dimView = GradientView()
+    
+    
     private var matchStatus: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
@@ -78,6 +81,7 @@ class ListRecordCell: UICollectionViewCell{
         super.init(frame: frame)
         configureUI()
         setupConstraints()
+        setupGradient()
     }
     
     required init?(coder: NSCoder) {
@@ -97,7 +101,7 @@ class ListRecordCell: UICollectionViewCell{
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         contentView.backgroundColor = .bg
-        [backgroundPicture,matchStatus,bottomStackView].forEach{
+        [backgroundPicture, dimView, matchStatus,bottomStackView].forEach{
             contentView.addSubview($0)
         }
     }
@@ -105,6 +109,10 @@ class ListRecordCell: UICollectionViewCell{
         backgroundPicture.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        dimView.snp.makeConstraints { make in
+            make.edges.equalTo(backgroundPicture)
+        }
+        
         matchStatus.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview().inset(8)
         }
@@ -113,11 +121,24 @@ class ListRecordCell: UICollectionViewCell{
         }
     }
     
+    
+    private func setupGradient(){
+        dimView.gradientLayer.colors = [
+            UIColor(white: 0, alpha: 0.04).cgColor,
+            UIColor(white: 0, alpha: 1.0).cgColor
+        ]
+        
+        dimView.gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        dimView.gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+        
+    }
+    
     func configure(with data: RecordData){
         titleLabel.text = data.title
         gameDate.text = data.gameDate
         titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         gameDate.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        
         let myTeamId = Int(data.myTeamId)
         let homeTeamId = Int(data.homeTeamId)
         let awayTeamId = Int(data.awayTeamId)
@@ -149,4 +170,15 @@ class ListRecordCell: UICollectionViewCell{
         
     }
     
+}
+
+
+class GradientView: UIView {
+    override class var layerClass: AnyClass {
+        return CAGradientLayer.self
+    }
+    
+    var gradientLayer: CAGradientLayer {
+        return self.layer as! CAGradientLayer
+    }
 }

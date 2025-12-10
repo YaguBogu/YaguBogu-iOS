@@ -13,8 +13,8 @@ final class NoScheduleView: UIView {
     // 선택한 날짜 라벨
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-        
         label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.textColor = .appBlack
         label.backgroundColor = .bg
         return label
     }()
