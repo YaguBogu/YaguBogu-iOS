@@ -12,12 +12,6 @@ final class PermissionBottomSheetView: UIView {
         return view
     }()
 
-    let closeButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named: "closeIcon"), for: .normal)
-        btn.tintColor = .clear
-        return btn
-    }()
 
     private let iconContainer: UIView = {
         let view = UIView()
@@ -91,7 +85,6 @@ final class PermissionBottomSheetView: UIView {
         clipsToBounds = true
 
         addSubview(handleBar)
-        addSubview(closeButton)
         addSubview(iconContainer)
         iconContainer.addSubview(iconImageView)
         addSubview(titleLabel)
@@ -113,15 +106,8 @@ final class PermissionBottomSheetView: UIView {
         }
 
 
-        closeButton.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(16)
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.width.height.equalTo(44)
-        }
-
-
         iconContainer.snp.makeConstraints {
-            $0.top.equalTo(handleBar.snp.bottom).offset(76)
+            $0.top.equalTo(handleBar.snp.bottom).offset(24)
             $0.leading.equalToSuperview().offset(24)
             $0.width.height.equalTo(55)
         }
@@ -136,7 +122,7 @@ final class PermissionBottomSheetView: UIView {
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(iconContainer.snp.top)
             $0.leading.equalTo(iconContainer.snp.trailing).offset(16)
-            $0.trailing.lessThanOrEqualTo(closeButton.snp.leading).offset(-16)
+            $0.trailing.equalToSuperview().offset(-24)
         }
 
 
@@ -164,7 +150,7 @@ final class PermissionBottomSheetView: UIView {
             $0.top.greaterThanOrEqualTo(subDescriptionLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(57)
-            $0.bottom.equalToSuperview().offset(-40)
+            $0.bottom.equalToSuperview().offset(-16)
         }
     }
 
