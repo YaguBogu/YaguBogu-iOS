@@ -9,7 +9,7 @@ final class CoreDataManager {
     
     private init() {}
     
-    func saveRecord(title: String, contentText: String, photoData: String, game: SelectGameCellModel) -> Completable {
+    func saveRecord(title: String, contentText: String, photoData: String, game: SelectGameCellModel, myTeam: TeamInfo) -> Completable {
         return Completable.create { completable in
             
             let context = self.coreDataStack.persistentContainer.viewContext
@@ -26,8 +26,15 @@ final class CoreDataManager {
             record.stadium = game.stadium
             record.homeTeam = game.homeTeamName
             record.awayTeam = game.awayTeamName
+            record.homeTeamId = Int32(game.homeTeamID)
+            record.awayTeamId = Int32(game.awayTeamID)
+            
             record.homeScore = Int32(game.homeTeamScore)
             record.awayScore = Int32(game.awayTeamScore)
+            
+            record.setValue(myTeam.id, forKey: "myTeamId")
+            record.setValue(myTeam.name, forKey: "selectedTeam")
+            
             
             do {
                 try context.save()

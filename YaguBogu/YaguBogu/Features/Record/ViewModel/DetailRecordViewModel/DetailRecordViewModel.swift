@@ -23,7 +23,7 @@ final class DetailRecordViewModel{
         
         let homeTeam = data.homeTeam ?? "홈팀"
         let awayTeam = data.awayTeam ?? "원정팀"
-        self.matchTeamText = "\(homeTeam) vs \(awayTeam)"
+        self.matchTeamText = "\(awayTeam) vs \(homeTeam)"
         
         let myTeamId = Int(data.myTeamId)
         let homeTeamId = Int(data.homeTeamId)
