@@ -20,6 +20,7 @@ final class ScheduleCoordinator: BaseCoordinator {
     }
     
     func goToToday() {
+        rootViewController?.hideToolTip()
         rootViewController?.skipToToday()
     }
 }

@@ -95,13 +95,11 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         let toolTipImageView: UIImageView = {
             let image = UIImageView(image: UIImage(named: "toolTip"))
             image.alpha = 0
-            image.snp.makeConstraints {
-                $0.width.equalTo(100)
-                $0.height.equalTo(40)
-            }
             return image
         }()
-    
+        
+        self.toolTip = toolTipImageView
+        
         guard let tabBar = tabBarController?.tabBar else { return }
         
         view.addSubview(toolTipImageView)
@@ -126,5 +124,14 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
     
     func skipToToday() {
         calendarView.skipToDay()
+    }
+    
+    func hideToolTip() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.toolTip?.alpha = 0
+        }, completion: { _ in
+            self.toolTip?.removeFromSuperview()
+            self.toolTip = nil
+        })
     }
 }
