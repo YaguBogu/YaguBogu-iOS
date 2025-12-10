@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "originHash" : "fa35dfeadf3c245417f24a042890861f0a48fe746d829b1ae8ae012d308f020f",
-=======
   "originHash" : "d0cc7d3e60054be395ca238e33097428360ff2472d02b5dc164570802c219415",
->>>>>>> Stashed changes
   "pins" : [
     {
       "identity" : "fscalendar",
@@ -71,7 +67,7 @@
     {
       "identity" : "swift-confidential",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/securevale/swift-confidential.git",
+      "location" : "https://github.com/securevale/swift-confidential",
       "state" : {
         "revision" : "95fd5cc6b01aa3d054d0f5964bb1f616a7276309",
         "version" : "0.5.0"
@@ -80,7 +76,7 @@
     {
       "identity" : "swift-confidential-plugin",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/securevale/swift-confidential-plugin.git",
+      "location" : "https://github.com/securevale/swift-confidential-plugin",
       "state" : {
         "revision" : "836e2058eecc03b62d87f4220cb48fad9f23d8f6",
         "version" : "0.5.0"
