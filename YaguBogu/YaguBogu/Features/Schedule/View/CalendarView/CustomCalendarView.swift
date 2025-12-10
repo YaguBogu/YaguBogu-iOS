@@ -134,6 +134,7 @@ extension CustomCalendarView {
         calendar.select(today)
         calendar.setCurrentPage(today, animated: true)
         updateHeaderMonthLabel()
+        didSelectDate?(today)
     }
 }
 
