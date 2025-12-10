@@ -150,7 +150,7 @@ final class PermissionBottomSheetView: UIView {
             $0.top.greaterThanOrEqualTo(subDescriptionLabel.snp.bottom).offset(24)
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.height.equalTo(57)
-            $0.bottom.equalToSuperview().offset(-16)
+            $0.bottom.equalToSuperview().offset(-46)
         }
     }
 
