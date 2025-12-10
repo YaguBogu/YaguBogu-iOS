@@ -13,6 +13,9 @@ struct SelectGameCellModel {
     let homeTeamLogo: String
     let awayTeamLogo: String
     
+    let homeTeamID: Int
+    let awayTeamID: Int
+    
     let homeTeamScore: Int
     let awayTeamScore: Int
     
