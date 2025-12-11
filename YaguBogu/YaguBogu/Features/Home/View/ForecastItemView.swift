@@ -39,7 +39,7 @@ final class ForecastItemView: UIView {
         stack.spacing = 6
 
         stack.setContentHuggingPriority(.required, for: .horizontal)
-            stack.setContentCompressionResistancePriority(.required, for: .horizontal)
+        stack.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         addSubview(stack)
         stack.snp.makeConstraints { make in
