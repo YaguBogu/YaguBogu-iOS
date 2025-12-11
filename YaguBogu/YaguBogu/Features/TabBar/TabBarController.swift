@@ -44,7 +44,13 @@ final class TabBarController: UITabBarController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        tabBar.layer.cornerRadius = 24
+        tabBar.layer.masksToBounds = true
+        
+        tabBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
     }
+
 
 }
 
