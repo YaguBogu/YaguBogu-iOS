@@ -50,7 +50,7 @@ final class AppCoordinator: BaseCoordinator {
         let alertCoordinator = CustomAlertCoordinator(
             navigationController: self.navigationController,
             title: "업데이트 알림",
-            message: "최신 버전이 출시되었습니다. 원활한 서비스 이용을 위해 업데이트를 진행해주세요.",
+            message: "최신 버전이 출시되었습니다.\n 원활한 서비스 이용을 위해 업데이트를 진행해주세요.",
             cancelTitle: nil,
             confirmTitle: "업데이트"
         )

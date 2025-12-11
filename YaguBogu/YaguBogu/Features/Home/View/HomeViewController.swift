@@ -7,6 +7,8 @@ import Gifu
 
 class HomeViewController: BaseViewController {
     
+    let retapEvent = PublishRelay<Void>()
+    
     weak var coordinator: HomeCoordinator?
     
     private let viewModel: HomeViewModel
@@ -99,6 +101,13 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
+        bindRetap()
+        
+        if let tab = self.tabBarController as? TabBarController {
+            tab.homeTabReselected
+                .bind(to: retapEvent)
+                .disposed(by: disposeBag)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,7 +149,7 @@ class HomeViewController: BaseViewController {
         
         rightStack.axis = .vertical
         rightStack.spacing = 6
-        rightStack.alignment = .trailing
+        rightStack.alignment = .fill
         rightStack.distribution = .equalSpacing
         
         // 수평 스택 3개 만들기
@@ -149,14 +158,15 @@ class HomeViewController: BaseViewController {
         windRow.spacing = 11
         windRow.alignment = .center
 
+
         let rainRow = UIStackView(arrangedSubviews: [rainIcon, rainLabel])
         rainRow.axis = .horizontal
-        rainRow.spacing = 11
+        rainRow.spacing = 25
         rainRow.alignment = .center
 
         let humidityRow = UIStackView(arrangedSubviews: [dropIcon, humidityLabel])
         humidityRow.axis = .horizontal
-        humidityRow.spacing = 11
+        humidityRow.spacing = 25
         humidityRow.alignment = .center
         
         // 라벨이 늘어날 때 왼쪽으로 늘어나게 하기
@@ -167,7 +177,7 @@ class HomeViewController: BaseViewController {
         // rightStack 설정
         rightStack.axis = .vertical
         rightStack.spacing = 6
-        rightStack.alignment = .leading
+        rightStack.alignment = .fill
         rightStack.distribution = .equalSpacing
 
         // 세 개의 row 막대기를 rightStack에 넣기
@@ -467,7 +477,7 @@ class HomeViewController: BaseViewController {
                 let paragraph = NSMutableParagraphStyle()
                 paragraph.minimumLineHeight = 18
                 paragraph.maximumLineHeight = 18
-                paragraph.alignment = .center
+                paragraph.alignment = .right
 
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
@@ -489,7 +499,7 @@ class HomeViewController: BaseViewController {
                 let paragraph = NSMutableParagraphStyle()
                 paragraph.minimumLineHeight = 18
                 paragraph.maximumLineHeight = 18
-                paragraph.alignment = .center
+                paragraph.alignment = .right
 
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
@@ -511,7 +521,7 @@ class HomeViewController: BaseViewController {
                 let paragraph = NSMutableParagraphStyle()
                 paragraph.minimumLineHeight = 18
                 paragraph.maximumLineHeight = 18
-                paragraph.alignment = .center
+                paragraph.alignment = .right
 
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
@@ -650,5 +660,18 @@ class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
 
     }
+    
+    private func bindRetap() {
+        retapEvent
+            .asSignal()
+            .emit(onNext: { [weak self] in
+                guard let self = self else { return }
+
+                self.scrollView.setContentOffset(.zero, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+    }
+
 }
 

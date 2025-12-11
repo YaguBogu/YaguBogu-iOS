@@ -1,10 +1,17 @@
 import UIKit
+import RxRelay
+import RxSwift
 
 final class TabBarController: UITabBarController {
-
+    
+    let homeTabReselected = PublishRelay<Void>()
+    private var previousIndex = 0
+    var scheduleCoordinator: ScheduleCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.delegate = self
+        
         tabBar.tintColor = .primary
         tabBar.unselectedItemTintColor = .gray03
 
@@ -34,10 +41,29 @@ final class TabBarController: UITabBarController {
         tabBar.scrollEdgeAppearance = appearance
     }
     
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
 
 }
 
+extension TabBarController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          didSelect viewController: UIViewController) {
 
+        let current = tabBarController.selectedIndex
+
+        if current == 0, previousIndex == 0 {
+            homeTabReselected.accept(()) // 재탭 이벤트 발생하게하기
+        }
+
+        previousIndex = current
+        
+        guard let nav = viewController as? UINavigationController else { return }
+        
+        if nav == scheduleCoordinator?.navigationController {
+            scheduleCoordinator?.goToToday()
+        }
+    }
+}
