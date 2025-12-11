@@ -308,14 +308,14 @@ class HomeViewController: BaseViewController {
             make.height.equalTo(166)
         }
         
-        // 팀 마스코트 박스 (375 x 300)
+        // 팀 마스코트 박스
         mascotBox.snp.makeConstraints { make in
             make.top.equalTo(emojiBox.snp.bottom)
             make.leading.trailing.equalTo(contentView)
             make.height.equalTo(300)
         }
         
-        // 인포컨테이너(일기예보랑 구장위치) (375 x 476)
+        // 인포컨테이너(일기예보랑 구장위치)
         infoContainer.snp.makeConstraints { make in
             make.top.equalTo(mascotBox.snp.bottom)
             make.leading.trailing.equalTo(contentView)
@@ -323,12 +323,12 @@ class HomeViewController: BaseViewController {
             make.bottom.equalToSuperview()
         }
         
-        // 일기예보 영역 (343 x 162)
+        // 일기예보 영역
         forecastBox.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(343)
-            make.height.equalTo(162)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(168)
         }
         
         forecastTitleLabel.snp.makeConstraints { make in
@@ -344,11 +344,11 @@ class HomeViewController: BaseViewController {
         }
 
 
-        // 구장위치 영역 (343 x 268)
+        // 구장위치 영역
         stadiumLocationView.snp.makeConstraints { make in
             make.top.equalTo(forecastBox.snp.bottom).offset(14)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(343)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(268)
         }
 
@@ -639,7 +639,7 @@ class HomeViewController: BaseViewController {
 
                     itemView.snp.makeConstraints { make in
                         make.width.equalTo(40)
-                        make.height.equalTo(83)
+                        make.height.equalTo(95)
                     }
 
                     self.forecastStack.addArrangedSubview(itemView)
