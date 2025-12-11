@@ -157,22 +157,25 @@ class HomeViewController: BaseViewController {
         windRow.axis = .horizontal
         windRow.spacing = 11
         windRow.alignment = .center
+        windRow.distribution = .fill
 
 
         let rainRow = UIStackView(arrangedSubviews: [rainIcon, rainLabel])
         rainRow.axis = .horizontal
         rainRow.spacing = 25
         rainRow.alignment = .center
+        rainRow.distribution = .fill
 
         let humidityRow = UIStackView(arrangedSubviews: [dropIcon, humidityLabel])
         humidityRow.axis = .horizontal
         humidityRow.spacing = 25
         humidityRow.alignment = .center
+        humidityRow.distribution = .fill
         
         // 라벨이 늘어날 때 왼쪽으로 늘어나게 하기
-        windLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        rainLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-        humidityLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+        windLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        rainLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
+        humidityLabel.setContentCompressionResistancePriority(.required, for: .horizontal)
 
         // rightStack 설정
         rightStack.axis = .vertical
@@ -396,6 +399,18 @@ class HomeViewController: BaseViewController {
             label.snp.makeConstraints { make in
                 make.height.equalTo(18)
             }
+        }
+        
+        windLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+
+        rainLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+
+        humidityLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
         }
     }
 
