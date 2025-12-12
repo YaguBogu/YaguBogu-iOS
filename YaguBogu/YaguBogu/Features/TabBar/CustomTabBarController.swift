@@ -115,7 +115,7 @@ final class CustomTabBarController: UIViewController {
             vc.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
 
-        // 인디케이터 영역 
+        // 인디케이터 영역
         vc.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: 98, right: 0)
 
         vc.didMove(toParent: self)

@@ -359,6 +359,7 @@ class HomeViewController: BaseViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(268)
+            make.bottom.equalTo(infoContainer.snp.bottom).inset(-20)
         }
 
 
