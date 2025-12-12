@@ -12,10 +12,10 @@ final class TabBarCoordinator: BaseCoordinator {
 
     override func start() {
         super.start()
-        
-        let tabBarController = TabBarController()
+
+        let tabBarController = CustomTabBarController()
         let extraTeamsJsonService = ExtraTeamsJsonService()
-        
+
         // 홈
         let homeNav = UINavigationController()
         let homeCoordinator = HomeCoordinator(navigationController: homeNav, team: team)
@@ -41,7 +41,11 @@ final class TabBarCoordinator: BaseCoordinator {
 
         // 직관기록
         let recordNav = UINavigationController()
-        let recordCoordinator = RecordCoordinator(navigationController: recordNav, team: team, extraTeamsJson: extraTeamsJsonService)
+        let recordCoordinator = RecordCoordinator(
+            navigationController: recordNav,
+            team: team,
+            extraTeamsJson: extraTeamsJsonService
+        )
         addChild(recordCoordinator)
         recordCoordinator.start()
         recordNav.tabBarItem = UITabBarItem(
@@ -49,14 +53,12 @@ final class TabBarCoordinator: BaseCoordinator {
             image: UIImage(named: "tab_record_default"),
             selectedImage: UIImage(named: "tab_record_selected")
         )
-        
 
-        tabBarController.viewControllers = [homeNav, scheduleNav, recordNav]
-
+        tabBarController.setViewControllers([homeNav, scheduleNav, recordNav])
         navigationController.setViewControllers([tabBarController], animated: true)
-        
         navigationController.setNavigationBarHidden(true, animated: false)
     }
+
 }
 
 
