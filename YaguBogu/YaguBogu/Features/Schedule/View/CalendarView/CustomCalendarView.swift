@@ -115,7 +115,7 @@ extension CustomCalendarView {
     
     private func updateHeaderMonthLabel() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM월"
+        formatter.dateFormat = "yyyy.MM월"
         headerView.monthLabel.text = formatter.string(from: calendar.currentPage)
     }
 
