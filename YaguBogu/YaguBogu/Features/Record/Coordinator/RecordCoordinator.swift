@@ -76,6 +76,7 @@ final class RecordCoordinator: BaseCoordinator {
         let navigationController = UINavigationController(rootViewController: createVC)
         navigationController.modalPresentationStyle = .fullScreen
         
+        
         createVM.dismiss
             .subscribe(onNext: {[weak navigationController] in
                 navigationController?.dismiss(animated: true, completion: nil)
