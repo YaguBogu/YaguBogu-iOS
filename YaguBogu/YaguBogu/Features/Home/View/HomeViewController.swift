@@ -98,17 +98,26 @@ class HomeViewController: BaseViewController {
         fatalError("에러메세지")
     }
     
+    private func findCustomTabBarController() -> CustomTabBarController? {
+        var parentVC = self.parent
+        while parentVC != nil {
+            if let tab = parentVC as? CustomTabBarController { return tab }
+            parentVC = parentVC?.parent
+        }
+        return nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         bindRetap()
-        
-        if let tab = self.tabBarController as? TabBarController {
-            tab.homeTabReselected
-                .bind(to: retapEvent)
-                .disposed(by: disposeBag)
-        }
+
+        findCustomTabBarController()?
+            .homeTabReselected
+            .bind(to: retapEvent)
+            .disposed(by: disposeBag)
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
