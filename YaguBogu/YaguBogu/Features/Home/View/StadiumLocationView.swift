@@ -35,7 +35,10 @@ final class StadiumLocationView: UIView {
         let lb = UILabel()
         lb.text = "구장 위치"
         lb.textColor = .appBlack
-        lb.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        lb.font = UIFont(
+            name: "AppleSDGothicNeo-Medium",
+            size: 16
+        )
         return lb
     }()
     
