@@ -123,7 +123,7 @@ extension StadiumLocationView {
         let addressRow = UIStackView(arrangedSubviews: [addressLabel, openButton])
         addressRow.axis = .horizontal
         addressRow.spacing = 12
-        addressRow.alignment = .center
+        addressRow.alignment = .top
         addressRow.distribution = .fill
 
         locationInfoContainer.addSubview(addressRow)
@@ -134,9 +134,6 @@ extension StadiumLocationView {
             $0.bottom.equalToSuperview().inset(16)
         }
 
-        addressLabel.snp.makeConstraints {
-            $0.height.equalTo(36)
-        }
 
         openButton.snp.makeConstraints {
             $0.width.equalTo(90)
