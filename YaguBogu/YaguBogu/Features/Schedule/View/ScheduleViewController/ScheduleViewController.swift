@@ -100,19 +100,16 @@ final class ScheduleViewController: BaseViewController, FSCalendarDelegate {
         
         self.toolTip = toolTipImageView
         
-        guard let tabBar = tabBarController?.tabBar else { return }
+        guard let window = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene})
+            .first?.windows
+            .filter( {$0.isKeyWindow} ).first else { return }
         
-        view.addSubview(toolTipImageView)
-        
-        // 경기 일정 탭
-        let index = 1  // 두 번째 탭의 중앙 X
-        let tabCount = tabBar.items?.count ?? 1
-        let itemWidth = tabBar.bounds.width / CGFloat(tabCount)
-        let centerX = itemWidth * CGFloat(index) + itemWidth / 2
+        window.addSubview(toolTipImageView)
         
         toolTipImageView.snp.makeConstraints {
-            $0.bottom.equalTo(tabBar.snp.top).offset(-4)
-            $0.centerX.equalToSuperview().offset(centerX - tabBar.bounds.width / 2)
+            $0.centerX.equalTo(window.snp.centerX)
+            $0.bottom.equalTo(window.snp.bottom).offset(-89)
         }
         
         toolTipImageView.alpha = 0
