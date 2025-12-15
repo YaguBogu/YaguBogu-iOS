@@ -494,7 +494,7 @@ class HomeViewController: BaseViewController {
                 self.tempLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Thin", size: 80) ?? UIFont.systemFont(ofSize: 80, weight: .thin),
+                        .font: UIFont.sfPro(.tempLabel, weight: .thin),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraph,
                         .kern: -2
