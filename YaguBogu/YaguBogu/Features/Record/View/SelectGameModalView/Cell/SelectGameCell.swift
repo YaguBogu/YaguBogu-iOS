@@ -127,8 +127,8 @@ final class SelectGameCell: UITableViewCell{
         let dayFormatter = DateFormatter()
         dayFormatter.locale = Locale(identifier: "ko_KR")
         dayFormatter.dateFormat = "MM.dd (E)"
-        awayTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        homeTeamLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        awayTeamLabel.font = .sdGothic(.caption1, weight: .semibold)
+        homeTeamLabel.font = .sdGothic(.caption1, weight: .semibold)
         
         awayTeamLabel.text = model.awayTeamName
         gameDateLabel.text = dayFormatter.string(from: date)
@@ -142,10 +142,10 @@ final class SelectGameCell: UITableViewCell{
         homeTeamLogo.image = UIImage(named: model.homeTeamLogo)
         
         if model.isCancelled{
-            scoreLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+            scoreLabel.font = .sdGothic(.headlineBody, weight: .semibold)
             scoreLabel.textColor = .gray07
         }else {
-            scoreLabel.font = .monospacedDigitSystemFont(ofSize: 20, weight: .semibold)
+            scoreLabel.font = .sfPro(.title3, weight: .semibold)
             scoreLabel.textColor = .gray09
         }
         
