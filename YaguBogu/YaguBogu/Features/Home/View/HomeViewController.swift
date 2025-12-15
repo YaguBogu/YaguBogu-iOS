@@ -123,6 +123,17 @@ class HomeViewController: BaseViewController {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let stadium = viewModel.currentStadiumInfo()
+        stadiumLocationView.updateMapLocation(
+            lat: stadium.latitude,
+            lon: stadium.longitude
+        )
+    }
+
 
     override func configureUI() {
         super.configureUI()
