@@ -4,6 +4,11 @@ import NMapsMap
 
 final class StadiumLocationView: UIView {
 
+    private let marker: NMFMarker = {
+        let m = NMFMarker()
+        m.anchor = CGPoint(x: 0.5, y: 1.0) // 마커 위치
+        return m
+    }()
     
     private let shadowContainer: UIView = {
         let v = UIView()
@@ -143,17 +148,20 @@ extension StadiumLocationView {
     }
     
     func updateMapLocation(lat: Double, lon: Double) {
-        let cameraPosition = NMFCameraPosition(NMGLatLng(lat: lat, lng: lon), zoom: 16)
+        let position = NMGLatLng(lat: lat, lng: lon)
+
+        // 카메라 줌 이동
+        let cameraPosition = NMFCameraPosition(position, zoom: 16)
         let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
         mapView.moveCamera(cameraUpdate)
 
-        // 마커 표시
-        let marker = NMFMarker()
-        marker.iconImage = NMF_MARKER_IMAGE_BLACK // 기본 마커 이미지 
+        // 기존 마커 재사용하기
+        marker.iconImage = NMF_MARKER_IMAGE_BLACK
         marker.iconTintColor = .primary
-        marker.position = NMGLatLng(lat: lat, lng: lon)
+        marker.position = position
         marker.mapView = mapView
     }
+
 
 }
 
