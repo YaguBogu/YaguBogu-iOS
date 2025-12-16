@@ -517,7 +517,7 @@ class HomeViewController: BaseViewController {
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.sfPro(.caption1, weight: .semibold),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -539,7 +539,7 @@ class HomeViewController: BaseViewController {
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.sfPro(.caption1, weight: .semibold),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -561,7 +561,7 @@ class HomeViewController: BaseViewController {
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont.sfPro(.caption1, weight: .semibold),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
