@@ -33,7 +33,7 @@ class CustomAlertView:BaseViewController{
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "커스텀 알림 제목"
-        label.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 18)
+        label.font = .sdGothic(.alertTitle, weight: .bold)
         label.textColor = .appBlack
         label.textAlignment = .center
         
@@ -43,7 +43,7 @@ class CustomAlertView:BaseViewController{
     private var messageLabel:UILabel = {
         let label = UILabel()
         label.text = "커스텀 메세지"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.alertMessage, weight: .medium)
         label.textColor = .appBlack
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -53,7 +53,7 @@ class CustomAlertView:BaseViewController{
     private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setTitle("커스텀 버튼", for: .normal)
-        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
+        button.titleLabel?.font = .sdGothic(.alertButton, weight: .semibold)
         button.setTitleColor(.primary, for: .normal)
         button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor.primary.cgColor
@@ -65,7 +65,7 @@ class CustomAlertView:BaseViewController{
     private lazy var confirmButton: UIButton = {
         let button = UIButton()
         button.setTitle("커스텀 버튼", for: .normal)
-        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
+        button.titleLabel?.font = .sdGothic(.alertButton, weight: .semibold)
         button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor.primary.cgColor
         button.backgroundColor = .primary

@@ -19,7 +19,7 @@ final class SelectGameCell: UITableViewCell{
     
     private let awayTeamLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFPro-Medium", size: 14)
+        label.font = .sfPro(.caption1, weight: .medium)
         label.textColor = .appBlack
         return label
     }()
@@ -34,14 +34,14 @@ final class SelectGameCell: UITableViewCell{
     
     private let gameDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12)
+        label.font = .sdGothic(.caption2, weight: .semibold)
         label.textColor = .gray07
         return label
     }()
     
     private let scoreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFPro-Semibold", size: 20)
+        label.font = .sfPro(.title3, weight: .semibold)
         label.textColor = .gray09
         label.numberOfLines = 1
         return label
@@ -49,7 +49,7 @@ final class SelectGameCell: UITableViewCell{
     
     private let stadiumLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        label.font = .sdGothic(.caption2, weight: .medium)
         label.textColor = .gray07
         return label
     }()
@@ -70,7 +70,7 @@ final class SelectGameCell: UITableViewCell{
     
     private let homeTeamLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SFPro-Medium", size: 14)
+        label.font = .sfPro(.caption1, weight: .medium)
         label.textColor = .appBlack
         return label
     }()

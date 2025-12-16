@@ -57,7 +57,7 @@ class ListRecordCell: UICollectionViewCell{
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "경기장 야경"
-        label.font = UIFont(name: "SFPro-Semibold", size: 17)
+        label.font = .sfPro(.headlineBody, weight: .semibold)
         label.textColor = .white
         return label
     }()
@@ -65,7 +65,7 @@ class ListRecordCell: UICollectionViewCell{
     private var gameDate: UILabel = {
         let label = UILabel()
         label.text = "yyyy.mm.dd"
-        label.font = UIFont(name: "SFPro-Semibold", size: 12)
+        label.font = .sfPro(.caption2, weight: .semibold)
         label.textColor = .gray04
         return label
     }()
@@ -136,8 +136,8 @@ class ListRecordCell: UICollectionViewCell{
     func configure(with data: RecordData){
         titleLabel.text = data.title
         gameDate.text = data.gameDate
-        titleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        gameDate.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
+        titleLabel.font = .sfPro(.headlineBody, weight: .semibold)
+        gameDate.font = .sfPro(.caption2, weight: .semibold)
         
         let myTeamId = Int(data.myTeamId)
         let homeTeamId = Int(data.homeTeamId)
