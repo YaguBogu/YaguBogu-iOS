@@ -48,7 +48,7 @@ class HomeViewController: BaseViewController {
     private let emojiBox = UIView()
     private let customWeatherLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = UIFont.sdGothic(.headlineBody, weight: .semibold)
         label.textColor = .appBlack
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -65,7 +65,7 @@ class HomeViewController: BaseViewController {
 
     private let forecastTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        label.font = UIFont.sdGothic(.callout, weight: .medium)
         label.textColor = .appBlack
         label.text = "시간대별 날씨"
         
@@ -78,7 +78,7 @@ class HomeViewController: BaseViewController {
         label.attributedText = NSAttributedString(
             string: "시간대별 날씨",
             attributes: [
-                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 16)!,
+                .font: UIFont.sdGothic(.callout, weight: .medium),
                 .foregroundColor: UIColor.appBlack,
                 .paragraphStyle: paragraph
             ]
@@ -150,7 +150,7 @@ class HomeViewController: BaseViewController {
         stadiumTapArea.isUserInteractionEnabled = true
         
 
-        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+        stadiumLabel.font = UIFont.sdGothic(.headlineBody, weight: .medium)
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 22
@@ -472,7 +472,7 @@ class HomeViewController: BaseViewController {
                 self.stadiumLabel.attributedText = NSAttributedString(
                     string: title,
                     attributes: [
-                        .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 17)!,
+                        .font: UIFont.sdGothic(.headlineBody, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraphStyle,
                         .kern: 0
@@ -517,7 +517,7 @@ class HomeViewController: BaseViewController {
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -539,7 +539,7 @@ class HomeViewController: BaseViewController {
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -561,7 +561,7 @@ class HomeViewController: BaseViewController {
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -588,7 +588,7 @@ class HomeViewController: BaseViewController {
                 self.customWeatherLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)!,
+                        .font: UIFont.sdGothic(.headlineBody, weight: .semibold),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraphStyle,
                         .kern: 0
