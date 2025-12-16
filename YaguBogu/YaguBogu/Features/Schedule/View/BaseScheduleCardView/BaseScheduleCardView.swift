@@ -30,7 +30,7 @@ final class BaseScheduleCardView: UIView {
     
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = .sdGothic(.headlineBody, weight: .semibold)
         label.textColor = .appBlack
         return label
     }()
@@ -96,7 +96,7 @@ extension BaseScheduleCardView {
         
         let label = UILabel()
         label.text = name
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .sfPro(.caption1, weight: .medium)
         label.textAlignment = .center
         
         let stack = UIStackView(arrangedSubviews: [imageView, label])
@@ -111,7 +111,7 @@ extension BaseScheduleCardView {
     static func scoreStadiumStackView(score: String, stadium: String ) -> UIStackView {
         let scoreLabel = UILabel()
         scoreLabel.text = score
-        scoreLabel.font = .systemFont(ofSize: 20, weight: .semibold)
+        scoreLabel.font = .sfPro(.title3, weight: .semibold)
         scoreLabel.textColor = .gray09
         scoreLabel.snp.makeConstraints {
             $0.height.equalTo(25)
@@ -119,7 +119,7 @@ extension BaseScheduleCardView {
         
         let stadiumLabel = UILabel()
         stadiumLabel.text = stadium
-        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        stadiumLabel.font = .sdGothic(.caption2, weight: .medium)
         stadiumLabel.textColor = .gray07
         
         let vStack = UIStackView(arrangedSubviews: [scoreLabel, stadiumLabel])
@@ -134,7 +134,7 @@ extension BaseScheduleCardView {
         // 시간 라벨
         let timeLabel = UILabel()
         timeLabel.text = time
-        timeLabel.font = .systemFont(ofSize: 16, weight: .semibold)
+        timeLabel.font = .sfPro(.callout, weight: .semibold)
         timeLabel.textColor = .gray09
         timeLabel.snp.makeConstraints {
             $0.height.equalTo(25)
@@ -143,7 +143,7 @@ extension BaseScheduleCardView {
         // 구장 라벨
         let stadiumLabel = UILabel()
         stadiumLabel.text = stadium
-        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        stadiumLabel.font = .sdGothic(.caption2, weight: .medium)
         stadiumLabel.textColor = .gray07
         
         // 시간 및 구장 스택뷰
@@ -160,7 +160,7 @@ extension BaseScheduleCardView {
     static func cancelStackView(cancelTitle: String, stadium: String ) -> UIStackView {
         let cancelLabel = UILabel()
         cancelLabel.text = cancelTitle
-        cancelLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        cancelLabel.font = .sdGothic(.headlineBody, weight: .semibold)
         cancelLabel.textColor = .gray07
         cancelLabel.snp.makeConstraints {
             $0.height.equalTo(25)
@@ -168,7 +168,7 @@ extension BaseScheduleCardView {
         
         let stadiumLabel = UILabel()
         stadiumLabel.text = stadium
-        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        stadiumLabel.font = .sdGothic(.caption2, weight: .medium)
         stadiumLabel.textColor = .gray07
         
         let vStack = UIStackView(arrangedSubviews: [cancelLabel, stadiumLabel])
