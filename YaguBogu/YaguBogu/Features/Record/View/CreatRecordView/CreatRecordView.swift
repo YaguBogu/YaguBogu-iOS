@@ -77,7 +77,7 @@ class CreateRecordView: BaseViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 6
-        let font = UIFont.sdGothic(.caption1, weight: .medium)
+        let font: UIFont = .sdGothic(.caption1, weight: .medium)
         textField.attributedPlaceholder = NSAttributedString(
             string: "제목을 입력해 주세요.",
             attributes: [
@@ -85,7 +85,7 @@ class CreateRecordView: BaseViewController {
                 NSAttributedString.Key.font : font
             ]
         )
-        textField.font = UIFont.sdGothic(.caption1, weight: .medium)
+        textField.font = .sdGothic(.caption1, weight: .medium)
         textField.addLeftPadding(width: 16)
         
         textField.textColor = .appBlack
