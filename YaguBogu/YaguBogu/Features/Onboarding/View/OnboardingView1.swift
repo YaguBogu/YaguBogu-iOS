@@ -16,16 +16,16 @@ struct OnboardingView1: View {
                     .padding(.bottom, (32 / baseWidth) * w)
                 
                 Text("야구장 날씨가 궁금하시죠?")
-                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
+                    .font(.sdGothic(.title1, weight: .semibold))
                     .foregroundColor(Color(UIColor.appBlack))
                     .padding((10 / baseWidth) * w)
                 
                 Text("좋아하는 구단을 선택하고,")
-                    .font(.custom("AppleSDGothicNeo-Medium", size: 16))
+                    .font(.sdGothic(.callout, weight: .medium))
                     .foregroundColor(Color(UIColor.gray05))
                 
                 Text("구장별 날씨를 한눈에 확인하세요.")
-                    .font(.custom("AppleSDGothicNeo-Medium", size: 16))
+                    .font(.sdGothic(.callout, weight: .medium))
                     .foregroundColor(Color(UIColor.gray05))
             }
             .frame(width: w)

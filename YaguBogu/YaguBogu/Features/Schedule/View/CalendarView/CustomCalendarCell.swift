@@ -78,7 +78,7 @@ class CustomCalendarCell: FSCalendarCell {
         dotView.backgroundColor = .secondary
         circleLayer.fillColor = UIColor.clear.cgColor
         borderLayer.strokeColor = UIColor.clear.cgColor
-        titleLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        titleLabel.font = .sfPro(.callout, weight: .regular)
 
 //        if dateIsToday {
         if isToday {

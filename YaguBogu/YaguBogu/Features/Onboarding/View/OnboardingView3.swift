@@ -11,7 +11,7 @@ struct OnboardingView3: View {
             VStack {
                 HStack {
                     Text("경기 일정\n한눈에 모아봤어요.")
-                        .font(.custom("AppleSDGothicNeo-SemiBold", size: 28))
+                        .font(.sdGothic(.title1, weight: .semibold))
                         .foregroundColor(Color(UIColor.appBlack))
                         .fixedSize(horizontal: false, vertical: true)
                         .frame(

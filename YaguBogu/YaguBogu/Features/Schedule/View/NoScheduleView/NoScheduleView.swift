@@ -13,7 +13,7 @@ final class NoScheduleView: UIView {
     // 선택한 날짜 라벨
     let scheduleDateLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = .sdGothic(.headlineBody, weight: .semibold)
         label.textColor = .appBlack
         label.backgroundColor = .bg
         return label
@@ -28,7 +28,7 @@ final class NoScheduleView: UIView {
     
     private let noScheduleTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        label.font = .sdGothic(.caption2, weight: .medium)
         label.text = "경기 일정이 없습니다."
         label.textColor = .gray04
         label.textAlignment = .center
