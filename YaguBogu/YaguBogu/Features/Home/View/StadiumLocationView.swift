@@ -40,10 +40,7 @@ final class StadiumLocationView: UIView {
         let lb = UILabel()
         lb.text = "구장 위치"
         lb.textColor = .appBlack
-        lb.font = UIFont(
-            name: "AppleSDGothicNeo-Medium",
-            size: 16
-        )
+        lb.font = UIFont.sdGothic(.callout, weight: .medium)
         return lb
     }()
     
@@ -52,7 +49,7 @@ final class StadiumLocationView: UIView {
         lb.text = "서울 송파구 올림픽로 25 서울종합운동장"
         lb.textColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1)
         lb.numberOfLines = 2
-        lb.font = UIFont.systemFont(ofSize: 14)
+        lb.font = UIFont.sdGothic(.caption1, weight: .regular)
         return lb
     }()
     
@@ -61,7 +58,7 @@ final class StadiumLocationView: UIView {
         btn.setTitle("지도 열기", for: .normal)
         btn.backgroundColor = .primary
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 14)!
+        btn.titleLabel?.font = UIFont.sdGothic(.caption1, weight: .semibold)
         btn.layer.cornerRadius = 12
         return btn
     }()

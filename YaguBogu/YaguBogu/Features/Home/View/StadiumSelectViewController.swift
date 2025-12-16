@@ -83,7 +83,7 @@ final class StadiumSelectViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "구장 선택"
-        label.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+        label.font = UIFont.sdGothic(.headlineBody, weight: .regular)
         label.textColor = .appBlack
         label.textAlignment = .center
         return label
@@ -129,7 +129,7 @@ final class StadiumSelectViewController: UIViewController {
         Observable.just(stadiums)
             .bind(to: tableView.rx.items(cellIdentifier: "Cell")) { row, item, cell in
                 cell.textLabel?.text = "\(item.name), \(item.city)"
-                cell.textLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+                cell.textLabel?.font = UIFont.sdGothic(.headlineBody, weight: .regular)
             }
             .disposed(by: disposeBag)
 
