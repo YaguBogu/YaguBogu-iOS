@@ -10,7 +10,7 @@ struct NextButtonView: View {
                 self.action()
             }) {
                 Text("다음")
-                    .font(.custom("AppleSDGothicNeo-SemiBold", size: 16))
+                    .font(.sdGothic(.callout, weight: .semibold))
                     .foregroundColor(Color(UIColor.appWhite))
                     .frame(width: (343 / 402) * w, height: (57 / 402) * w)
             }

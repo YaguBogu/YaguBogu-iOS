@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 /*
  사용 예시
@@ -82,5 +83,16 @@ extension UIFont {
         }
         
         return font
+    }
+}
+
+// SwiftUI 용
+extension Font {
+    static func sdGothic(_ style: Typography, weight: UIFont.Weight) -> Font {
+        Font(UIFont.sdGothic(style, weight: weight))
+    }
+    
+    static func sfPro(_ style: Typography, weight: UIFont.Weight) -> Font {
+        Font(UIFont.sfPro(style, weight: weight))
     }
 }
