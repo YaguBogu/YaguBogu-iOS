@@ -50,7 +50,7 @@ class TeamViewController: BaseViewController {
         let label = UILabel()
         let labelText = "관심 야구 팀 선택"
         label.text = labelText
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = .sdGothic(.headlineBody, weight: .semibold)
         label.textColor = UIColor.appBlack
         label.textAlignment = .center
         return label

@@ -58,6 +58,7 @@ final class RecordViewController: BaseViewController {
     
     override func setupConstraints() {
         super.setupConstraints()
+        
         emptyView.snp.makeConstraints{ make in
             make.center.equalToSuperview()
         }
@@ -65,9 +66,13 @@ final class RecordViewController: BaseViewController {
             make.edges.equalTo(view.safeAreaLayoutGuide)
             
         }
+        
+        let tabBarHeight: CGFloat = 98.0
+        let floatingButtonHeight: CGFloat = 64.0
+        
         floatingButton.snp.makeConstraints{ make in
             make.trailing.equalToSuperview().offset(-26)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-26)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset((-tabBarHeight + floatingButtonHeight) + 26)
         }
         
         

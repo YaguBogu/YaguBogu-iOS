@@ -6,8 +6,7 @@ class TeamHeaderView: UICollectionReusableView {
     
     let subTitleLabel: UILabel = {
         let label = UILabel()
-        
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.numberOfLines = 2
         let labelText = "응원하는 구단팀을 선택하고, 구장 날씨를 확인하세요\n한번 선택하신 구장은 변경하실 수 없습니다"
         label.text = labelText

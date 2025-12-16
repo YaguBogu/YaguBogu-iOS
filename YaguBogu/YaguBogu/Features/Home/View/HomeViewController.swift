@@ -48,7 +48,7 @@ class HomeViewController: BaseViewController {
     private let emojiBox = UIView()
     private let customWeatherLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = UIFont.sdGothic(.headlineBody, weight: .semibold)
         label.textColor = .appBlack
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -65,7 +65,7 @@ class HomeViewController: BaseViewController {
 
     private let forecastTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        label.font = UIFont.sdGothic(.callout, weight: .medium)
         label.textColor = .appBlack
         label.text = "시간대별 날씨"
         
@@ -78,7 +78,7 @@ class HomeViewController: BaseViewController {
         label.attributedText = NSAttributedString(
             string: "시간대별 날씨",
             attributes: [
-                .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 16)!,
+                .font: UIFont.sdGothic(.callout, weight: .medium),
                 .foregroundColor: UIColor.appBlack,
                 .paragraphStyle: paragraph
             ]
@@ -98,22 +98,42 @@ class HomeViewController: BaseViewController {
         fatalError("에러메세지")
     }
     
+    private func findCustomTabBarController() -> CustomTabBarController? {
+        var parentVC = self.parent
+        while parentVC != nil {
+            if let tab = parentVC as? CustomTabBarController { return tab }
+            parentVC = parentVC?.parent
+        }
+        return nil
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         bindRetap()
-        
-        if let tab = self.tabBarController as? TabBarController {
-            tab.homeTabReselected
-                .bind(to: retapEvent)
-                .disposed(by: disposeBag)
-        }
+
+        findCustomTabBarController()?
+            .homeTabReselected
+            .bind(to: retapEvent)
+            .disposed(by: disposeBag)
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let stadium = viewModel.currentStadiumInfo()
+        stadiumLocationView.updateMapLocation(
+            lat: stadium.latitude,
+            lon: stadium.longitude
+        )
+    }
+
 
     override func configureUI() {
         super.configureUI()
@@ -130,7 +150,7 @@ class HomeViewController: BaseViewController {
         stadiumTapArea.isUserInteractionEnabled = true
         
 
-        stadiumLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 17)
+        stadiumLabel.font = UIFont.sdGothic(.headlineBody, weight: .medium)
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 22
@@ -308,14 +328,14 @@ class HomeViewController: BaseViewController {
             make.height.equalTo(166)
         }
         
-        // 팀 마스코트 박스 (375 x 300)
+        // 팀 마스코트 박스
         mascotBox.snp.makeConstraints { make in
             make.top.equalTo(emojiBox.snp.bottom)
             make.leading.trailing.equalTo(contentView)
             make.height.equalTo(300)
         }
         
-        // 인포컨테이너(일기예보랑 구장위치) (375 x 476)
+        // 인포컨테이너(일기예보랑 구장위치)
         infoContainer.snp.makeConstraints { make in
             make.top.equalTo(mascotBox.snp.bottom)
             make.leading.trailing.equalTo(contentView)
@@ -323,12 +343,12 @@ class HomeViewController: BaseViewController {
             make.bottom.equalToSuperview()
         }
         
-        // 일기예보 영역 (343 x 162)
+        // 일기예보 영역
         forecastBox.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(343)
-            make.height.equalTo(162)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(168)
         }
         
         forecastTitleLabel.snp.makeConstraints { make in
@@ -344,11 +364,11 @@ class HomeViewController: BaseViewController {
         }
 
 
-        // 구장위치 영역 (343 x 268)
+        // 구장위치 영역
         stadiumLocationView.snp.makeConstraints { make in
             make.top.equalTo(forecastBox.snp.bottom).offset(14)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(343)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(268)
         }
 
@@ -452,7 +472,7 @@ class HomeViewController: BaseViewController {
                 self.stadiumLabel.attributedText = NSAttributedString(
                     string: title,
                     attributes: [
-                        .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 17)!,
+                        .font: UIFont.sdGothic(.headlineBody, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraphStyle,
                         .kern: 0
@@ -474,7 +494,7 @@ class HomeViewController: BaseViewController {
                 self.tempLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Thin", size: 80) ?? UIFont.systemFont(ofSize: 80, weight: .thin),
+                        .font: UIFont.sfPro(.tempLabel, weight: .thin),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraph,
                         .kern: -2
@@ -497,7 +517,7 @@ class HomeViewController: BaseViewController {
                 self.rainLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -519,7 +539,7 @@ class HomeViewController: BaseViewController {
                 self.humidityLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -541,7 +561,7 @@ class HomeViewController: BaseViewController {
                 self.windLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium),
+                        .font: UIFont.sfPro(.caption1, weight: .medium),
                         .foregroundColor: UIColor.gray08,
                         .paragraphStyle: paragraph,
                         .kern: 0
@@ -568,7 +588,7 @@ class HomeViewController: BaseViewController {
                 self.customWeatherLabel.attributedText = NSAttributedString(
                     string: text,
                     attributes: [
-                        .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)!,
+                        .font: UIFont.sdGothic(.headlineBody, weight: .semibold),
                         .foregroundColor: UIColor.appBlack,
                         .paragraphStyle: paragraphStyle,
                         .kern: 0
@@ -639,7 +659,7 @@ class HomeViewController: BaseViewController {
 
                     itemView.snp.makeConstraints { make in
                         make.width.equalTo(40)
-                        make.height.equalTo(83)
+                        make.height.equalTo(95)
                     }
 
                     self.forecastStack.addArrangedSubview(itemView)

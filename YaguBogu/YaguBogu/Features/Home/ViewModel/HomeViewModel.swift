@@ -138,7 +138,7 @@ final class HomeViewModel {
         let temperatureTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
-                    return "구장 온도 정보를 불러오는 중"
+                    return "-°"
                 }
                 let temp = String(format: "%.1f", currentWeather.temperatureC)
                 return "\(temp)°"
@@ -190,7 +190,7 @@ final class HomeViewModel {
         let rainTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
-                    return "강수량 정보를 불러오는 중"
+                    return "-"
                 }
                 let rain = currentWeather.precipitation ?? 0
                 return "\(rain)%"
@@ -199,7 +199,7 @@ final class HomeViewModel {
         let humidityTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
-                    return "습도 정보를 불러오는 중"
+                    return "-"
                 }
                 return "\(currentWeather.humidity)%"
             }
@@ -207,7 +207,7 @@ final class HomeViewModel {
         let windTextDriver = weatherDriver
             .map { weather -> String in
                 guard let currentWeather = weather else {
-                    return "현재 구장 풍속 정보를 불러오는 중"
+                    return "-"
                 }
                 return "\(currentWeather.windSpeed)m/s"
             }

@@ -19,7 +19,7 @@ final class ForecastItemView: UIView {
 
     private func setupUI() {
         // 시간
-        timeLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        timeLabel.font = UIFont.sdGothic(.caption1, weight: .medium)
         timeLabel.textColor = .appBlack
         timeLabel.textAlignment = .center
 
@@ -27,7 +27,7 @@ final class ForecastItemView: UIView {
         iconView.contentMode = .scaleAspectFit
 
         // 온도
-        tempLabel.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 20)
+        tempLabel.font = UIFont.sdGothic(.title3, weight: .semibold)
         tempLabel.textColor = .appBlack
         tempLabel.textAlignment = .center
     }
@@ -39,7 +39,7 @@ final class ForecastItemView: UIView {
         stack.spacing = 6
 
         stack.setContentHuggingPriority(.required, for: .horizontal)
-            stack.setContentCompressionResistancePriority(.required, for: .horizontal)
+        stack.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         addSubview(stack)
         stack.snp.makeConstraints { make in

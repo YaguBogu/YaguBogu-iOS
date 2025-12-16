@@ -4,6 +4,11 @@ import NMapsMap
 
 final class StadiumLocationView: UIView {
 
+    private let marker: NMFMarker = {
+        let m = NMFMarker()
+        m.anchor = CGPoint(x: 0.5, y: 1.0) // 마커 위치
+        return m
+    }()
     
     private let shadowContainer: UIView = {
         let v = UIView()
@@ -35,7 +40,7 @@ final class StadiumLocationView: UIView {
         let lb = UILabel()
         lb.text = "구장 위치"
         lb.textColor = .appBlack
-        lb.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        lb.font = UIFont.sdGothic(.callout, weight: .medium)
         return lb
     }()
     
@@ -44,7 +49,7 @@ final class StadiumLocationView: UIView {
         lb.text = "서울 송파구 올림픽로 25 서울종합운동장"
         lb.textColor = UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1)
         lb.numberOfLines = 2
-        lb.font = UIFont.systemFont(ofSize: 14)
+        lb.font = UIFont.sdGothic(.caption1, weight: .regular)
         return lb
     }()
     
@@ -53,7 +58,7 @@ final class StadiumLocationView: UIView {
         btn.setTitle("지도 열기", for: .normal)
         btn.backgroundColor = .primary
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 14)!
+        btn.titleLabel?.font = UIFont.sdGothic(.caption1, weight: .semibold)
         btn.layer.cornerRadius = 12
         return btn
     }()
@@ -120,7 +125,7 @@ extension StadiumLocationView {
         let addressRow = UIStackView(arrangedSubviews: [addressLabel, openButton])
         addressRow.axis = .horizontal
         addressRow.spacing = 12
-        addressRow.alignment = .center
+        addressRow.alignment = .top
         addressRow.distribution = .fill
 
         locationInfoContainer.addSubview(addressRow)
@@ -131,9 +136,6 @@ extension StadiumLocationView {
             $0.bottom.equalToSuperview().inset(16)
         }
 
-        addressLabel.snp.makeConstraints {
-            $0.height.equalTo(36)
-        }
 
         openButton.snp.makeConstraints {
             $0.width.equalTo(90)
@@ -143,17 +145,20 @@ extension StadiumLocationView {
     }
     
     func updateMapLocation(lat: Double, lon: Double) {
-        let cameraPosition = NMFCameraPosition(NMGLatLng(lat: lat, lng: lon), zoom: 16)
+        let position = NMGLatLng(lat: lat, lng: lon)
+
+        // 카메라 줌 이동
+        let cameraPosition = NMFCameraPosition(position, zoom: 16)
         let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
         mapView.moveCamera(cameraUpdate)
 
-        // 마커 표시
-        let marker = NMFMarker()
-        marker.iconImage = NMF_MARKER_IMAGE_BLACK // 기본 마커 이미지 
+        // 기존 마커 재사용하기
+        marker.iconImage = NMF_MARKER_IMAGE_BLACK
         marker.iconTintColor = .primary
-        marker.position = NMGLatLng(lat: lat, lng: lon)
+        marker.position = position
         marker.mapView = mapView
     }
+
 
 }
 

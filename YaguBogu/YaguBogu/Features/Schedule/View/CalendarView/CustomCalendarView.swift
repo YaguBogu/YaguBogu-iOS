@@ -53,7 +53,7 @@ extension CustomCalendarView {
         calendar.calendarHeaderView.isHidden = true
         
         calendar.scrollEnabled = false
-        calendar.appearance.weekdayFont = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        calendar.appearance.weekdayFont = .sdGothic(.callout, weight: .medium)
         calendar.appearance.weekdayTextColor = .gray05
         
         calendar.placeholderType = .none
@@ -115,7 +115,7 @@ extension CustomCalendarView {
     
     private func updateHeaderMonthLabel() {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM월"
+        formatter.dateFormat = "yyyy.MM월"
         headerView.monthLabel.text = formatter.string(from: calendar.currentPage)
     }
 

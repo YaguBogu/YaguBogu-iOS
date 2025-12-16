@@ -19,7 +19,7 @@ final class SelectGameModalView: BaseViewController{
         let label = UILabel()
         label.text = "경기 선택"
         label.textColor = .appBlack
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = .sdGothic(.headlineBody, weight: .semibold)
         label.textAlignment = .center
         return label
     }()

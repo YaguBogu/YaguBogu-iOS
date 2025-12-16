@@ -3,10 +3,6 @@ import UIKit
 class BaseCoordinator {
     var navigationController: UINavigationController
     var childCoordinators: [BaseCoordinator] = []
-    let titleTextFont: [NSAttributedString.Key: Any] = [
-        .foregroundColor: UIColor.appBlack,
-        .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .semibold)
-    ]
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -14,7 +10,19 @@ class BaseCoordinator {
     
 
     func start() {
-        navigationController.navigationBar.titleTextAttributes = titleTextFont as [NSAttributedString.Key : Any]
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .bg
+        appearance.shadowColor = .clear
+        
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.appBlack,
+            .font: UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .semibold)
+        ]
+        
+        navigationController.navigationBar.standardAppearance = appearance
+        navigationController.navigationBar.scrollEdgeAppearance = appearance
+        navigationController.navigationBar.compactAppearance = appearance
     }
     
     
