@@ -12,7 +12,7 @@ final class EmptyRecordView: UIView {
     
     private let emptyTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.numberOfLines = 2
         let labelText = "등록된 직관 기록이 없습니다\n직관을 등록해 보세요"
         label.text = labelText

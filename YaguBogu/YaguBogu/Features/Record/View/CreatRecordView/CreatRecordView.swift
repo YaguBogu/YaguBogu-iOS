@@ -24,7 +24,7 @@ class CreateRecordView: BaseViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "직관 기록 작성"
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        label.font = .sdGothic(.headlineBody, weight: .semibold)
         return label
     }()
     
@@ -53,7 +53,7 @@ class CreateRecordView: BaseViewController {
     private let selectTextLabel: UILabel = {
         let label = UILabel()
         label.text = "경기 선택"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.textColor = .black
         return label
     }()
@@ -61,7 +61,7 @@ class CreateRecordView: BaseViewController {
     private let selectText: UILabel = {
         let label = UILabel()
         label.text = "선택"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.textColor = .gray04
         return label
     }()
@@ -77,7 +77,7 @@ class CreateRecordView: BaseViewController {
         let textField = UITextField()
         textField.backgroundColor = .white
         textField.layer.cornerRadius = 6
-        let font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14)
+        let font = UIFont.sdGothic(.caption1, weight: .medium)
         textField.attributedPlaceholder = NSAttributedString(
             string: "제목을 입력해 주세요.",
             attributes: [
@@ -85,7 +85,7 @@ class CreateRecordView: BaseViewController {
                 NSAttributedString.Key.font : font
             ]
         )
-        textField.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        textField.font = UIFont.sdGothic(.caption1, weight: .medium)
         textField.addLeftPadding(width: 16)
         
         textField.textColor = .appBlack
@@ -95,7 +95,7 @@ class CreateRecordView: BaseViewController {
     private lazy var contentPlaceholderLabel: UILabel = {
         let label = UILabel()
         label.text = "글을 작성해 주세요."
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.textColor = .gray04
         return label
     }()
@@ -104,7 +104,7 @@ class CreateRecordView: BaseViewController {
         let textView = UITextView()
         textView.backgroundColor = .white
         textView.layer.cornerRadius = 6
-        textView.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        textView.font = .sdGothic(.caption1, weight: .medium)
         textView.textColor = .appBlack
         textView.textContainerInset = UIEdgeInsets(top: 14, left: 12, bottom: 14, right: 16)
         return textView
@@ -122,7 +122,7 @@ class CreateRecordView: BaseViewController {
     private let photoTitle: UILabel = {
         let label = UILabel()
         label.text = "사진 추가"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.textColor = .appBlack
         return label
     }()
@@ -163,7 +163,7 @@ class CreateRecordView: BaseViewController {
     private let photoPlaceholderLabel: UILabel = {
         let label = UILabel()
         label.text = "사진 불러오기"
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 14)
+        label.font = .sdGothic(.caption1, weight: .medium)
         label.textColor = .gray04
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -181,7 +181,7 @@ class CreateRecordView: BaseViewController {
         let button = UIButton()
         
         var attTitle = AttributedString("등록")
-        attTitle.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 17)
+        attTitle.font = .sdGothic(.headlineBody, weight: .semibold)
         
         var configuration = UIButton.Configuration.plain()
         configuration.attributedTitle = attTitle

@@ -16,6 +16,9 @@ enum Typography {
     case caption2
     case caption3
     case tempLabel
+    case alertTitle
+    case alertMessage
+    case alertButton
     
     var fontSize: CGFloat {
         switch self {
@@ -29,6 +32,9 @@ enum Typography {
         case .caption2:     return 12
         case .caption3:     return 10
         case .tempLabel:    return 80
+        case .alertTitle:   return 18
+        case .alertMessage: return 14
+        case .alertButton:  return 16
         }
     }
 }

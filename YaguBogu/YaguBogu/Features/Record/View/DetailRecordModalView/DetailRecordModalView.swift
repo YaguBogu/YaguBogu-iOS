@@ -98,14 +98,14 @@ final class DetailRecordModalView: BaseViewController {
     
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 22)
+        label.font = .sdGothic(.title2, weight: .semibold)
         label.textColor = .black
         return label
     }()
     
     private var gameDate: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        label.font = .sdGothic(.caption2, weight: .medium)
         label.textColor = .gray07
         return label
     }()
@@ -118,7 +118,7 @@ final class DetailRecordModalView: BaseViewController {
     
     private var gameResultLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        label.font = .sdGothic(.caption2, weight: .medium)
         label.textColor = .gray07
         return label
     }()
@@ -152,7 +152,7 @@ final class DetailRecordModalView: BaseViewController {
     
     private var matchTeamlabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
+        label.font = .sdGothic(.callout, weight: .semibold)
         label.textColor = .gray07
         return label
     }()
@@ -165,7 +165,7 @@ final class DetailRecordModalView: BaseViewController {
     
     private var stadiumNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
+        label.font = .sdGothic(.callout, weight: .semibold)
         label.textColor = .gray07
         return label
     }()
@@ -191,14 +191,14 @@ final class DetailRecordModalView: BaseViewController {
     
     private let contentTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 20)
+        label.font = .sdGothic(.title3, weight: .semibold)
         label.textColor = .black
         return label
     }()
     
     private var contentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 16)
+        label.font = .sdGothic(.callout, weight: .medium)
         label.textColor = .black
         label.numberOfLines = 0
         return label

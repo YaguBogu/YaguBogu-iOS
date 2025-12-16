@@ -15,7 +15,7 @@ class SelectTeamCell: UICollectionViewCell{
     private var teamNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: "AppleSDGothicNeo-SemiBold", size: 16)
+        label.font = .sdGothic(.callout, weight: .semibold)
         label.textColor = .appBlack
         return label
     }()
@@ -23,7 +23,7 @@ class SelectTeamCell: UICollectionViewCell{
     private var cityLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 12)
+        label.font = .sdGothic(.caption2, weight: .medium)
         label.textColor = .gray06
         return label
     }()
