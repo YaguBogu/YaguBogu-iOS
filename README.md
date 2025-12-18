@@ -16,6 +16,8 @@
 경기 전 날씨확인부터 직관 기록까지, 사용자 경험을 더 편리하게 도와줍니다.
 </div>
 
+<br>
+
 ## 서비스 소개
 
 <div align="center">
@@ -24,10 +26,9 @@
 |------|------|
 | <img src="https://github.com/user-attachments/assets/886b9fae-c3c5-45ab-9d60-41899cd3403f" width="50" /> | **[야구보구 다운로드](https://apps.apple.com/kr/app/%EC%95%BC%EA%B5%AC%EB%B3%B4%EA%B5%AC/id6755948443)** |
 |<img src="https://github.com/user-attachments/assets/ef18548d-5e66-45a3-9a1e-d918d0a2ed23" width="50" />|**[문의 및 지원 페이지](https://www.notion.so/iOS-2beb000d70fa80c5b661f1c40785bd29?source=copy_link)**|
+|<img src="https://github.com/user-attachments/assets/019889fa-7c69-413e-bd23-c6bd258cbde5" width="40" />|**[시연영상](https://www.youtube.com/shorts/Bt2RcrdevgU)**|
 
 </div>
-
-
 
 <br>
 
