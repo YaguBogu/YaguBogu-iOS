@@ -1,4 +1,20 @@
-# 야구보구-iOS
+<div align="center">
+<img width="80" src="https://github.com/user-attachments/assets/cdfd47d9-25f8-425c-a998-0b740ab151eb" />
+
+
+# 야구보구
+
+경기 보러 가기 전 준비부터, 경기 후의 기록까지 한 번에 관리하며 야구를 더 편하게, 더 즐겁게 즐기자
+
+<img width="5760" height="3240" alt="야구보구표지" src="https://github.com/user-attachments/assets/a5b5168d-cb0b-4fe8-a9de-ae5d12428dfa" />
+
+</div>
+
+<div align="center">
+야구보구는 KBO 경기를 보러 가는 사람들을 위해 경기장 방문 전/후로 필요한 정보를 제공하고 관리해주는 어플리케이션입니다. 
+  
+경기 전 날씨확인부터 직관 기록까지, 사용자 경험을 더 편리하게 도와줍니다.
+</div>
 
 ## 서비스 소개
 
@@ -43,5 +59,4 @@
 
 
 </div>
-
 
