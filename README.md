@@ -38,8 +38,8 @@
 
 | 기능 | 설명 |
 |----------|----------|
-| **`온보딩`** | <img width="840" height="473" alt="기능1" src="https://github.com/user-attachments/assets/38e26ff3-58cd-4524-a7d5-8a2498c21cde" /> |
-| **`관심구단 선택`** | <img width="840" height="473" alt="기능2" src="https://github.com/user-attachments/assets/8c3fde39-b379-4d35-ae8d-0ec517b98ed2" /> |
+| **`온보딩`** | <img width="840" height="473" alt="기능1" src="https://github.com/user-attachments/assets/d56f1a56-6fa1-4bdc-8887-b108ee713f54" /> |
+| **`관심구단 선택`** | <img width="840" height="473" alt="기능2" src="https://github.com/user-attachments/assets/90e6ed00-ee83-42d6-8875-5ce0c8765a34" /> |
 | **`홈화면`** | <img width="840" height="473" alt="기능3" src="https://github.com/user-attachments/assets/7e027330-a417-4004-8aa0-077975d6799f" /> |
 | **`경기일정`** | <img width="840" height="473" alt="기능4" src="https://github.com/user-attachments/assets/418de76d-4348-47c3-ab12-a55e99c32112" /> |
 | **`직관기록`** | <img width="840" height="473" alt="기능5" src="https://github.com/user-attachments/assets/8fa97fda-439e-4157-9505-726c63771da5" /> |
