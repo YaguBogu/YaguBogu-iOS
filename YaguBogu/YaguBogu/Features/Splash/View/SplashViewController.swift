@@ -23,7 +23,7 @@ final class SplashViewController: BaseViewController {
         paragraph.alignment = .center
 
         let attributed = NSAttributedString(
-            string: "즐거운 야구 생활, 야구보구",
+            string: "즐거운 야구 생활, 야구보로",
             attributes: [
                 .font: UIFont(name: "AppleSDGothicNeo-Medium", size: 20) ??
                        .systemFont(ofSize: 20, weight: .medium),
